@@ -2,6 +2,8 @@ import React from 'react'
 
 type ColorBoxProps = {
     selectedOption: number;
+    colors: string[];
+    visibleColors: number;
 }
 
 
