@@ -362,7 +362,7 @@ input[type='color'] {
 }
 
 .color-box:first-child {
-  margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 
 .m-2 {
@@ -413,4 +413,10 @@ li {
 .color-box-container {
   display: flex;
   flex-wrap: wrap;
+}
+
+.contrast-box {
+  margin: 2rem 0;
+  border: 2px solid black;
+  border-radius: 10px;
 }

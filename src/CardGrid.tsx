@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ColorBox from './ColorBox';
 import ColorSelect from './ColorSelect';
+import ContrastBox from './ContrastBox';
 import ContrastSelect from './ContrastSelect';
 import ColorPickerList from './ColorPickerList'
 
@@ -41,6 +42,26 @@ const CardGrid: React.FC<CardGridProps> = () => {
     setVisibleColors(selectedOption);
   }, [selectedOption]);
 
+  // Render color and contrast boxes together
+  const renderColorAndContrastBoxes = () => {
+	const elements = [];
+	for (let i = 0; i < visibleColors; i++){
+		elements.push(<ColorBox key={`color-${i}`} color={colors[i]} />);
+
+		// Add ContrastBox between ColorBoxes if there is a next Color
+		if(i < visibleColors - 1){
+			elements.push(
+				<ContrastBox
+					key={`contrast-${i}`}
+					leftColor={colors[i]}
+					rightColor={colors[i + 1]}
+				/>
+			);
+		}
+	}
+	return elements;
+  }
+
 
   return (
     <div className="container">
@@ -60,11 +81,9 @@ const CardGrid: React.FC<CardGridProps> = () => {
         </div>
         <div className="card">
             <h2>The palette</h2>
-            <ColorBox
-				selectedOption={selectedOption}
-				colors={colors}
-				visibleColors={visibleColors}
-			/>
+			<div className="color-box-container">
+            	{renderColorAndContrastBoxes()}
+			</div>
         </div>
     </div>
   )
