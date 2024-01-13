@@ -18,7 +18,6 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({ selectedOption }) => 
     }).join('');
   }
 
-  const initialColors = Array.from({ length: selectedOption }, () => rgbToHex(getRgb(), getRgb(), getRgb()));
   const [colors, setColors] = useState<string[]>([]);
   const [visibleColors, setVisibleColors] = useState<number>(0);
 
