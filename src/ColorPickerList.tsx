@@ -19,11 +19,16 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({ selectedOption }) => 
   }
 
   const initialColors = Array.from({ length: selectedOption }, () => rgbToHex(getRgb(), getRgb(), getRgb()));
-  const [colors, setColors] = useState(initialColors);
+  const [colors, setColors] = useState<string[]>([]);
+  const [visibleColors, setVisibleColors] = useState<number>(0);
 
   useEffect(() => {
-    const newColors = Array.from({ length: selectedOption }, () => rgbToHex(getRgb(), getRgb(), getRgb()));
-    setColors(newColors);
+    if (selectedOption > colors.length){
+      // If selectedOption increases, generate new colors for the additional color pickers
+      const additionalColors = Array.from({ length: selectedOption - colors.length }, () => rgbToHex(getRgb(), getRgb(), getRgb()));
+      setColors(prevColors => [...prevColors, ...additionalColors]);
+    }
+    setVisibleColors(selectedOption);
   }, [selectedOption]);
 
   
@@ -35,7 +40,7 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({ selectedOption }) => 
     setColors(newColors);
   }
 
-  const colorPickers = colors.map((color, index) => {
+  const colorPickers = colors.slice(0, visibleColors).map((color, index) => {
     return (<li key={index}>
       <ColorText
         color={color}
