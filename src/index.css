@@ -256,7 +256,8 @@ ul {
 
 .container {
   padding: 2rem;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   row-gap: 1.5rem;
   height: 160px;
 }
@@ -330,13 +331,21 @@ input[type='color'] {
 }
 
 .card {
-  width: 30%; /* Adjust as needed */
+  width: 50%; 
   margin: 10px;
-  background-color: #f0f0f0; /* Add your preferred background color */
+  background-color: #f0f0f0; 
   padding: 20px;
   box-sizing: border-box;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  flex: 1 0 30%;
+  min-height: 50vh;
+  max-height: 100vh;
+  flex-grow: 1;
+}
+
+.card:last-child {
+  flex: 1 0 100%;
 }
 
 /* Style for the container (optional) */

@@ -24,11 +24,11 @@ const CardGrid: React.FC<CardGridProps> = () => {
             <ContrastSelect selectedContrast={selectedContrast} setSelectedContrast={setSelectedContrast} />
         </div>
         <div className="card">
-            <h2>Which colors</h2>
+            <h2>Which colors?</h2>
             <ColorPickerList selectedOption={selectedOption} />
         </div>
         <div className="card">
-            <h2>Color combinations</h2>
+            <h2>The palette</h2>
         </div>
     </div>
   )
