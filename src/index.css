@@ -394,3 +394,9 @@ li {
   display: flex;
   align-items: center;
 }
+
+.color-box {
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+}

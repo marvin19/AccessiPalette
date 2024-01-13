@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ColorBox from './ColorBox';
 import ColorSelect from './ColorSelect';
 import ContrastSelect from './ContrastSelect';
 import ColorPickerList from './ColorPickerList'
@@ -29,6 +30,7 @@ const CardGrid: React.FC<CardGridProps> = () => {
         </div>
         <div className="card">
             <h2>The palette</h2>
+            <ColorBox selectedOption={selectedOption}/>
         </div>
     </div>
   )
