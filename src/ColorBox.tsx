@@ -8,7 +8,7 @@ type ColorBoxProps = {
 const ColorBox: React.FC<ColorBoxProps> = ({ color}) => {
     
   return (
-    <div className="color-box m-2" style={{ backgroundColor: color }} />
+    <div className="color-box" style={{ backgroundColor: color }} />
   );
 }
 

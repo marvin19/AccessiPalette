@@ -1,4 +1,6 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 type ContrastBoxProps = {
     leftColor: string;
@@ -15,7 +17,13 @@ const ContrastBox: React.FC<ContrastBoxProps> = ({leftColor, rightColor}) => {
 
   return (
     <div className="contrast-box">
-        {`Contrast Ratio: ${contrastRatio.toFixed(2)}:1 ${meetsWCAGtext ? '(passes)' : '(fails)'}`}
+        <FontAwesomeIcon icon ={faArrowLeft} />
+            <div className="inner-contrast-box">
+                <p className="contrast-text">
+                    {`Contrast Ratio: ${contrastRatio.toFixed(2)}:1 ${meetsWCAGtext ? '(passes)' : '(fails)'}`}
+                </p>
+            </div>
+        <FontAwesomeIcon icon={faArrowRight} />
     </div>
   )
 }
