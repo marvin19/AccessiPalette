@@ -472,4 +472,15 @@ li {
 
 .color-pickers {
   margin-bottom: 0.5rem;
+  padding: 0.1rem;
+  transition: padding 0.3 ease;
+}
+
+.color-pickers:hover, .color-pickers:active {
+  background-color: var(--primary-200);
+  border: 2px solid var(--primary-500);
+  border-radius: 10px;
+  transition: background-color 0.3s ease, border-radius 0.3s ease; 
+  padding: 0.3rem;
+  
 }

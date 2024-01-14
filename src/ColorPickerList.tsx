@@ -38,7 +38,7 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({ colors, handleColorCh
             {colors.slice(0, visibleColors).map((color, index) => (
               <Draggable key={color} draggableId={color} index={index}>
               {(provided) => (
-                <li ref={provided.innerRef} {...provided.draggableProps} className="color-pickers">
+                <li ref={provided.innerRef} {...provided.draggableProps} className="color-pickers draggable">
                   <>
                     <div {...provided.dragHandleProps}> <FaPlusSquare /></div>
                     <ColorText
