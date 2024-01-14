@@ -428,7 +428,6 @@ li {
 .inner-contrast-box {
   margin: 2rem 1rem;
   height: 100px;
-  border: 3px solid black;
   border-radius: 10px;
   background-color: #FFFFFF;
   word-wrap: break-word;
@@ -451,6 +450,13 @@ li {
   color: var(--passes);
 }
 
+.passes-border {
+  border: 3px solid var(--passes);
+}
+
 .fails {
   color: var(--fails);
+}
+.fails-border {
+  border: 3px solid var(--fails);
 }

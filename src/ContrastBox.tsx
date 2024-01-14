@@ -19,7 +19,7 @@ const ContrastBox: React.FC<ContrastBoxProps> = ({leftColor, rightColor}) => {
   return (
     <div className="contrast-box">
         <FontAwesomeIcon icon ={faArrowLeft} />
-            <div className="inner-contrast-box">
+            <div className={`inner-contrast-box ${meetsWCAGtext ? 'passes-border' : 'fails-border'}`}>
                 <p className="contrast-text">
                     <b>Contrast Ratio:</b> {`${contrastRatio.toFixed(2)}:1`} 
                     <span className={meetsWCAGtext ? 'passes' : 'fails'}>
