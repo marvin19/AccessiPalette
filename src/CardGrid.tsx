@@ -62,4 +62,4 @@ const CardGrid: React.FC = () => {
   )
 }
 
-export default CardGrid
+export default CardGrid;
