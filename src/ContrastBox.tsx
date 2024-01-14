@@ -1,4 +1,5 @@
 import React from 'react'
+import SmallColorBox from './SmallColorBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,7 +21,8 @@ const ContrastBox: React.FC<ContrastBoxProps> = ({leftColor, rightColor}) => {
         <FontAwesomeIcon icon ={faArrowLeft} />
             <div className="inner-contrast-box">
                 <p className="contrast-text">
-                    {`Contrast Ratio: ${contrastRatio.toFixed(2)}:1 ${meetsWCAGtext ? '(passes)' : '(fails)'}`}
+                    {`Contrast Ratio: ${contrastRatio.toFixed(2)}:1 ${meetsWCAGtext ? '(passes)' : '(fails)'}`} <br />
+                    between <SmallColorBox color={leftColor} /> {leftColor} and <br /> <SmallColorBox color={rightColor} /> {rightColor}
                 </p>
             </div>
         <FontAwesomeIcon icon={faArrowRight} />

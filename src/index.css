@@ -434,3 +434,12 @@ li {
 .contrast-text {
   padding: 10px;
 }
+
+.small-color-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  border: 1px solid black;
+  border-radius: 3px;
+}
