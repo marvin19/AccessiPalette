@@ -23,7 +23,7 @@ const ContrastBox: React.FC<ContrastBoxProps> = ({leftColor, rightColor}) => {
                 <p className="contrast-text">
                     <b>Contrast Ratio:</b> {`${contrastRatio.toFixed(2)}:1`} 
                     <span className={meetsWCAGtext ? 'passes' : 'fails'}>
-                        {`${meetsWCAGtext ? '(passes)' : '(fails)'}`}
+                        {`${meetsWCAGtext ? ' (passes)' : ' (fails)'}`}
                     </span><br />
                     between <SmallColorBox color={leftColor} /> {leftColor} and <br /> <SmallColorBox color={rightColor} /> {rightColor}
                 </p>
