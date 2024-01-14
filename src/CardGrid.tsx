@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import ColorSelect from './ColorSelect';
 import ContrastSelect from './ContrastSelect';
 import ColorPickerList from './ColorPickerList'
-import { generateAdditionalColors, renderColorAndContrastBoxes } from './utils';
+import {
+  generateAdditionalColors,
+  renderColorAndContrastBoxes
+} from './utils';
 
 const CardGrid: React.FC = () => {
 
@@ -13,6 +16,11 @@ const CardGrid: React.FC = () => {
   const [visibleColors, setVisibleColors] = useState<number>(0);
 
   const handleColorChange = (newColors: string[]) => {
+    setColors(newColors);
+  }
+
+  const handleGeneratePalette = (): void => {
+    const newColors = generateAdditionalColors(visibleColors)
     setColors(newColors);
   }
 
@@ -36,10 +44,11 @@ const CardGrid: React.FC = () => {
         <div className="card">
             <h2>Which colors?</h2>
             <ColorPickerList
-				colors={colors}
-				handleColorChange={handleColorChange}
-				visibleColors={visibleColors}
-			/>
+              colors={colors}
+              handleColorChange={handleColorChange}
+              visibleColors={visibleColors}
+			      />
+            <button className="btn" onClick={handleGeneratePalette}>Generate random colors again</button>
         </div>
         <div className="card">
             <h2>The Adjacent Color palette with contrast {selectedContrast === 0 ? '4.5:1' : '3:1'}</h2>
