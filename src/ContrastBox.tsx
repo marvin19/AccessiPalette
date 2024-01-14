@@ -1,7 +1,7 @@
 import React from 'react'
 import SmallColorBox from './SmallColorBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faArrowLeft, faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 type ContrastBoxProps = {
     leftColor: string;
@@ -27,6 +27,11 @@ const ContrastBox: React.FC<ContrastBoxProps> = ({leftColor, rightColor}) => {
                     </span><br />
                     between <SmallColorBox color={leftColor} /> {leftColor} and <br /> <SmallColorBox color={rightColor} /> {rightColor}
                 </p>
+                <div className="check-text">
+                    {meetsWCAGtext ?
+                        <p className='passes'><FontAwesomeIcon icon={faCheckCircle} style={{color: '#0f8548'}} /><b> passes!</b></p> :
+                        <p className='fails'><FontAwesomeIcon icon={faTimesCircle} style={{color: '#b51717'}} /><b> fails!</b></p>}
+                </div>
             </div>
         <FontAwesomeIcon icon={faArrowRight} />
     </div>

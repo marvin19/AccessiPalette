@@ -412,6 +412,7 @@ li {
   border: 4px solid black;
   border-radius: 10px;
   margin: 2rem 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); 
 }
 
 .color-box-container {
@@ -459,4 +460,8 @@ li {
 }
 .fails-border {
   border: 3px solid var(--fails);
+}
+
+.check-text {
+  justify-content: center;
 }
