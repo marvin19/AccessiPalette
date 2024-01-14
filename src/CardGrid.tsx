@@ -4,12 +4,7 @@ import ContrastSelect from './ContrastSelect';
 import ColorPickerList from './ColorPickerList'
 import { generateAdditionalColors, renderColorAndContrastBoxes } from './utils';
 
-type CardGridProps = {
-    colors: string[];
-    setColors: (colors: string[]) => void;
-}
-
-const CardGrid: React.FC<CardGridProps> = () => {
+const CardGrid: React.FC = () => {
 
   // You need to have two colors to check contrast
   const [selectedOption, setSelectedOption] = useState(2);

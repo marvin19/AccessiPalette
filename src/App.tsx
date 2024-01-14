@@ -1,5 +1,3 @@
-
-import { useState } from 'react';
 import Heading from './Heading';
 import CardGrid from './CardGrid';
 const App = () => {

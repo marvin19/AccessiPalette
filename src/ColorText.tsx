@@ -20,7 +20,7 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-        <label htmlFor="hexcolor">HEX: </label>
+        <label className="hex-color-text" htmlFor="hexcolor"> HEX: </label>
         <input type="text" value={inputColor} onChange={(e) => setInputColor(e.target.value)} id="hexcolor" name="hexcolor" />
     </form>
   )
