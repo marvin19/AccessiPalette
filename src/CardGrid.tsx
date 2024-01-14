@@ -42,8 +42,7 @@ const CardGrid: React.FC = () => {
 			/>
         </div>
         <div className="card">
-            <h2>The Adjacent Color palette</h2>
-			<p>Contrast ratio: {selectedContrast === 0 ? '4.5:1' : '3:1'}</p>
+            <h2>The Adjacent Color palette with contrast {selectedContrast === 0 ? '4.5:1' : '3:1'}</h2>
 			<p>This section checks contrast between adjacent colors for clear visualization if stacking colors in e.g charts. <strong>Non-adjacent colors are not compared</strong></p>
 			<div className="color-box-container">
             	{renderColorAndContrastBoxes(colors, visibleColors)}
