@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ColorBox from './ColorBox';
 import ColorSelect from './ColorSelect';
-import ContrastBox from './ContrastBox';
 import ContrastSelect from './ContrastSelect';
 import ColorPickerList from './ColorPickerList'
+import { generateAdditionalColors, renderColorAndContrastBoxes } from './utils';
 
 type CardGridProps = {
     colors: string[];
@@ -18,15 +17,6 @@ const CardGrid: React.FC<CardGridProps> = () => {
   const [colors, setColors] = useState<string[]>([]);
   const [visibleColors, setVisibleColors] = useState<number>(0);
 
-  const getRgb = () => Math.floor(Math.random() * 256);
-
-  const rgbToHex = (r: number, g: number, b: number): string => {
-    return '#' + [r, g, b].map(x => {
-      const hex = x.toString(16);
-      return hex.length === 1 ? '0' + hex : hex;
-    }).join('');
-  }
-
   const handleColorChange = (newColors: string[]) => {
     setColors(newColors);
   }
@@ -34,32 +24,11 @@ const CardGrid: React.FC<CardGridProps> = () => {
   useEffect(() => {
     if (selectedOption > colors.length){
       // If selectedOption increases, generate new colors for the additional color pickers
-      const additionalColors = Array.from({ length: selectedOption - colors.length }, () => rgbToHex(getRgb(), getRgb(), getRgb()));
+      const additionalColors = generateAdditionalColors(selectedOption - colors.length);
       setColors(prevColors => [...prevColors, ...additionalColors]);
     }
     setVisibleColors(selectedOption);
   }, [selectedOption]);
-
-  // Render color and contrast boxes together
-  const renderColorAndContrastBoxes = () => {
-	const elements: JSX.Element[] = [];
-	for (let i = 0; i < visibleColors; i++){
-		elements.push(<ColorBox key={`color-${i}`} color={colors[i]} />);
-
-		// Add ContrastBox between ColorBoxes if there is a next Color
-		if(i < visibleColors - 1){
-			elements.push(
-				<ContrastBox
-					key={`contrast-${i}`}
-					leftColor={colors[i]}
-					rightColor={colors[i + 1]}
-				/>
-			);
-		}
-	}
-	return elements;
-  }
-
 
   return (
     <div className="container">
@@ -78,9 +47,11 @@ const CardGrid: React.FC<CardGridProps> = () => {
 			/>
         </div>
         <div className="card">
-            <h2>The palette</h2>
+            <h2>The Adjacent Color palette</h2>
+			<p>Contrast ratio: {selectedContrast === 0 ? '4.5:1' : '3:1'}</p>
+			<p>This section checks contrast between adjacent colors for clear visualization if stacking colors in e.g charts. <strong>Non-adjacent colors are not compared</strong></p>
 			<div className="color-box-container">
-            	{renderColorAndContrastBoxes()}
+            	{renderColorAndContrastBoxes(colors, visibleColors)}
 			</div>
         </div>
     </div>
