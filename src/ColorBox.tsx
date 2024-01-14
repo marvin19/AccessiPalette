@@ -4,7 +4,7 @@ type ColorBoxProps = {
     color: string;
 }
 
-
+// This is the colorbox displaying the color in the palette
 const ColorBox: React.FC<ColorBoxProps> = ({ color}) => {
     
   return (

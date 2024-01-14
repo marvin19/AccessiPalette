@@ -27,9 +27,7 @@ const CardGrid: React.FC<CardGridProps> = () => {
     }).join('');
   }
 
-  const handleColorChange = (color: string, index: number) => {
-    const newColors = [...colors];
-    newColors[index] = color;
+  const handleColorChange = (newColors: string[]) => {
     setColors(newColors);
   }
 
@@ -44,7 +42,7 @@ const CardGrid: React.FC<CardGridProps> = () => {
 
   // Render color and contrast boxes together
   const renderColorAndContrastBoxes = () => {
-	const elements = [];
+	const elements: JSX.Element[] = [];
 	for (let i = 0; i < visibleColors; i++){
 		elements.push(<ColorBox key={`color-${i}`} color={colors[i]} />);
 
