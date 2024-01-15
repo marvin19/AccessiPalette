@@ -15,7 +15,7 @@ export const generateAdditionalColors = (count: number): string[] => {
 }
 
 // Render color and contrast boxes together
-export const renderColorAndContrastBoxes = (colors: string[], visibleColors: number): JSX.Element => {
+export const renderColorAndContrastBoxes = (colors: string[], visibleColors: number, selectedContrast: number): JSX.Element => {
 	const elements: JSX.Element[] = [];
 	for (let i = 0; i < visibleColors; i++){
 		elements.push(<ColorBox key={`color-${i}`} color={colors[i]} />);
@@ -27,6 +27,7 @@ export const renderColorAndContrastBoxes = (colors: string[], visibleColors: num
 					key={`contrast-${i}`}
 					leftColor={colors[i]}
 					rightColor={colors[i + 1]}
+                    selectedContrast={selectedContrast}
 				/>
 			);
 		}
