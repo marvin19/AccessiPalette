@@ -39,28 +39,33 @@ const CardGrid: React.FC = () => {
     <div className="container">
       <div className="card">
           <h2>Palette Type</h2>
-          <div>
-              <input
-                  type="radio"
-                  id="adjacent"
-                  name="paletteType"
-                  value="Adjacent"
-                  checked={paletteType === 'Adjacent'}
-                  onChange={() => setPaletteType('Adjacent')}
-              />
-              <label htmlFor="adjacent">Adjacent Color Palette</label>
+          <div className="copy">
+            <p>Choose the type of color palette to generate.</p>
+            <p>The 'Adjacent Color Palette' focuses on contrast between neighboring colors, ideal for visualizations where colors are used side by side.</p> 
+            <p>The 'Full Accessible Color Palette' checks contrast accross all color combinations, ensuring accessibility and readability in more complex color schemes. Your selection will dynamically update the palette displayed below.</p>
           </div>
-          <div>
-              <input
-                  type="radio"
-                  id="fullAccessible"
-                  name="paletteType"
-                  value="FullAccessible"
-                  checked={paletteType === 'FullAccessible'}
-                  onChange={() => setPaletteType('FullAccessible')}
-              />
-              <label htmlFor="fullAccessible">Full Accessible Color Palette</label>
-          </div>
+          <div className="radio-container">
+            <input
+                type="radio"
+                id="adjacent"
+                name="paletteType"
+                value="Adjacent"
+                checked={paletteType === 'Adjacent'}
+                onChange={() => setPaletteType('Adjacent')}
+            />
+            <label htmlFor="adjacent">Adjacent Color Palette</label>
+        </div>
+        <div className="radio-container">
+            <input
+                type="radio"
+                id="fullAccessible"
+                name="paletteType"
+                value="FullAccessible"
+                checked={paletteType === 'FullAccessible'}
+                onChange={() => setPaletteType('FullAccessible')}
+            />
+            <label htmlFor="fullAccessible">Full Accessible Color Palette</label>
+        </div>
       </div>
         <div className="card">
             <h2>How many colors?</h2>
