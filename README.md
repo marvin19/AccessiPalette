@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+# AccessiPalette
+AccessiPalette is a React application built with Vite that offers an intuitive way to calculate color contrast ratios based on user input. This tool is designed to help designers and developers create color schemes that are accessible and compliant with WCAG (Web Content Accessibility Guidelines) standards.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Disclaimer - Work in progress!!
+Please note that AccessiPalette is currently a work in progress. While I strive to create a tool that aids in developing accessible color schemes, we cannot guarantee that the application is fully accessible or that the results it delivers will always comply to accessibility standards. The application is under continuous development, and its features and functionalities are subject to change. Users are advised to use their discretion and consider additional checks to ensure color schemes meet the desired accessibility standards. This project is an ongoing effort to contribute to the accessibility community, and feedback or contributions are always welcome.
 
-Currently, two official plugins are available:
+## Features
+- Interactive UI for selecting and comparing colors.
+- Real-time calculation of contrast ratios.
+- ~~Supports WCAG contrast standards for text and graphical elements.~~
+- ~~User-friendly interface built with React.~~
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation and running the app
+Ensure you have Node.js installed, then follow these steps:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
+1. Clone the repository:
 ```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+git clone https://github.com/marvin19/AccessiPalette.git
+```
+2. Navigate to the project directory:
+```js
+cd AccessiPalette
+```
+3. Install dependencies
+```js
+npm install
+```
+4. Run the development server
+```js
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Usage
+Simply select colors using the provided tools, and the application will automatically calculate and display the contrast ratio.
+
+## Contributing
+Contributions to enhance AccessiPalette are welcome. Please ensure to follow the project's coding standards and submit pull requests for review.
