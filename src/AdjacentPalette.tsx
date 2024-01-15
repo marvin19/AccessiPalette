@@ -5,9 +5,10 @@ type AdjacentPaletteProps = {
     selectedContrast: number;
     colors: string[];
     visibleColors: number;
+    paletteType: string;
 } 
 
-const AdjacentPalette: React.FC<AdjacentPaletteProps> = ({ selectedContrast, colors, visibleColors}) => {
+const AdjacentPalette: React.FC<AdjacentPaletteProps> = ({ selectedContrast, colors, visibleColors, paletteType}) => {
    
   return (
     <div className="adjacent-palette">
@@ -15,7 +16,7 @@ const AdjacentPalette: React.FC<AdjacentPaletteProps> = ({ selectedContrast, col
 			<p>This section checks contrast between adjacent colors for clear visualization if stacking colors in e.g charts. <strong>Non-adjacent colors are not compared</strong></p>
       <p>If you want to keep a color in your color palette, but the neighbor color has not enough contrast. Try drag and drop in section 2.</p>
 			<div className="color-box-container">
-            	{renderColorAndContrastBoxes(colors, visibleColors, selectedContrast)}
+            	{renderColorAndContrastBoxes(colors, visibleColors, selectedContrast, paletteType)}
 		  </div>
     </div>
   )

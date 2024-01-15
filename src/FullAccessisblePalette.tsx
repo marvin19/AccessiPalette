@@ -1,11 +1,10 @@
 import React from 'react'
-import SmallColorBox from './SmallColorBox';
-import { renderColorAndContrastBoxes } from './utils'
 
 type FullAccessiblePaletteProps = {
     selectedContrast: number;
     colors: string[];
     visibleColors: number;
+    paletteType: string;
 } 
 
 const FullAccessiblePalette: React.FC<FullAccessiblePaletteProps> = ({ selectedContrast, colors, visibleColors, paletteType}) => {
