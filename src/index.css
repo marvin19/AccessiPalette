@@ -426,18 +426,47 @@ li {
   justify-content: center;
 }
 
+.contrast-ratio {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.text-under-colorbox {
+  font-weight: 700;
+}
+
 .inner-contrast-box {
   margin: 2rem 1rem;
-  height: 100px;
+  padding: 10px;
+  height: 130px;
   border-radius: 10px;
   background-color: #FFFFFF;
   word-wrap: break-word;
 }
 
 .contrast-text {
-  padding: 10px;
+  text-align: center;
+  line-height: 1.5;
+  /*padding: 10px;*/
 }
 
+.constrast-text b {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.check-text {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.color-combination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
 .small-color-box {
   display: inline-block;
   width: 20px;
@@ -462,9 +491,6 @@ li {
   border: 3px solid var(--fails);
 }
 
-.check-text {
-  justify-content: center;
-}
 
 .hex-color-text {
   margin-left: 10px;
