@@ -484,3 +484,7 @@ li {
   padding: 0.3rem;
   
 }
+/*input[type="color"] {
+  -webkit-appearance: none;
+  border: none;
+}*/
