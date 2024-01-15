@@ -4,8 +4,7 @@ import ColorSelect from './ColorSelect';
 import ContrastSelect from './ContrastSelect';
 import ColorPickerList from './ColorPickerList'
 import {
-  generateAdditionalColors,
-  renderColorAndContrastBoxes
+  generateAdditionalColors
 } from './utils';
 
 const CardGrid: React.FC = () => {
