@@ -7,6 +7,7 @@ type ContrastBoxProps = {
     leftColor: string;
     rightColor: string;
     selectedContrast: number;
+    paletteType: string;
 }
 
 const WCAG_TEXT_CONTRAST_THRESHOLD = 4.5;

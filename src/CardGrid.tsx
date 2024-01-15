@@ -6,6 +6,7 @@ import ColorPickerList from './ColorPickerList'
 import {
   generateAdditionalColors
 } from './utils';
+import FullAccessiblePalette from './FullAccessisblePalette';
 
 const CardGrid: React.FC = () => {
 
@@ -14,6 +15,7 @@ const CardGrid: React.FC = () => {
   const [selectedContrast, setSelectedContrast] = useState(4.5);
   const [colors, setColors] = useState<string[]>([]);
   const [visibleColors, setVisibleColors] = useState<number>(0);
+  const [paletteType, setPaletteType] = useState('Adjacent');
 
   const handleColorChange = (newColors: string[]) => {
     setColors(newColors);
@@ -35,6 +37,31 @@ const CardGrid: React.FC = () => {
 
   return (
     <div className="container">
+      <div className="card">
+          <h2>Palette Type</h2>
+          <div>
+              <input
+                  type="radio"
+                  id="adjacent"
+                  name="paletteType"
+                  value="Adjacent"
+                  checked={paletteType === 'Adjacent'}
+                  onChange={() => setPaletteType('Adjacent')}
+              />
+              <label htmlFor="adjacent">Adjacent Color Palette</label>
+          </div>
+          <div>
+              <input
+                  type="radio"
+                  id="fullAccessible"
+                  name="paletteType"
+                  value="FullAccessible"
+                  checked={paletteType === 'FullAccessible'}
+                  onChange={() => setPaletteType('FullAccessible')}
+              />
+              <label htmlFor="fullAccessible">Full Accessible Color Palette</label>
+          </div>
+      </div>
         <div className="card">
             <h2>How many colors?</h2>
             <ColorSelect selectedOption={selectedOption} setSelectedOption={setSelectedOption}/>
@@ -51,7 +78,10 @@ const CardGrid: React.FC = () => {
             <button className="btn" onClick={handleGeneratePalette}>Generate random colors again</button>
         </div>
         <div className="card">
-            <AdjacentPalette colors={colors} selectedContrast={selectedContrast} visibleColors={visibleColors}/>
+            {paletteType === 'Adjacent' ?  
+              <AdjacentPalette colors={colors} selectedContrast={selectedContrast} visibleColors={visibleColors} paletteType={'Adjacent'}/> :
+              <FullAccessiblePalette colors={colors} selectedContrast={selectedContrast} visibleColors={visibleColors} paletteType={'FullAccessible'}/>  
+            }
         </div>
     </div>
   )
