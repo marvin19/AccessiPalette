@@ -40,9 +40,9 @@ const CardGrid: React.FC = () => {
       <div className="card">
           <h2>Palette Type</h2>
           <div className="copy">
-            <p>Choose the type of color palette to generate.</p>
-            <p>The 'Adjacent Color Palette' focuses on contrast between neighboring colors, ideal for visualizations where colors are used side by side.</p> 
-            <p>The 'Full Accessible Color Palette' checks contrast accross all color combinations, ensuring accessibility and readability in more complex color schemes. Your selection will dynamically update the palette displayed below.</p>
+            <p>Choose the type of color palette to generate.</p><br />
+            <p>The <span className="product-style">Adjacent Color Palette</span> focuses on contrast between neighboring colors, ideal for visualizations where colors are used side by side.</p> 
+            <p>The <span className="product-style">Full Accessible Color Palette</span> checks contrast accross all color combinations, ensuring accessibility and readability in more complex color schemes. Your selection will dynamically update the palette displayed below.</p>
           </div>
           <div className="radio-container">
             <input

@@ -136,15 +136,15 @@ ul {
 /* buttons */
 
 .btn {
-  padding: 10px 15px; /* Padding for size */
-  background-color: #0056b3; /* Primary color */
-  color: white; /* Text color */
-  border: none; /* Remove default border */
-  border-radius: 5px; /* Rounded corners */
-  font-size: 1rem; /* Text size */
-  font-weight: 600; /* Font weight */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s, transform 0.3s; /* Transition for interactive effects */
+  padding: 10px 15px;
+  background-color: #0056b3;
+  color: white;
+  border: none; 
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn:hover, .btn:focus {
@@ -348,7 +348,6 @@ input[type='color'] {
   flex: 1 0 100%;
 }
 
-/* Style for the container (optional) */
 .select-container {
   padding: 1,5rem;
   margin-right: 0;
@@ -360,10 +359,6 @@ input[type='color'] {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-
-/*.color-box:first-child, .text-under-colorbox:first-child {
-  margin-left: 0 !important;
-}*/
 
 .m-2 {
   margin: 2rem;
@@ -522,43 +517,42 @@ li {
 }*/
 
 .copy {
-  border: 1px solid #ced4da; /* subtle border color */
-  padding: 10px; /* padding around the text */
-  margin-top: 10px; /* margin on top */
-  margin-bottom: 20px; /* margin at the bottom */
-  background-color: #f8f9fa; /* light background color for contrast */
-  border-radius: 5px; /* slightly rounded corners for the border */
-  font-size: 0.9rem; /* smaller font size for description */
-  line-height: 1.5; /* line height for better readability */
-  color: #000000; /* darker color for the text for better readability */
+  border: 1px solid #ced4da; 
+  padding: 10px; 
+  margin-top: 10px; 
+  margin-bottom: 20px; 
+  background-color: #f8f9fa; 
+  border-radius: 5px; 
+  font-size: 1rem; 
+  line-height: 1.5; 
+  color: #000000; 
 }
 
-/* Style for the radio button container */
+.product-style {
+  font-weight: bold;
+}
+
 .radio-container {
-  margin-bottom: 10px; /* Space between each radio button */
+  margin-bottom: 10px; 
 }
 
-/* Customizing the radio buttons */
 input[type='radio'] {
-  margin-right: 10px; /* Space between radio button and label */
-  cursor: pointer; /* Pointer cursor on hover */
+  margin-right: 10px; 
+  cursor: pointer; 
 }
 
-/* Styling for the labels */
 label {
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 1rem; /* Font size for readability */
-  color: #333; /* Dark color for better readability */
+  cursor: pointer; 
+  font-size: 1rem; 
+  color: #333; 
 }
 
-/* On focus or hover, change the label color for visual feedback */
 input[type='radio']:focus + label,
 input[type='radio']:hover + label {
-  color: #007bff; /* Highlight color */
+  color: #007bff; 
 }
 
-/* When the radio button is checked, change label style */
 input[type='radio']:checked + label {
-  font-weight: bold; /* Make the label of the selected option bold */
-  color: #0056b3; /* Darker color for the selected label */
+  font-weight: bold; 
+  color: #0056b3; 
 }
