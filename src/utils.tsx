@@ -41,7 +41,6 @@ export const renderColorAndContrastBoxes = (colors: string[], visibleColors: num
 export const calculateContrastRatio = (color1: string, color2: string): number => {
     const luminance1 = getLuminance(color1);
     const luminance2 = getLuminance(color2);
-    console.log(luminance1, luminance2);
 
     // Formula for calculating luminance (L1 + 0.05) / (L2 + 0.05)
     // +0.05 is added to prevent division by zero
