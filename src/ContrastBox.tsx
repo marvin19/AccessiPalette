@@ -36,8 +36,8 @@ const ContrastBox: React.FC<ContrastBoxProps> = ({leftColor, rightColor, selecte
                     </p>
                     <div className="check-text">
                         {meetsWCAG ?
-                            <p className='passes'><FontAwesomeIcon icon={faCheckCircle} style={{color: '#0f8548'}} /><b> Passes!</b></p> :
-                            <p className='fails'><FontAwesomeIcon icon={faTimesCircle} style={{color: '#b51717'}} /><b> Fails!</b></p>}
+                            <p className='passes'><FontAwesomeIcon icon={faCheckCircle} style={{color: '#0f8548'}} /><b> Passes</b></p> :
+                            <p className='fails'><FontAwesomeIcon icon={faTimesCircle} style={{color: '#b51717'}} /><b> Fails</b></p>}
                     </div>
                 </div>
             <FontAwesomeIcon icon={faArrowRight} />

@@ -42,7 +42,8 @@ const CardGrid: React.FC = () => {
           <div className="copy">
             <p>Choose the type of color palette to generate.</p><br />
             <p>The <span className="product-style">Adjacent Color Palette</span> focuses on contrast between neighboring colors, ideal for visualizations where colors are used side by side.</p> 
-            <p>The <span className="product-style">Full Accessible Color Palette</span> checks contrast accross all color combinations, ensuring accessibility and readability in more complex color schemes. Your selection will dynamically update the palette displayed below.</p>
+            <p>The <span className="product-style">Full Accessible Color Palette</span> checks contrast accross all color combinations, ensuring accessibility and readability in more complex color schemes.</p> 
+            <p>Your selection will dynamically update the palette displayed below.</p>
           </div>
           <div className="radio-container">
             <input
@@ -68,13 +69,14 @@ const CardGrid: React.FC = () => {
         </div>
       </div>
         <div className="card">
-            <h2>How many colors?</h2>
+            <h2>How many colors: </h2>
             <ColorSelect selectedOption={selectedOption} setSelectedOption={setSelectedOption}/>
-            <h2>What contrast ratio?</h2>
+            <h2>Contrast ratio:</h2>
             <ContrastSelect selectedContrast={selectedContrast} setSelectedContrast={setSelectedContrast} />
         </div>
         <div className="card">
-            <h2>Which colors?</h2>
+            <h2>Which colors: </h2>
+            <p className="copy">In this section you can input your color with HEX or you can open the color input to select a color or tweak the colors. You can also drag and drop the colors in the stack to change the order (and contrast).</p>
             <ColorPickerList
               colors={colors}
               handleColorChange={handleColorChange}

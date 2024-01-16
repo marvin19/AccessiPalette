@@ -10,6 +10,7 @@ export const rgbToHex = (r: number, g: number, b: number): string => {
     }).join('');
 }
 
+// Generate an array of random colors at a given length
 export const generateAdditionalColors = (count: number): string[] => {
     return Array.from({ length: count }, () => rgbToHex(getRgb(), getRgb(), getRgb()));
 }
