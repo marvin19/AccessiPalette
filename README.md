@@ -7,8 +7,8 @@ Please note that AccessiPalette is currently a work in progress. While I strive 
 ## Features
 - Interactive UI for selecting and comparing colors.
 - Real-time calculation of contrast ratios.
-- ~~Supports WCAG contrast standards for text and graphical elements.~~
-- ~~User-friendly interface built with React.~~
+- ~~Supports WCAG contrast standards for text and graphical elements.~~ Work in progress!
+- ~~User-friendly interface built with React.~~ Work in progress!
 
 ## Installation and running the app
 Ensure you have Node.js installed, then follow these steps:
