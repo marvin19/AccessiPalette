@@ -37,18 +37,33 @@ export const renderColorAndContrastBoxes = (colors: string[], visibleColors: num
 	return elements;
   }
 
+// Color coming in as hex
 export const calculateContrastRatio = (color1: string, color2: string): number => {
     const luminance1 = getLuminance(color1);
     const luminance2 = getLuminance(color2);
+    console.log(luminance1, luminance2);
+
+    // Formula for calculating luminance (L1 + 0.05) / (L2 + 0.05)
+    // +0.05 is added to prevent division by zero
+    // Math.max and Math.min are to ensure that L1 is the luminance of the lighter color and LS is the luminance of the darker color
     return (Math.max(luminance1, luminance2) + 0.05) / (Math.min(luminance1, luminance2) + 0.05);
 };
 
+// color coming in as hex
 export const getLuminance = (color: string): number =>  {
+    // Transforming hex to Rgb
     const rgb = hexToRgb(color) as any;
+    
+    // calculating relative luminance from rgb values
     const a = [rgb.r, rgb.g, rgb.b].map((v) => {
+        // Dividing the value by 255 to normalize it to a range of 0 to 1
         v /= 255;
+        // Applying a piecewise gamma correction.
+        // If value is less than or equal to 0.03928, divide by 12.92.
+        // Otherwise, add 0.055 and raise to the power of 2.4
         return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
     });
+    // calculating relative luminance as a number. The relative luminance can range from 0 (black) to 1 (white)
     return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 };
 
