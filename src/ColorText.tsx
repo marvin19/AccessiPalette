@@ -10,7 +10,6 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
     const [inputColor, setInputColor] = useState('color');
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
-    const [playErrorSound, setPlayErrorSound] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,11 +22,9 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
         if(value.length > 7) {
             setError('Input cannot exceed 7 characters.');
             setMessage('Input cannot exceed 7 characters.')
-            setPlayErrorSound(true);
             return;
         } else {
             setError('');
-            setPlayErrorSound(false);
         }
 
         if(value && value[0] !== '#') {
@@ -50,7 +47,6 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
         <input type="text" value={inputColor} onChange={handleInputChange} id="hexcolor" name="hexcolor" aria-describedby="hexcolorDescription" />
         <div aria-live="polite" className="visually-hidden">{message}</div>
         {error && <div className="error-message">{error}</div>}
-        {playErrorSound && <audio src="error-sound.mp3" autoPlay /> }
     </form>
   )
 }
