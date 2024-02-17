@@ -503,18 +503,22 @@ li {
   transition: padding 0.3 ease;
 }
 
-.color-pickers:hover, .color-pickers:active {
+/*.color-pickers:hover, .color-pickers:active {
   background-color: var(--primary-200);
   border: 2px solid var(--primary-500);
   border-radius: 10px;
   transition: background-color 0.3s ease, border-radius 0.3s ease; 
   padding: 0.3rem;
   
-}
-/*input[type="color"] {
+}*/
+input[type="color"] {
   -webkit-appearance: none;
   border: none;
-}*/
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
 
 .copy {
   border: 1px solid #ced4da; 

@@ -1,7 +1,6 @@
 type ColorPickerProps = {
   color: string;
   onColorChange: (color: string) => void;
-  toggleDragEnabled: (isEnabled: boolean) => void;
 }
 
 const ColorPicker: React.FC<ColorPickerProps> = ({ color, onColorChange}) => {
