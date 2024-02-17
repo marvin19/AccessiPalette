@@ -1,4 +1,3 @@
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FaPlusSquare } from 'react-icons/fa';
 import ColorPicker from './ColorPicker';
 import ColorText from './ColorText';
@@ -17,30 +16,12 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({ colors, handleColorCh
     handleColorChange(updatedColors);
   }
 
-  const onDragEnd = (result) => {
-    if (!result.destination){
-      return;
-    }
-
-    const newColors = Array.from(colors);
-    const [removed] = newColors.splice(result.source.index, 1);
-    newColors.splice(result.destination.index, 0, removed);
-
-    // Update colors array in parent state
-    handleColorChange(newColors);
-  }
-
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="droppable">
-        {(provided) => (
-          <ul {...provided.droppableProps} ref={provided.innerRef}>
+          <ul>
             {colors.slice(0, visibleColors).map((color, index) => (
-              <Draggable key={color} draggableId={color} index={index}>
-              {(provided) => (
-                <li ref={provided.innerRef} {...provided.draggableProps} className="color-pickers draggable">
+                <li className="color-pickers draggable">
                   <>
-                    <div {...provided.dragHandleProps}> <FaPlusSquare /></div>
+                    <div><FaPlusSquare /></div>
                     <ColorText
                       color={color}
                       onColorChange={(newColor) => onColorChange(newColor, index)}
@@ -51,14 +32,8 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({ colors, handleColorCh
                     />
                   </>
                 </li>
-              )}
-            </Draggable>
             ))}
-            {provided.placeholder}
           </ul>
-        )}
-      </Droppable>
-    </DragDropContext>
   )
 }
 
