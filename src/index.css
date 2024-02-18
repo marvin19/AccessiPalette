@@ -42,9 +42,9 @@ html {
   --red-dark: #842029;
   --green-light: #d1e7dd;
   --green-dark: #0f5132;
-/* fail and pass */
---fails: #b51717;
---passes: #0f8548;
+  /* fail and pass */
+  --fails: #b51717;
+  --passes: #0f8548;
 
   --small-text: 0.875rem;
   --extra-small-text: 0.7em;
@@ -139,15 +139,18 @@ ul {
   padding: 10px 15px;
   background-color: #0056b3;
   color: white;
-  border: none; 
+  border: none;
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
 }
 
-.btn:hover, .btn:focus {
+.btn:hover,
+.btn:focus {
   background-color: #0056b3; /* Darker shade on hover/focus */
   transform: translateY(-2px); /* Slight raise on hover/focus */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
@@ -331,9 +334,9 @@ input[type='color'] {
 }
 
 .card {
-  width: 50%; 
+  width: 50%;
   margin: 10px;
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
   padding: 20px;
   box-sizing: border-box;
   border-radius: 8px;
@@ -349,10 +352,10 @@ input[type='color'] {
 }
 
 .select-container {
-  padding: 1,5rem;
+  padding: 1, 5rem;
   margin-right: 0;
   margin-left: 0;
-  position:relative;
+  position: relative;
 }
 
 .mtb-2 {
@@ -380,13 +383,15 @@ input[type='color'] {
   background-size: 16px 12px;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
-input[type="color"] {
+input[type='color'] {
   width: 50px;
   height: 50px;
   border: 1px solid var(--white);
@@ -404,7 +409,7 @@ li {
   border: 4px solid black;
   border-radius: 10px;
   margin: 2rem 1rem 0.7rem 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
 }
 
 .color-box-container {
@@ -429,7 +434,6 @@ li {
   margin: 0;
 }
 
-
 .color-container {
   display: flex;
   flex-direction: column;
@@ -441,7 +445,7 @@ li {
   padding: 10px;
   height: 130px;
   border-radius: 10px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   word-wrap: break-word;
 }
 
@@ -492,7 +496,6 @@ li {
   border: 3px solid var(--fails);
 }
 
-
 .hex-color-text {
   margin-left: 10px;
 }
@@ -511,25 +514,25 @@ li {
   padding: 0.3rem;
   
 }*/
-input[type="color"] {
+input[type='color'] {
   -webkit-appearance: none;
   border: none;
 }
 
-input[type="color"]::-webkit-color-swatch-wrapper {
+input[type='color']::-webkit-color-swatch-wrapper {
   padding: 0;
 }
 
 .copy {
-  border: 1px solid #ced4da; 
-  padding: 10px; 
-  margin-top: 10px; 
-  margin-bottom: 20px; 
-  background-color: #f8f9fa; 
-  border-radius: 5px; 
-  font-size: 0.9rem; 
-  line-height: 1.5; 
-  color: #000000; 
+  border: 1px solid #ced4da;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #000000;
 }
 
 .product-style {
@@ -537,28 +540,28 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 }
 
 .radio-container {
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 input[type='radio'] {
-  margin-right: 10px; 
-  cursor: pointer; 
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 label {
-  cursor: pointer; 
-  font-size: 1rem; 
-  color: #333; 
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
 }
 
 input[type='radio']:focus + label,
 input[type='radio']:hover + label {
-  color: #007bff; 
+  color: #007bff;
 }
 
 input[type='radio']:checked + label {
-  font-weight: bold; 
-  color: #0056b3; 
+  font-weight: bold;
+  color: #0056b3;
 }
 
 .visually-hidden {

@@ -1,30 +1,25 @@
 const ColorSelect = ({ selectedOption, setSelectedOption }) => {
+  const handleSelectChange = (e) => {
+    setSelectedOption(Number(e.target.value));
+  };
 
-    const handleSelectChange = (e) => {
-        setSelectedOption(Number(e.target.value));
-    };
-
-    const generateOptions = () => {
-      const options = [2, 3, 4, 5, 6, 7, 8, 9, 10];
-      return (
-        <select
-          className="select mtb-2" 
-          onChange={handleSelectChange}
-          value={selectedOption} // Set the current value to reflect the selectedOption prop
-          aria-label="Select number of colors"
-        >
-          {options.map((option) => (
-            <option key={option} value={option}>{`${option} colors`}</option>
-          ))}
-        </select>
-      );
-    };
-
+  const generateOptions = () => {
+    const options = [2, 3, 4, 5, 6, 7, 8, 9, 10];
     return (
-        <div className="select-container">
-            {generateOptions()}
-        </div>
+      <select
+        className="select mtb-2"
+        onChange={handleSelectChange}
+        value={selectedOption} // Set the current value to reflect the selectedOption prop
+        aria-label="Select number of colors"
+      >
+        {options.map((option) => (
+          <option key={option} value={option}>{`${option} colors`}</option>
+        ))}
+      </select>
     );
+  };
+
+  return <div className="select-container">{generateOptions()}</div>;
 };
 
 export default ColorSelect;
