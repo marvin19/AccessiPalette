@@ -1,17 +1,17 @@
 import React from 'react';
 
 interface ColorBoxProps {
-  color: string;
+    color: string;
 }
 
 // This is the colorbox displaying the color in the palette
 const ColorBox: React.FC<ColorBoxProps> = ({ color }) => {
-  return (
-    <div className="color-container">
-      <div className="color-box" style={{ backgroundColor: color }} />
-      <p className="text-under-colorbox">{color}</p>
-    </div>
-  );
+    return (
+        <div className="color-container">
+            <div className="color-box" style={{ backgroundColor: color }} />
+            <p className="text-under-colorbox">{color}</p>
+        </div>
+    );
 };
 
 export default ColorBox;
