@@ -138,32 +138,6 @@ ul {
 }
 /* buttons */
 
-.btn {
-    padding: 10px 15px;
-    background-color: #0056b3;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-        background-color 0.3s,
-        transform 0.3s;
-}
-
-.btn:hover,
-.btn:focus {
-    background-color: #0056b3; /* Darker shade on hover/focus */
-    transform: translateY(-2px); /* Slight raise on hover/focus */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-}
-
-.btn:active {
-    background-color: #004085; /* Even darker shade when clicked */
-    transform: translateY(1px); /* Button appears to be pressed down */
-}
-
 /* alerts */
 .alert {
     padding: 0.375rem 0.75rem;
@@ -211,13 +185,6 @@ input[type='color'] {
     margin-left: 20px;
     height: 100%;
     background-color: var(--white);
-}
-.container .btn {
-    border-radius: 0;
-    border-top-right-radius: var(--borderRadius);
-    border-bottom-right-radius: var(--borderRadius);
-    letter-spacing: 3px;
-    transition-duration: 0s;
 }
 @media screen and (min-width: 768px) {
     .container {
