@@ -45,10 +45,29 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
   return (
     <form onSubmit={handleSubmit}>
         <div id="hexcolorDescription" className="visually-hidden">Enter a hex color value. It should start with a hash symbol followed by six hexadecimal characters.</div>
-        <label className="hex-color-text" htmlFor={hexInputId}> HEX: </label>
-        <input id={hexInputId} type="text" value={inputColor} onChange={handleInputChange} name="hexcolor" aria-describedby="hexcolorDescription" />
-        <div aria-live="polite" className="visually-hidden">{message}</div>
-        {error && <div aria-hidden="true" className="error-message">{error}</div>}
+        <label
+            className="hex-color-text"
+            htmlFor={hexInputId}> HEX:
+        </label>
+        <input
+            id={hexInputId}
+            type="text"
+            value={inputColor}
+            onChange={handleInputChange}
+            name="hexcolor"
+            aria-describedby="hexcolorDescription"
+        />
+        <div
+            aria-live="polite"
+            className="visually-hidden">
+                {message}
+        </div>
+        {error &&
+            <div aria-hidden="true"
+            className="error-message">
+                {error}
+            </div>
+        }
     </form>
   )
 }
