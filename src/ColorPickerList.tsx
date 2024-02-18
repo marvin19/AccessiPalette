@@ -7,12 +7,14 @@ interface ColorPickerListProps {
     colors: string[];
     visibleColors: number;
     handleColorChange: (newColors: string[]) => void;
+    checked: boolean;
 }
 
 const ColorPickerList: React.FC<ColorPickerListProps> = ({
     colors,
     handleColorChange,
     visibleColors,
+    checked,
 }) => {
     const [message, setMessage] = useState('');
 
@@ -41,9 +43,10 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({
                 {colors.slice(0, visibleColors).map((color, index) => (
                     <React.Fragment key={index}>
                         {/* Conditionally render the switch button inside an <li> */}
-                        {index !== 0 && (
-                            <li className="reorder-button">
+                        {checked && index !== 0 && (
+                            <li className="reorder-button flex justify-center">
                                 <button
+                                    className="bg-blue-500 text-white my-3 px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 flex items-center justify-center"
                                     data-index={index - 1}
                                     onClick={switchColors}
                                 >

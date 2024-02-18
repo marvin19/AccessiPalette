@@ -13,6 +13,7 @@ const CardGrid: React.FC = () => {
     const [colors, setColors] = useState<string[]>([]);
     const [visibleColors, setVisibleColors] = useState<number>(0);
     const [paletteType, setPaletteType] = useState('Adjacent');
+    const [checkboxChecked, setCheckboxChecked] = useState(false);
 
     const handleColorChange = (newColors: string[]): void => {
         setColors(newColors);
@@ -112,14 +113,41 @@ const CardGrid: React.FC = () => {
                     You can also drag and drop the colors in the stack to change
                     the order (and contrast).
                 </p>
+                <div>
+                    <input
+                        className="mr-2"
+                        id="checkbox-show-button"
+                        type="checkbox"
+                        checked={checkboxChecked}
+                        onChange={(e) => {
+                            setCheckboxChecked(e.target.checked);
+                        }}
+                    />
+                    <label htmlFor="checkbox-show-button">
+                        I want to be able to change the order of the colors
+                    </label>
+                </div>
                 <ColorPickerList
                     colors={colors}
                     handleColorChange={handleColorChange}
                     visibleColors={visibleColors}
+                    checked={checkboxChecked}
                 />
-                <button className="btn" onClick={handleGeneratePalette}>
-                    Generate random colors again
-                </button>
+                <h2>Want random colors?</h2>
+                <div className="text-center">
+                    <button
+                        className="bg-blue-500 text-white px-4 py-2 my-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                        onClick={handleGeneratePalette}
+                    >
+                        Generate random colors
+                    </button>
+                    <button
+                        className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                        onClick={handleGeneratePalette}
+                    >
+                        Generate colors with contrast
+                    </button>
+                </div>
             </div>
             <div className="card">
                 {paletteType === 'Adjacent' ? (
