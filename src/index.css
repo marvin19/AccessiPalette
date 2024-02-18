@@ -119,8 +119,7 @@ h5 {
     max-width: 40em;
 }
 
-small,
-.text-small {
+small {
     font-size: var(--small-text);
 }
 
@@ -165,25 +164,12 @@ ul {
     transform: translateY(1px); /* Button appears to be pressed down */
 }
 
-.btn-block {
-    width: 100%;
-}
-
 /* alerts */
 .alert {
     padding: 0.375rem 0.75rem;
     margin-bottom: 1rem;
     border-color: transparent;
     border-radius: var(--borderRadius);
-}
-
-.alert-danger {
-    color: var(--red-dark);
-    background: var(--red-light);
-}
-.alert-success {
-    color: var(--green-dark);
-    background: var(--green-light);
 }
 /* form */
 
@@ -196,37 +182,9 @@ ul {
     padding: 2rem 2.5rem;
     margin: 3rem auto;
 }
-.form-label {
-    display: block;
-    font-size: var(--small-text);
-    margin-bottom: 0.5rem;
-    text-transform: capitalize;
-    letter-spacing: var(--letterSpacing);
-}
-.form-input,
-.form-textarea {
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    border-radius: var(--borderRadius);
-    background: var(--backgroundColor);
-    border: 1px solid var(--grey-200);
-}
-
-.form-row {
-    margin-bottom: 1rem;
-}
-
-.form-textarea {
-    height: 7rem;
-}
 ::placeholder {
     font-family: 'Roboto', sans-serif;
     color: var(--grey-400);
-}
-.form-alert {
-    color: var(--red-dark);
-    letter-spacing: var(--letterSpacing);
-    text-transform: capitalize;
 }
 /* alert */
 
@@ -236,28 +194,10 @@ ul {
     }
 }
 
-.loading {
-    width: 6rem;
-    height: 6rem;
-    border: 5px solid var(--grey-400);
-    border-radius: 50%;
-    border-top-color: var(--primary-500);
-    animation: spinner 0.6s linear infinite;
-    margin: 0 auto;
-}
-
 /* title */
 
 .title {
     text-align: center;
-}
-
-.title-underline {
-    background: var(--primary-500);
-    width: 7rem;
-    height: 0.25rem;
-    margin: 0 auto;
-    margin-top: 1rem;
 }
 /* ============= PROJECT CSS =============== */
 
@@ -267,10 +207,6 @@ ul {
     flex-wrap: wrap;
     row-gap: 1.5rem;
     height: 160px;
-}
-
-.color-form {
-    display: flex;
 }
 input[type='text'] {
     border-color: transparent;
@@ -296,9 +232,6 @@ input[type='color'] {
         column-gap: 2rem;
         align-items: center;
     }
-    .color-form {
-        height: 40px;
-    }
 }
 
 .colors {
@@ -315,13 +248,6 @@ input[type='color'] {
 .color p {
     line-height: 1.5;
     margin-bottom: 0.25rem;
-}
-
-.color-light .color-value {
-    color: var(--white);
-}
-.color-light .percent-value {
-    color: var(--white);
 }
 
 .h1 {
@@ -459,22 +385,9 @@ li {
     /*padding: 10px;*/
 }
 
-.constrast-text b {
-    display: block;
-    font-size: 1.2em;
-    margin-bottom: 0.5em;
-}
-
 .check-text {
     text-align: center;
     margin-top: 1em;
-}
-
-.color-combination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
 }
 .small-color-box {
     display: inline-block;

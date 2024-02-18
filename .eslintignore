@@ -1,2 +1,5 @@
 .eslintrc.cjs
 tailwind.config.js
+purgecss.config.cjs
+purgecss.css
+```

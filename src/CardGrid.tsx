@@ -35,9 +35,9 @@ const CardGrid: React.FC = () => {
     }, [colors.length, selectedOption]);
 
     return (
-        <div className="container">
+        <div className="container w-full mx-auto">
             <div className="card">
-                <h2 className="bg-black text-blue-500">Palette Type</h2>
+                <h2>Palette Type</h2>
                 <div className="copy">
                     <p>Choose the type of color palette to generate.</p>
                     <br />
