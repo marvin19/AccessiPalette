@@ -17,7 +17,7 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({ colors, handleColorCh
     const updatedColors = [...colors];
     updatedColors[index] = newColor;
     handleColorChange(updatedColors);
-  }
+  };
 
   const switchColors = (event: React.MouseEvent<HTMLButtonElement>) => {
     const index = Number((event.target as Element).getAttribute('data-index'));
@@ -25,33 +25,37 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({ colors, handleColorCh
     [updatedColors[index], updatedColors[index + 1]] = [updatedColors[index + 1], updatedColors[index]];
     handleColorChange(updatedColors);
     setMessage('The order of the colors has been switched');
-  }
-
+  };
 
   return (
     <div>
-          <ul>
-            {colors.slice(0, visibleColors).map((color, index) => (
-              <React.Fragment key={index}>
-                {index !== 0 && <button className="reorder" data-index={index-1} onClick={switchColors}><FaArrowsUpDown /> Switch order</button>}
-                <li className="color-pickers">
-                  <>
-                    <ColorText
-                      color={color}
-                      onColorChange={(newColor) => onColorChange(newColor, index)}
-                    />
-                    <ColorPicker
-                      color={color}
-                      onColorChange={(newColor) => onColorChange(newColor, index)}
-                    />
-                  </>
-                </li>
-              </React.Fragment>
-            ))}
-          </ul>
-          <div aria-live="polite" className="visually-hidden">{message}</div>
-      </div>
-  )
-}
+      <ul>
+        {colors.slice(0, visibleColors).map((color, index) => (
+          <React.Fragment key={index}>
+            {/* Conditionally render the switch button inside an <li> */}
+            {index !== 0 && (
+              <li className="reorder-button">
+                <button data-index={index-1} onClick={switchColors}><FaArrowsUpDown /> Switch order</button>
+              </li>
+            )}
+            <li className="color-pickers">
+              <>
+                <ColorText
+                  color={color}
+                  onColorChange={(newColor) => onColorChange(newColor, index)}
+                />
+                <ColorPicker
+                  color={color}
+                  onColorChange={(newColor) => onColorChange(newColor, index)}
+                />
+              </>
+            </li>
+          </React.Fragment>
+        ))}
+      </ul>
+      <div aria-live="polite" className="visually-hidden">{message}</div>
+    </div>
+  );
+};
 
-export default ColorPickerList
+export default ColorPickerList;
