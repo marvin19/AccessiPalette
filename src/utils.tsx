@@ -1,7 +1,9 @@
 import ColorBox from './ColorBox';
 import ContrastBox from './ContrastBox';
 
-export const getRgb = () => Math.floor(Math.random() * 256);
+export const getRgb = (): number => {
+  return Math.floor(Math.random() * 256);
+};
 
 export const rgbToHex = (r: number, g: number, b: number): string => {
   return (
@@ -17,9 +19,9 @@ export const rgbToHex = (r: number, g: number, b: number): string => {
 
 // Generate an array of random colors at a given length
 export const generateAdditionalColors = (count: number): string[] => {
-  return Array.from({ length: count }, () =>
-    rgbToHex(getRgb(), getRgb(), getRgb()),
-  );
+  return Array.from({ length: count }, () => {
+    return rgbToHex(getRgb(), getRgb(), getRgb());
+  });
 };
 
 // Render color and contrast boxes together
@@ -28,7 +30,7 @@ export const renderColorAndContrastBoxes = (
   visibleColors: number,
   selectedContrast: number,
   paletteType: string,
-): JSX.Element => {
+): JSX.Element[] => {
   const elements: JSX.Element[] = [];
   for (let i = 0; i < visibleColors; i++) {
     elements.push(<ColorBox key={`color-${i}`} color={colors[i]} />);
@@ -69,7 +71,7 @@ export const calculateContrastRatio = (
 // color coming in as hex
 export const getLuminance = (color: string): number => {
   // Transforming hex to Rgb
-  const rgb = hexToRgb(color) as any;
+  const rgb = hexToRgb(color);
 
   // calculating relative luminance from rgb values
   const a = [rgb.r, rgb.g, rgb.b].map((v) => {
@@ -86,7 +88,7 @@ export const getLuminance = (color: string): number => {
 
 export const hexToRgb = (hex: string): any => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
+  return result !== null
     ? {
         r: parseInt(result[1], 16),
         g: parseInt(result[2], 16),

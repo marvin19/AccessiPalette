@@ -22,7 +22,7 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({
     handleColorChange(updatedColors);
   };
 
-  const switchColors = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const switchColors = (event: React.MouseEvent<HTMLButtonElement>): void => {
     const index = Number((event.target as Element).getAttribute('data-index'));
     const updatedColors = [...colors];
     [updatedColors[index], updatedColors[index + 1]] = [
@@ -50,11 +50,15 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({
               <>
                 <ColorText
                   color={color}
-                  onColorChange={(newColor) => onColorChange(newColor, index)}
+                  onColorChange={(newColor) => {
+                    onColorChange(newColor, index);
+                  }}
                 />
                 <ColorPicker
                   color={color}
-                  onColorChange={(newColor) => onColorChange(newColor, index)}
+                  onColorChange={(newColor) => {
+                    onColorChange(newColor, index);
+                  }}
                 />
               </>
             </li>

@@ -1,11 +1,11 @@
 import React from 'react';
 
-type FullAccessiblePaletteProps = {
+interface FullAccessiblePaletteProps {
   selectedContrast: number;
   colors: string[];
   visibleColors: number;
   paletteType: string;
-};
+}
 
 const FullAccessiblePalette: React.FC<FullAccessiblePaletteProps> = ({
   selectedContrast,

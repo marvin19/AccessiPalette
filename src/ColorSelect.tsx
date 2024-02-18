@@ -1,9 +1,9 @@
-const ColorSelect = ({ selectedOption, setSelectedOption }) => {
-  const handleSelectChange = (e) => {
+const ColorSelect = ({ selectedOption, setSelectedOption }): JSX.Element => {
+  const handleSelectChange = (e): void => {
     setSelectedOption(Number(e.target.value));
   };
 
-  const generateOptions = () => {
+  const generateOptions = (): JSX.Element => {
     const options = [2, 3, 4, 5, 6, 7, 8, 9, 10];
     return (
       <select

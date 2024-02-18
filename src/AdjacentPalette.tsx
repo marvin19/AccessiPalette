@@ -1,12 +1,12 @@
 import React from 'react';
 import { renderColorAndContrastBoxes } from './utils';
 
-type AdjacentPaletteProps = {
+interface AdjacentPaletteProps {
   selectedContrast: number;
   colors: string[];
   visibleColors: number;
   paletteType: string;
-};
+}
 
 const AdjacentPalette: React.FC<AdjacentPaletteProps> = ({
   selectedContrast,

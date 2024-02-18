@@ -1,10 +1,9 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-type ColorTextProps = {
+interface ColorTextProps {
   color: string;
   onColorChange: (color: string) => void;
-};
+}
 
 const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
   const [inputColor, setInputColor] = useState('color');
@@ -13,13 +12,13 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
 
   const hexInputId = `hex-input-${color}`;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e): void => {
     e.preventDefault();
     onColorChange(inputColor);
   };
 
-  const handleInputChange = (e) => {
-    let value = e.target.value;
+  const handleInputChange = (e): void => {
+    let value: string = e.target.value;
 
     if (value.length > 7) {
       setError('Input cannot exceed 7 characters.');
@@ -29,7 +28,7 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
       setError('');
     }
 
-    if (value && value[0] !== '#') {
+    if (value !== '' && value[0] !== '#') {
       value = '#' + value;
       setMessage(
         'A hash symbol was added to the start of your hex color input',
@@ -65,7 +64,7 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
       <div aria-live="polite" className="visually-hidden">
         {message}
       </div>
-      {error && (
+      {error !== '' && (
         <div aria-hidden="true" className="error-message">
           {error}
         </div>

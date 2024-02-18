@@ -1,9 +1,12 @@
-const ContrastSelect = ({ selectedContrast, setSelectedContrast }) => {
-  const handleSelectChange = (e) => {
+const ContrastSelect = ({
+  selectedContrast,
+  setSelectedContrast,
+}): JSX.Element => {
+  const handleSelectChange = (e): void => {
     setSelectedContrast(Number(e.target.value));
   };
 
-  const generateOptions = () => {
+  const generateOptions = (): JSX.Element => {
     const options = [4.5, 3];
     return (
       <select

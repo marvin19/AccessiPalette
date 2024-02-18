@@ -1,4 +1,4 @@
-const Heading = () => {
+const Heading = (): JSX.Element => {
   return (
     <div className="container">
       <h1 className="h1">

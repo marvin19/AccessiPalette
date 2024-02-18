@@ -8,12 +8,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { calculateContrastRatio } from './utils';
 
-type ContrastBoxProps = {
+interface ContrastBoxProps {
   leftColor: string;
   rightColor: string;
   selectedContrast: number;
   paletteType: string;
-};
+}
 
 const WCAG_TEXT_CONTRAST_THRESHOLD = 4.5;
 const WCAG_GRAPHIC_CONTRAST_THRESHOLD = 3; // TODO: Add graphic contrast ratio
@@ -23,7 +23,7 @@ const ContrastBox: React.FC<ContrastBoxProps> = ({
   rightColor,
   selectedContrast,
 }) => {
-  let meetsWCAG;
+  let meetsWCAG: boolean = false;
 
   const contrastRatio = calculateContrastRatio(leftColor, rightColor);
 

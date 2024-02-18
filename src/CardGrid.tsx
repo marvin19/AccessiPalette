@@ -14,7 +14,7 @@ const CardGrid: React.FC = () => {
   const [visibleColors, setVisibleColors] = useState<number>(0);
   const [paletteType, setPaletteType] = useState('Adjacent');
 
-  const handleColorChange = (newColors: string[]) => {
+  const handleColorChange = (newColors: string[]): void => {
     setColors(newColors);
   };
 
@@ -32,7 +32,7 @@ const CardGrid: React.FC = () => {
       setColors((prevColors) => [...prevColors, ...additionalColors]);
     }
     setVisibleColors(selectedOption);
-  }, [selectedOption]);
+  }, [colors.length, selectedOption]);
 
   return (
     <div className="container">
@@ -63,7 +63,9 @@ const CardGrid: React.FC = () => {
             name="paletteType"
             value="Adjacent"
             checked={paletteType === 'Adjacent'}
-            onChange={() => setPaletteType('Adjacent')}
+            onChange={() => {
+              setPaletteType('Adjacent');
+            }}
           />
           <label htmlFor="adjacent">Adjacent Color Palette</label>
         </div>
@@ -74,7 +76,9 @@ const CardGrid: React.FC = () => {
             name="paletteType"
             value="FullAccessible"
             checked={paletteType === 'FullAccessible'}
-            onChange={() => setPaletteType('FullAccessible')}
+            onChange={() => {
+              setPaletteType('FullAccessible');
+            }}
           />
           <label htmlFor="fullAccessible">Full Accessible Color Palette</label>
         </div>
