@@ -46,7 +46,7 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
         <label className="hex-color-text" htmlFor="hexcolor"> HEX: </label>
         <input type="text" value={inputColor} onChange={handleInputChange} id="hexcolor" name="hexcolor" aria-describedby="hexcolorDescription" />
         <div aria-live="polite" className="visually-hidden">{message}</div>
-        {error && <div className="error-message">{error}</div>}
+        {error && <div aria-hidden="true" className="error-message">{error}</div>}
     </form>
   )
 }
