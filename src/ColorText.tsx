@@ -28,6 +28,12 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
             setError('');
         }
 
+        if (value.split('#').length > 2) {
+            setError('Input cannot contain more than one hash symbol.');
+            setMessage('Input cannot contain more than one hash symbol.');
+            return;
+        }
+
         if (value !== '' && value[0] !== '#') {
             value = '#' + value;
             setMessage(
