@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import InputField from './InputField';
 import ErrorMessage from './ErrorMessage';
 import { validateColorInput, formatColorInput } from './utils';
@@ -14,6 +14,7 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
     const [error, setError] = useState('');
 
     const hexInputId = `hex-input-${color}`;
+    //const hexInputId = useMemo(() => `hex-input-${color}`, [color]);
 
     const handleSubmit = (e): void => {
         e.preventDefault();
