@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { validateColorInput, formatColorInput } from './utils';
 
 interface ColorTextProps {
     color: string;
@@ -20,22 +21,17 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
     const handleInputChange = (e): void => {
         let value: string = e.target.value;
 
-        if (value.length > 7) {
-            setError('Input cannot exceed 7 characters.');
-            setMessage('Input cannot exceed 7 characters.');
+        const errorMessage = validateColorInput(value);
+        if (errorMessage !== null) {
+            setError(errorMessage);
+            setMessage(errorMessage);
             return;
         } else {
             setError('');
         }
 
-        if (value.split('#').length > 2) {
-            setError('Input cannot contain more than one hash symbol.');
-            setMessage('Input cannot contain more than one hash symbol.');
-            return;
-        }
-
-        if (value !== '' && value[0] !== '#') {
-            value = '#' + value;
+        value = formatColorInput(value);
+        if (value[0] === '#') {
             setMessage(
                 'A hash symbol was added to the start of your hex color input',
             );

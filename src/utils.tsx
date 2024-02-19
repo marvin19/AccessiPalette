@@ -96,3 +96,22 @@ export const hexToRgb = (hex: string): any => {
           }
         : null;
 };
+
+export const validateColorInput = (value: string): string | null => {
+    if (value.length > 7) {
+        return 'Input cannot exceed 7 characters.';
+    }
+
+    if (value.split('#').length > 2) {
+        return 'Input cannot contain more than one hash symbol.';
+    }
+
+    return null;
+};
+
+export const formatColorInput = (value: string): string => {
+    if (value !== '' && value[0] !== '#') {
+        return '#' + value;
+    }
+    return value;
+};
