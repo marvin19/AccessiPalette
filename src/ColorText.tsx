@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import InputField from './InputField';
+import ErrorMessage from './ErrorMessage';
 import { validateColorInput, formatColorInput } from './utils';
 
 interface ColorTextProps {
@@ -60,11 +61,7 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
             <div aria-live="polite" className="visually-hidden">
                 {message}
             </div>
-            {error !== '' && (
-                <div aria-hidden="true" className="error-message">
-                    {error}
-                </div>
-            )}
+            <ErrorMessage message={error} />
         </form>
     );
 };
