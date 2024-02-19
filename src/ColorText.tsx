@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import InputField from './InputField';
 import { validateColorInput, formatColorInput } from './utils';
 
 interface ColorTextProps {
@@ -51,17 +52,10 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
                 Enter a hex color value. It should start with a hash symbol
                 followed by six hexadecimal characters.
             </div>
-            <label className="hex-color-text" htmlFor={hexInputId}>
-                {' '}
-                HEX:
-            </label>
-            <input
+            <InputField
                 id={hexInputId}
-                type="text"
                 value={inputColor}
                 onChange={handleInputChange}
-                name="hexcolor"
-                aria-describedby="hexcolorDescription"
             />
             <div aria-live="polite" className="visually-hidden">
                 {message}
