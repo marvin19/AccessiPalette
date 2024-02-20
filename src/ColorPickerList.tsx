@@ -46,7 +46,7 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({
                         {checked && index !== 0 && (
                             <li className="reorder-button flex justify-center">
                                 <button
-                                    className="bg-blue-500 text-white my-3 px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 flex items-center justify-center"
+                                    className="bg-blue-700 text-white my-3 px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 flex items-center justify-center"
                                     data-index={index - 1}
                                     onClick={switchColors}
                                 >

@@ -13,8 +13,7 @@ const ColorText: React.FC<ColorTextProps> = ({ color, onColorChange }) => {
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
 
-    const hexInputId = `hex-input-${color}`;
-    //const hexInputId = useMemo(() => `hex-input-${color}`, [color]);
+    const hexInputId = useMemo(() => `hex-input-${color}`, [color]);
 
     const handleSubmit = (e): void => {
         e.preventDefault();
