@@ -4,4 +4,6 @@ purgecss.config.cjs
 purgecss.css
 jest.config.cjs
 babel.config.cjs
+src/vite-env.d.ts
+vite.config.ts
 ```

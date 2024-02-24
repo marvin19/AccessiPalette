@@ -18,6 +18,7 @@ const CardGrid: React.FC = () => {
     // TODO: Check if this can be done in state management
     const updateVisibleColors = (newVisibleColors: number): void => {
         if (newVisibleColors < 2) {
+            // eslint-disable-next-line no-console
             console.error('visibleColors cannot be less than 2 ');
             return;
         }
