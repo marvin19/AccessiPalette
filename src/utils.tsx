@@ -98,7 +98,6 @@ export const hexToRgb = (hex: string): any => {
         : null;
 };
 
-// TODO: Improve this functions logic of returning null
 export const validateColorInput = (value: string): string | null => {
     if (value.length > 7) {
         return 'Input cannot exceed 7 characters.';

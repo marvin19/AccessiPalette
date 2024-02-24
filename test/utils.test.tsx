@@ -3,13 +3,9 @@ import {
     rgbToHex,
     getRgb,
     renderColorAndContrastBoxes,
-    // @ts-ignore
     calculateContrastRatio,
-    // @ts-ignore
     getLuminance,
-    // @ts-ignore
     validateColorInput,
-    // @ts-ignore
     formatColorInput,
 } from '../src/utils';
 
