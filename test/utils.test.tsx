@@ -10,14 +10,9 @@ import {
 } from '../src/utils';
 
 /**
- * To check for 4.5 color contrast use the following:
- * whiteHex on blueHex
  *
- * To check for breaking 4.5 but passing 3:1 color contrast use the following:
- * pinkHex on blackHex
+ * TODO: Test critical funcitons and components in isolation.
  *
- * To check for BREAKING 3:1 color contrast use following combo:
- * blackHex on blueHex
  */
 
 const WHITE_HEX = '#ffffff',

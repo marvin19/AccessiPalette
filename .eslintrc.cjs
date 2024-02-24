@@ -24,7 +24,7 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['react'],
+    plugins: ['react', 'yaml', 'prettier'],
     rules: {
         'no-console': 'warn',
         'no-unused-vars': 'warn',
@@ -32,5 +32,15 @@ module.exports = {
         'react/react-in-jsx-scope': 'off',
         'react/prop-types': 'off',
     },
+    overrides: [
+        {
+            files: ['**/*.yml'],
+            rules: {
+                indent: ['error', 2],
+                quotes: ['error', 'single'],
+                semi: ['error', 'never'],
+            },
+        },
+    ],
     ignorePatterns: ['test/**/*'],
 };
