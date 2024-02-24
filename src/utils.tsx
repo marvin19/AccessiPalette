@@ -88,6 +88,7 @@ export const getLuminance = (color: string): number => {
 
 export const hexToRgb = (hex: string): any => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
     return result !== null
         ? {
               r: parseInt(result[1], 16),
@@ -97,6 +98,7 @@ export const hexToRgb = (hex: string): any => {
         : null;
 };
 
+// TODO: Improve this functions logic of returning null
 export const validateColorInput = (value: string): string | null => {
     if (value.length > 7) {
         return 'Input cannot exceed 7 characters.';

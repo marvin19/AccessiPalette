@@ -15,6 +15,14 @@ const CardGrid: React.FC = () => {
     const [paletteType, setPaletteType] = useState('Adjacent');
     const [checkboxChecked, setCheckboxChecked] = useState(false);
 
+    // TODO: Check if this can be done in state management
+    const updateVisibleColors = (newVisibleColors: number): void => {
+        if (newVisibleColors < 2) {
+            console.error('visibleColors cannot be less than 2 ');
+            return;
+        }
+        setVisibleColors(newVisibleColors);
+    };
     const handleColorChange = (newColors: string[]): void => {
         setColors(newColors);
     };
@@ -32,7 +40,7 @@ const CardGrid: React.FC = () => {
             );
             setColors((prevColors) => [...prevColors, ...additionalColors]);
         }
-        setVisibleColors(selectedOption);
+        updateVisibleColors(selectedOption);
     }, [colors.length, selectedOption]);
 
     return (
