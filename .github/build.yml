@@ -7,20 +7,16 @@ on:
       branches: [main]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v3
       - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-
+      - uses: actions/setup-node@v3
       - name: Install Dependencies
         run: npm install
-
-      - name: Build and Test
-        run: npm run dev && npm test
+      - name: Build
+        run: npm run dev
+      - name: Test
+        run: npm test
