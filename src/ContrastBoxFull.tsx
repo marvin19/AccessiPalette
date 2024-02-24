@@ -1,4 +1,5 @@
-/* import React from 'react'
+/* TODO
+import React from 'react'
 import SmallColorBox from './SmallColorBox';
 
 const WCAG_TEXT_CONTRAST_THRESHOLD = 4.5;
