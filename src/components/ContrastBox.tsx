@@ -6,7 +6,7 @@ import {
     faCheckCircle,
     faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { calculateContrastRatio } from './utils';
+import { calculateContrastRatio } from '../utils';
 
 interface ContrastBoxProps {
     leftColor: string;

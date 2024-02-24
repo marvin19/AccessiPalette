@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderColorAndContrastBoxes } from './utils';
+import { renderColorAndContrastBoxes } from '../utils';
 
 interface AdjacentPaletteProps {
     selectedContrast: number;

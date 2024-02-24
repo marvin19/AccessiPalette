@@ -3,7 +3,7 @@ import AdjacentPalette from './AdjacentPalette';
 import ColorSelect from './ColorSelect';
 import ContrastSelect from './ContrastSelect';
 import ColorPickerList from './ColorPickerList';
-import { generateAdditionalColors } from './utils';
+import { generateAdditionalColors } from '../utils';
 import FullAccessiblePalette from './FullAccessisblePalette';
 
 const CardGrid: React.FC = () => {

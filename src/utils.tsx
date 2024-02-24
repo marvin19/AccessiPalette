@@ -1,5 +1,5 @@
-import ColorBox from './ColorBox';
-import ContrastBox from './ContrastBox';
+import ColorBox from './components/ColorBox';
+import ContrastBox from './components/ContrastBox';
 
 export const getRgb = (): number => {
     return Math.floor(Math.random() * 256);
