@@ -2,4 +2,6 @@
 tailwind.config.js
 purgecss.config.cjs
 purgecss.css
+jest.config.cjs
+babel.config.cjs
 ```

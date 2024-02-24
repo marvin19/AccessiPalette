@@ -1,5 +1,5 @@
 import { FaArrowsUpDown } from 'react-icons/fa6';
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import ColorPicker from './ColorPicker';
 import ColorText from './ColorText';
 
@@ -41,7 +41,7 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({
         <div>
             <ul>
                 {colors.slice(0, visibleColors).map((color, index) => (
-                    <React.Fragment key={index}>
+                    <Fragment key={index}>
                         {/* Conditionally render the switch button inside an <li> */}
                         {checked && index !== 0 && (
                             <li className="reorder-button flex justify-center">
@@ -70,7 +70,7 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({
                                 />
                             </>
                         </li>
-                    </React.Fragment>
+                    </Fragment>
                 ))}
             </ul>
             <div aria-live="polite" className="visually-hidden">

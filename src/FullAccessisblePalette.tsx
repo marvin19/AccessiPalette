@@ -9,9 +9,9 @@ interface FullAccessiblePaletteProps {
 
 const FullAccessiblePalette: React.FC<FullAccessiblePaletteProps> = ({
     selectedContrast,
-    colors,
-    visibleColors,
-    paletteType,
+    //colors,
+    //visibleColors,
+    //paletteType,
 }) => {
     return (
         <div className="adjacent-palette">
