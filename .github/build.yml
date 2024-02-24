@@ -1,25 +1,26 @@
 name: Build and Test
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches: [main]
+    pull_request:
+      branches: [main]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v2
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-            - name: Set up Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: '14'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
 
-            - name: Install Dependencies
-              run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-            - name: Build and Test
-              run: npm run dev && npm test
+      - name: Build and Test
+        run: npm run dev && npm test
