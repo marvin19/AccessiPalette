@@ -5,6 +5,7 @@ import ContrastSelect from './ContrastSelect';
 import ColorPickerList from './ColorPickerList';
 import { generateAdditionalColors } from '../utils';
 import FullAccessiblePalette from './FullAccessisblePalette';
+import RadioButtonList from './RadioButtonList';
 
 const CardGrid: React.FC = () => {
     // You need to have two colors to check contrast
@@ -75,49 +76,10 @@ const CardGrid: React.FC = () => {
                             displayed below.
                         </p>
                     </div>
-                    <div className="radio-container">
-                        <input
-                            type="radio"
-                            id="adjacent"
-                            name="paletteType"
-                            value="Adjacent"
-                            checked={paletteType === 'Adjacent'}
-                            onChange={() => {
-                                setPaletteType('Adjacent');
-                            }}
-                        />
-                        <label htmlFor="adjacent">Adjacent Color Palette</label>
-                    </div>
-                    <div className="radio-container">
-                        <input
-                            type="radio"
-                            id="fullAccessible"
-                            name="paletteType"
-                            value="FullAccessible"
-                            checked={paletteType === 'FullAccessible'}
-                            onChange={() => {
-                                setPaletteType('FullAccessible');
-                            }}
-                        />
-                        <label htmlFor="fullAccessible">
-                            Full Accessible Color Palette
-                        </label>
-                    </div>
-                    <div className="radio-container">
-                        <input
-                            type="radio"
-                            id="backgroundColor"
-                            name="paletteType"
-                            value="BackgroundColor"
-                            checked={paletteType === 'BackgroundColor'}
-                            onChange={() => {
-                                setPaletteType('BackgroundColor');
-                            }}
-                        />
-                        <label htmlFor="backgroundColor">
-                            Background Color Palette
-                        </label>
-                    </div>
+                    <RadioButtonList
+                        paletteType={paletteType}
+                        setPaletteType={setPaletteType}
+                    />
                 </div>
                 <div className="flex flex-col bg-white shadow rounded-lg p-4 border-2 border-gray-200">
                     <h2>How many colors: </h2>
