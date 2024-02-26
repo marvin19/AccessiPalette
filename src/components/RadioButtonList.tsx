@@ -53,9 +53,7 @@ const RadioButtonList: React.FC<RadioButtonListProps> = ({
                     value={button.value}
                     label={button.label}
                     checked={paletteType === button.value}
-                    onChange={() => {
-                        setPaletteType(button.value);
-                    }}
+                    onChange={button.onChange}
                 />
             ))}
         </>
