@@ -6,6 +6,7 @@ import ColorPickerList from './ColorPickerList';
 import { generateAdditionalColors } from '../utils';
 import FullAccessiblePalette from './FullAccessisblePalette';
 import RadioButtonList from './RadioButtonList';
+import SectionTitle from './SectionTitle';
 
 const CardGrid: React.FC = () => {
     // You need to have two colors to check contrast
@@ -82,19 +83,19 @@ const CardGrid: React.FC = () => {
                     />
                 </div>
                 <div className="flex flex-col bg-white shadow rounded-lg p-4 border-2 border-gray-200">
-                    <h2>How many colors: </h2>
+                    <SectionTitle title="How many colors?" />
                     <ColorSelect
                         selectedOption={selectedOption}
                         setSelectedOption={setSelectedOption}
                     />
-                    <h2>Contrast ratio:</h2>
+                    <SectionTitle title="Contrast Ratio" />
                     <ContrastSelect
                         selectedContrast={selectedContrast}
                         setSelectedContrast={setSelectedContrast}
                     />
                 </div>
                 <div className="flex flex-col bg-white shadow rounded-lg p-4 border-2 border-gray-200">
-                    <h2>Which colors: </h2>
+                    <SectionTitle title="Which colors:" />
                     <p className="copy">
                         In this section you can input your color with HEX or you
                         can open the color input to select a color or tweak the
@@ -121,7 +122,7 @@ const CardGrid: React.FC = () => {
                         visibleColors={visibleColors}
                         checked={checkboxChecked}
                     />
-                    <h2>Want random colors?</h2>
+                    <SectionTitle title="Random colors?" />
                     <div className="text-center">
                         <button
                             className="bg-blue-700 text-white px-4 py-2 my-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
