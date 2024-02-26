@@ -103,6 +103,21 @@ const CardGrid: React.FC = () => {
                             Full Accessible Color Palette
                         </label>
                     </div>
+                    <div className="radio-container">
+                        <input
+                            type="radio"
+                            id="backgroundColor"
+                            name="paletteType"
+                            value="BackgroundColor"
+                            checked={paletteType === 'BackgroundColor'}
+                            onChange={() => {
+                                setPaletteType('BackgroundColor');
+                            }}
+                        />
+                        <label htmlFor="backgroundColor">
+                            Background Color Palette
+                        </label>
+                    </div>
                 </div>
                 <div className="flex flex-col bg-white shadow rounded-lg p-4 border-2 border-gray-200">
                     <h2>How many colors: </h2>
