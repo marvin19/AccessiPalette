@@ -12,7 +12,7 @@ interface WCAGCheckProps {
 
 const WCAGCheck: React.FC<WCAGCheckProps> = ({ meetsWCAG, fontSize }) => {
     return (
-        <div className="check-text" style={{ fontSize: fontSize }}>
+        <div className="check-text" style={{ fontSize }}>
             {meetsWCAG ? (
                 <p className="passes">
                     <FontAwesomeIcon
