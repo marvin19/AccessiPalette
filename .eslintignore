@@ -2,6 +2,7 @@
 tailwind.config.js
 purgecss.config.cjs
 purgecss.css
+postcss.config.cjs
 jest.config.cjs
 babel.config.cjs
 src/vite-env.d.ts
