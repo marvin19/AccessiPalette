@@ -4,15 +4,16 @@ import { calculateContrastRatio, getRgb, rgbToHex } from '../utils';
 interface FindColorProps {
     selectedContrast: number;
     colors: string[];
-    visibleColors: string[];
-    paletteType: string;
+    visibleColors: any; // TODO
+    paletteType: any;
 }
 
+// adding a comment to create a PR
 const FindColor: React.FC<FindColorProps> = ({
     colors,
     selectedContrast,
-    visibleColors,
-    paletteType,
+    // visibleColors,
+    // paletteType,
 }) => {
     const [contrastColor, setContrastColor] = useState<string | null>(null);
 
@@ -31,7 +32,7 @@ const FindColor: React.FC<FindColorProps> = ({
             }
         }
         setContrastColor(newColor);
-    }, [colors[0], colors[1], selectedContrast]);
+    }, [colors, selectedContrast]);
 
     return (
         <div>
