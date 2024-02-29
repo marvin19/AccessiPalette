@@ -7,6 +7,7 @@ import { generateAdditionalColors } from '../utils';
 import FullAccessiblePalette from './FullAccessisblePalette';
 import RadioButtonList from './RadioButtonList';
 import SectionTitle from './SectionTitle';
+import FindColor from './FindColor';
 
 const CardGrid: React.FC = () => {
     // You need to have two colors to check contrast
@@ -146,12 +147,19 @@ const CardGrid: React.FC = () => {
                             visibleColors={visibleColors}
                             paletteType={'Adjacent'}
                         />
-                    ) : (
+                    ) : paletteType === 'FullAccessible' ? (
                         <FullAccessiblePalette
                             colors={colors}
                             selectedContrast={selectedContrast}
                             visibleColors={visibleColors}
                             paletteType={'FullAccessible'}
+                        />
+                    ) : (
+                        <FindColor
+                            colors={colors}
+                            selectedContrast={selectedContrast}
+                            visibleColors={visibleColors}
+                            paletteType={'FindColor'}
                         />
                     )}
                 </div>

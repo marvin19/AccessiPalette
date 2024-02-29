@@ -41,6 +41,16 @@ const RadioButtonList: React.FC<RadioButtonListProps> = ({
                 setPaletteType('BackgroundColor');
             },
         },
+        {
+            id: 'findColor',
+            name: 'paletteType',
+            value: 'FindColor',
+            label: 'Find Color between two colors',
+            checked: paletteType === 'FindColor',
+            onChange: () => {
+                setPaletteType('FindColor');
+            },
+        },
     ];
 
     return (
