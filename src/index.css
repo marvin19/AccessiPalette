@@ -427,3 +427,7 @@ input[type='radio']:checked + label {
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+
+li {
+    padding-bottom: 0.3rem;
+}

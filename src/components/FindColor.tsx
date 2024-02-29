@@ -35,21 +35,38 @@ const FindColor: React.FC<FindColorProps> = ({
     }, [colors, selectedContrast]);
 
     return (
-        <div>
-            {contrastColor !== null ? (
-                <>
-                    <div
-                        style={{
-                            width: '50px',
-                            height: '50px',
-                            backgroundColor: contrastColor,
-                        }}
-                    />
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div
+                style={{
+                    backgroundColor: colors[0],
+                    width: '50px',
+                    height: '50px',
+                }}
+            />
+            <div style={{ textAlign: 'center' }}>
+                <div
+                    style={{
+                        width: '50px',
+                        height: '50px',
+                        backgroundColor: contrastColor ?? 'transparent',
+                        border:
+                            contrastColor !== null ? 'none' : '1px solid black',
+                        marginBottom: '10px',
+                    }}
+                />
+                {contrastColor !== null ? (
                     <p>Contrast color: {contrastColor}</p>
-                </>
-            ) : (
-                'No colors available with enough contrast.'
-            )}
+                ) : (
+                    <p>No colors available with enough contrast.</p>
+                )}
+            </div>
+            <div
+                style={{
+                    backgroundColor: colors[1],
+                    width: '50px',
+                    height: '50px',
+                }}
+            />
         </div>
     );
 };
