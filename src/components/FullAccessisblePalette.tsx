@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { calculateContrastRatio } from '../utils';
 import SmallColorBox from './SmallColorBox';
 import ColorBox from './ColorBox';
+import WCAGCheck from './WCAGCheck';
 
 interface FullAccessiblePaletteProps {
     selectedContrast: number;
@@ -47,11 +48,25 @@ const FullAccessiblePalette: React.FC<FullAccessiblePaletteProps> = ({
                         {contrastRatios[i]?.map((contrastRatio, j) =>
                             i !== j ? (
                                 <li key={j}>
-                                    <p key={j}>
-                                        Contrast with color {j + 1}:{' '}
-                                        <SmallColorBox color={colors[j]} />
-                                        {` ${contrastRatio.toFixed(2)}:1`}
-                                    </p>
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                        }}
+                                    >
+                                        <p>
+                                            Color {j + 1}:{' '}
+                                            <SmallColorBox color={colors[j]} />
+                                            {` ${contrastRatio.toFixed(2)}:1`}
+                                        </p>
+                                        <WCAGCheck
+                                            meetsWCAG={
+                                                contrastRatio >=
+                                                selectedContrast
+                                            }
+                                            fontSize="1.0rem"
+                                        />
+                                    </div>
                                 </li>
                             ) : null,
                         )}

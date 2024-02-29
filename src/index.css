@@ -323,7 +323,7 @@ li {
 
 .check-text {
     text-align: center;
-    margin-top: 1em;
+    /*margin-top: 1em;*/
 }
 .small-color-box {
     display: inline-block;

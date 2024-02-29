@@ -1,12 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faArrowRight,
-    faArrowLeft,
-    faCheckCircle,
-    faTimesCircle,
-} from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { calculateContrastRatio } from '../utils';
+import WCAGCheck from './WCAGCheck';
 
 interface ContrastBoxProps {
     leftColor: string;
@@ -45,25 +41,7 @@ const ContrastBox: React.FC<ContrastBoxProps> = ({
                 <p className="contrast-text contrast-ratio">
                     {`${contrastRatio.toFixed(2)}:1`}
                 </p>
-                <div className="check-text">
-                    {meetsWCAG ? (
-                        <p className="passes">
-                            <FontAwesomeIcon
-                                icon={faCheckCircle}
-                                style={{ color: '#0f8548' }}
-                            />
-                            <b> Passes</b>
-                        </p>
-                    ) : (
-                        <p className="fails">
-                            <FontAwesomeIcon
-                                icon={faTimesCircle}
-                                style={{ color: '#b51717' }}
-                            />
-                            <b> Fails</b>
-                        </p>
-                    )}
-                </div>
+                <WCAGCheck meetsWCAG={meetsWCAG} fontSize="1.0rem" />
             </div>
             <FontAwesomeIcon icon={faArrowRight} />
         </div>
