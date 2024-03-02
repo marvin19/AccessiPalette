@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { generateThirdContrastColor } from '../utils';
+import React from 'react';
 import ColorBox from './ColorBox';
 import Arrow from './Arrow';
+import useContrastColor from '../hooks/useContrastColor';
 
 interface FindColorProps {
     selectedContrast: number;
@@ -11,12 +11,7 @@ interface FindColorProps {
 }
 
 const FindColor: React.FC<FindColorProps> = ({ colors, selectedContrast }) => {
-    const [contrastColor, setContrastColor] = useState<string | null>(null);
-
-    useEffect(() => {
-        const newColor = generateThirdContrastColor(colors, selectedContrast);
-        setContrastColor(newColor);
-    }, [colors, selectedContrast]);
+    const contrastColor = useContrastColor(colors, selectedContrast);
 
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
