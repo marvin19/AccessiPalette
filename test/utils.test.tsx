@@ -4,6 +4,7 @@ import {
     getRgb,
     renderColorAndContrastBoxes,
     calculateContrastRatio,
+    generateThirdContrastColor,
     getLuminance,
     validateColorInput,
     formatColorInput,
@@ -19,6 +20,7 @@ const WHITE_HEX = '#ffffff',
     BLACK_HEX = '#000000',
     BLUE_HEX = '#3143c9',
     PINK_HEX = '#c9317a',
+    GREEN_HEX = '#31c931',
     CONTRAST_RATIO_45 = 4.5,
     CONTRAST_RATIO_3 = 3,
     LUMINANCE_PINK = 0.1601927339593803,
@@ -131,5 +133,26 @@ describe('formatColorInput', () => {
         const input = '123456';
         const result = formatColorInput(input);
         expect(result).toBe('#123456');
+    });
+});
+
+describe('generateThirdContrastColor', () => {
+    test('should return a color that has 4.5:1 contrast with the other two colors selected', () => {
+        const colors = [BLACK_HEX, WHITE_HEX];
+        const selectedContrast = CONTRAST_RATIO_45;
+        const result = generateThirdContrastColor(colors, selectedContrast);
+        expect(result).not.toBeNull();
+    });
+    test('should return a color that has 3:1 contrast with the other two colors selected', () => {
+        const colors = [PINK_HEX, BLACK_HEX];
+        const selectedContrast = CONTRAST_RATIO_3;
+        const result = generateThirdContrastColor(colors, selectedContrast);
+        expect(result).not.toBeNull();
+    });
+    test('should return null if no color has enough contrast with the other two colors selected', () => {
+        const colors = [BLUE_HEX, GREEN_HEX];
+        const selectedContrast = CONTRAST_RATIO_3;
+        const result = generateThirdContrastColor(colors, selectedContrast);
+        expect(result).toBeNull();
     });
 });

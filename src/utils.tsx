@@ -128,10 +128,9 @@ export const generateThirdContrastColor = (
             calculateContrastRatio(newColor, colors[0]) >= selectedContrast &&
             calculateContrastRatio(newColor, colors[1]) >= selectedContrast
         ) {
-            break;
-        } else {
-            newColor = null;
+            return newColor;
         }
     }
-    return newColor;
+    // No color found
+    return null;
 };
