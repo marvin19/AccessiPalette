@@ -12,7 +12,7 @@ interface ContrastBoxProps {
 }
 
 const WCAG_TEXT_CONTRAST_THRESHOLD = 4.5;
-const WCAG_GRAPHIC_CONTRAST_THRESHOLD = 3; // TODO: Add graphic contrast ratio
+const WCAG_GRAPHIC_CONTRAST_THRESHOLD = 3;
 
 const ContrastBox: React.FC<ContrastBoxProps> = ({
     leftColor,

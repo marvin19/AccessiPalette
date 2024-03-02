@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { calculateContrastRatio, getRgb, rgbToHex } from '../utils';
 import ColorBox from './ColorBox';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 interface FindColorProps {
     selectedContrast: number;
@@ -38,22 +40,19 @@ const FindColor: React.FC<FindColorProps> = ({
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <ColorBox color={colors[0]} />
+            <div className="flex items-center justify-center">
+                <FontAwesomeIcon icon={faArrowRight} />
+            </div>
             <div style={{ textAlign: 'center' }}>
-                <div
-                    style={{
-                        width: '50px',
-                        height: '50px',
-                        backgroundColor: contrastColor ?? 'transparent',
-                        border:
-                            contrastColor !== null ? 'none' : '1px solid black',
-                        marginBottom: '10px',
-                    }}
-                />
+                <ColorBox color={contrastColor ?? 'transparent'} />
                 {contrastColor !== null ? (
                     <p>Contrast color: {contrastColor}</p>
                 ) : (
                     <p>No colors available with enough contrast.</p>
                 )}
+            </div>
+            <div className="flex items-center justify-center">
+                <FontAwesomeIcon icon={faArrowLeft} />
             </div>
             <ColorBox color={colors[1]} />
         </div>
