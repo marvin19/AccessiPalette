@@ -1,5 +1,6 @@
 import React from 'react';
 import ColorAndContrast from './ColorAndContrast';
+import SectionTitle from './SectionTitle';
 
 interface AdjacentPaletteProps {
     selectedContrast: number;
@@ -14,12 +15,13 @@ const AdjacentPalette: React.FC<AdjacentPaletteProps> = ({
     visibleColors,
     paletteType,
 }) => {
+    const selectedContrastInput = selectedContrast === 4.5 ? '4.5:1' : '3:1';
     return (
         <div className="adjacent-palette">
-            <h2>
-                The Adjacent Color palette with contrast{' '}
-                {selectedContrast === 4.5 ? '4.5:1' : '3:1'}
-            </h2>
+            <SectionTitle
+                title="The Adjacent Color palette with contrast "
+                selectedContrast={selectedContrastInput}
+            />
             <div className="copy">
                 <p>
                     This section checks contrast between adjacent colors for
