@@ -116,3 +116,22 @@ export const formatColorInput = (value: string): string => {
     }
     return value;
 };
+
+export const generateThirdContrastColor = (
+    colors: string[],
+    selectedContrast: number,
+): string | null => {
+    let newColor: string | null = null;
+    for (let i = 0; i < 1000; i++) {
+        newColor = rgbToHex(getRgb(), getRgb(), getRgb());
+        if (
+            calculateContrastRatio(newColor, colors[0]) >= selectedContrast &&
+            calculateContrastRatio(newColor, colors[1]) >= selectedContrast
+        ) {
+            break;
+        } else {
+            newColor = null;
+        }
+    }
+    return newColor;
+};

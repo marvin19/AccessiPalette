@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { calculateContrastRatio, getRgb, rgbToHex } from '../utils';
+import { generateThirdContrastColor } from '../utils';
 import ColorBox from './ColorBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -7,33 +7,16 @@ import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 interface FindColorProps {
     selectedContrast: number;
     colors: string[];
-    visibleColors: any; // TODO
-    paletteType: any;
+    visibleColors?: number;
+    paletteType?: string;
 }
 
 // adding a comment to create a PR
-const FindColor: React.FC<FindColorProps> = ({
-    colors,
-    selectedContrast,
-    // visibleColors,
-    // paletteType,
-}) => {
+const FindColor: React.FC<FindColorProps> = ({ colors, selectedContrast }) => {
     const [contrastColor, setContrastColor] = useState<string | null>(null);
 
     useEffect(() => {
-        let newColor: string | null = null;
-        for (let i = 0; i < 1000; i++) {
-            newColor = rgbToHex(getRgb(), getRgb(), getRgb());
-            if (
-                calculateContrastRatio(newColor, colors[0]) >=
-                    selectedContrast &&
-                calculateContrastRatio(newColor, colors[1]) >= selectedContrast
-            ) {
-                break;
-            } else {
-                newColor = null;
-            }
-        }
+        const newColor = generateThirdContrastColor(colors, selectedContrast);
         setContrastColor(newColor);
     }, [colors, selectedContrast]);
 
