@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import AdjacentPalette from './AdjacentPalette';
 import ColorSelect from './ColorSelect';
 import ContrastSelect from './ContrastSelect';
 import ColorPickerList from './ColorPickerList';
 import { generateAdditionalColors } from '../utils';
-import FullAccessiblePalette from './FullAccessisblePalette';
 import RadioButtonList from './RadioButtonList';
 import SectionTitle from './SectionTitle';
-import FindColor from './FindColor';
+import PaletteHandler from './PaletteHandler';
 
 const CardGrid: React.FC = () => {
     // You need to have two colors to check contrast
@@ -139,30 +137,12 @@ const CardGrid: React.FC = () => {
                         </button>
                     </div>
                 </div>
-                <div className="md:col-span-3 lg:col-start-1 lg:row-start-2 flex flex-col bg-white shadow rounded-lg p-4 border-2 border-gray-200">
-                    {paletteType === 'Adjacent' ? (
-                        <AdjacentPalette
-                            colors={colors}
-                            selectedContrast={selectedContrast}
-                            visibleColors={visibleColors}
-                            paletteType={'Adjacent'}
-                        />
-                    ) : paletteType === 'FullAccessible' ? (
-                        <FullAccessiblePalette
-                            colors={colors}
-                            selectedContrast={selectedContrast}
-                            visibleColors={visibleColors}
-                            paletteType={'FullAccessible'}
-                        />
-                    ) : (
-                        <FindColor
-                            colors={colors}
-                            selectedContrast={selectedContrast}
-                            visibleColors={visibleColors}
-                            paletteType={'FindColor'}
-                        />
-                    )}
-                </div>
+                <PaletteHandler
+                    colors={colors}
+                    selectedContrast={selectedContrast}
+                    visibleColors={visibleColors}
+                    paletteType={paletteType}
+                />
             </div>
         </div>
     );
