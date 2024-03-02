@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { calculateContrastRatio, getRgb, rgbToHex } from '../utils';
+import ColorBox from './ColorBox';
 
 interface FindColorProps {
     selectedContrast: number;
@@ -36,13 +37,7 @@ const FindColor: React.FC<FindColorProps> = ({
 
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div
-                style={{
-                    backgroundColor: colors[0],
-                    width: '50px',
-                    height: '50px',
-                }}
-            />
+            <ColorBox color={colors[0]} />
             <div style={{ textAlign: 'center' }}>
                 <div
                     style={{
@@ -60,13 +55,7 @@ const FindColor: React.FC<FindColorProps> = ({
                     <p>No colors available with enough contrast.</p>
                 )}
             </div>
-            <div
-                style={{
-                    backgroundColor: colors[1],
-                    width: '50px',
-                    height: '50px',
-                }}
-            />
+            <ColorBox color={colors[1]} />
         </div>
     );
 };
