@@ -4,12 +4,22 @@ import { generateAdditionalColors } from '../utils';
 interface ColorGenerationResult {
     colors: string[];
     visibleColors: number;
-    setColors: (colors: string[]) => void;
+    handleColorChange: (newColors: string[]) => void;
+    handleGeneratePalette: () => void;
 }
 
 const useColorGeneration = (selectedOption: number): ColorGenerationResult => {
     const [colors, setColors] = useState<string[]>([]);
     const [visibleColors, setVisibleColors] = useState<number>(0);
+
+    const handleColorChange = (newColors: string[]): void => {
+        setColors(newColors);
+    };
+
+    const handleGeneratePalette = (): void => {
+        const newColors = generateAdditionalColors(visibleColors);
+        setColors(newColors);
+    };
 
     const updateVisibleColors = (newVisibleColors: number): void => {
         if (newVisibleColors < 2) {
@@ -31,7 +41,12 @@ const useColorGeneration = (selectedOption: number): ColorGenerationResult => {
         updateVisibleColors(selectedOption);
     }, [colors.length, selectedOption]);
 
-    return { colors, visibleColors, setColors };
+    return {
+        colors,
+        visibleColors,
+        handleColorChange,
+        handleGeneratePalette,
+    };
 };
 
 export default useColorGeneration;

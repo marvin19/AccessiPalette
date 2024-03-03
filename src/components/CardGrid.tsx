@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ColorSelect from './ColorSelect';
 import ContrastSelect from './ContrastSelect';
 import ColorPickerList from './ColorPickerList';
-import { generateAdditionalColors } from '../utils';
 import useColorGeneration from '../hooks/useColorGeneration';
 import RadioButtonList from './RadioButtonList';
 import SectionTitle from './SectionTitle';
@@ -15,17 +14,8 @@ const CardGrid: React.FC = () => {
     const [paletteType, setPaletteType] = useState('Adjacent');
     const [checkboxChecked, setCheckboxChecked] = useState(false);
 
-    const { colors, visibleColors, setColors } =
+    const { colors, visibleColors, handleColorChange, handleGeneratePalette } =
         useColorGeneration(selectedOption);
-
-    const handleColorChange = (newColors: string[]): void => {
-        setColors(newColors);
-    };
-
-    const handleGeneratePalette = (): void => {
-        const newColors = generateAdditionalColors(visibleColors);
-        setColors(newColors);
-    };
 
     return (
         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
