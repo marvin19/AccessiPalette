@@ -8,13 +8,21 @@ interface FindColorProps {
     colors: string[];
     visibleColors?: number;
     paletteType?: string;
+    id: string;
 }
 
-const FindColor: React.FC<FindColorProps> = ({ colors, selectedContrast }) => {
+const FindColor: React.FC<FindColorProps> = ({
+    colors,
+    selectedContrast,
+    id,
+}) => {
     const contrastColor = useContrastColor(colors, selectedContrast);
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div
+            id={id}
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+        >
             <ColorBox color={colors[0]} />
             <Arrow direction="right" />
             <div style={{ textAlign: 'center' }}>

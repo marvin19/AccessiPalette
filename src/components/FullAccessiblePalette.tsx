@@ -9,11 +9,13 @@ interface FullAccessiblePaletteProps {
     colors: string[];
     visibleColors: number;
     paletteType: string;
+    id: string;
 }
 
 const FullAccessiblePalette: React.FC<FullAccessiblePaletteProps> = ({
     selectedContrast,
     colors,
+    id,
     // visibleColors,
     // paletteType,
 }) => {
@@ -36,7 +38,7 @@ const FullAccessiblePalette: React.FC<FullAccessiblePaletteProps> = ({
     }, [colors]);
 
     return (
-        <div className="adjacent-palette">
+        <div id={id} className="adjacent-palette">
             <h2>
                 The Full Accessible palette with contrast{' '}
                 {selectedContrast === 4.5 ? '4.5:1' : '3:1'}

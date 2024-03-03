@@ -142,6 +142,7 @@ const CardGrid: React.FC = () => {
                     selectedContrast={selectedContrast}
                     visibleColors={visibleColors}
                     paletteType={paletteType}
+                    id={paletteType}
                 />
             </div>
         </div>

@@ -9,6 +9,7 @@ describe('AdjacentPalette', () => {
                 colors={[]}
                 visibleColors={0}
                 paletteType="adjacent"
+                id="Adjacent"
             />,
         );
         expect(getByText('The Adjacent Color palette with contrast 4.5:1'));

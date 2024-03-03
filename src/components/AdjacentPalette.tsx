@@ -7,6 +7,7 @@ interface AdjacentPaletteProps {
     colors: string[];
     visibleColors: number;
     paletteType: string;
+    id: string;
 }
 
 const AdjacentPalette: React.FC<AdjacentPaletteProps> = ({
@@ -14,10 +15,11 @@ const AdjacentPalette: React.FC<AdjacentPaletteProps> = ({
     colors,
     visibleColors,
     paletteType,
+    id,
 }) => {
     const selectedContrastInput = selectedContrast === 4.5 ? '4.5:1' : '3:1';
     return (
-        <div className="adjacent-palette">
+        <div id={id} className="adjacent-palette">
             <SectionTitle
                 title="The Adjacent Color palette with contrast "
                 selectedContrast={selectedContrastInput}
