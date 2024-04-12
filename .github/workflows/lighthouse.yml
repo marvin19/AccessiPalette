@@ -1,14 +1,13 @@
 name: Lighthouse CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,30 +21,32 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Lighthouse and Chrome
-        run: |
-          npm install -g lighthouse
-          sudo apt-get update
-          sudo apt-get install -y libxss1 libappindicator1 libindicator7
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo dpkg -i google-chrome-stable_current_amd64.deb
-          sudo apt-get install -f
-
       - name: Build application
         run: npm run build
 
-      - name: Serve application
-        run: npm run preview &
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli
+
+      - name: Start HTTP Server
+        run: npx http-server ./dist -p 4173 &
         shell: bash
 
-      - name: Wait for the server to start
+      - name: Wait for HTTP Server to start
         run: sleep 10
 
       - name: Run Lighthouse CI
-        run: lighthouse http://localhost:4173 --output json --output-path ./lighthouse-results.json --chrome-flags="--headless --no-sandbox --disable-gpu"
+        run: lhci autorun --config=.lighthouserc.js
 
       - name: Upload Lighthouse results
         uses: actions/upload-artifact@v2
         with:
           name: lighthouse-results
-          path: ./lighthouse-results.json
+          path: .lighthouseci
+
+      - name: Comment PR with Lighthouse Results
+        uses: machine-learning-apps/pr-comment@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path: .lighthouseci/lhr-*.json
+          message: 'Lighthouse CI results: See details in the actions-tab. Accessibility Score must be 100.'
