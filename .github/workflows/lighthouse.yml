@@ -1,0 +1,45 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Lighthouse
+        run: npm install -g lighthouse
+
+      - name: Build application
+        run: npm run build
+
+      - name: Serve application
+        run: npm run preview & # Using the preview script to serve the built application
+        shell: bash
+
+      - name: Wait for the server to start
+        run: sleep 10
+
+      - name: Run Lighthouse CI
+        run: lighthouse http://localhost:4173 --output json --output-path ./lighthouse-results.json
+
+      - name: Upload Lighthouse results
+        uses: actions/upload-artifact@v2
+        with:
+          name: lighthouse-results
+          path: ./lighthouse-results.json
