@@ -22,21 +22,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Lighthouse
-        run: npm install -g lighthouse
+      - name: Install Lighthouse and Chrome
+        run: |
+          npm install -g lighthouse
+          sudo apt-get update
+          sudo apt-get install -y libxss1 libappindicator1 libindicator7
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb
+          sudo apt-get install -f
 
       - name: Build application
         run: npm run build
 
       - name: Serve application
-        run: npm run preview & # Using the preview script to serve the built application
+        run: npm run preview &
         shell: bash
 
       - name: Wait for the server to start
         run: sleep 10
 
       - name: Run Lighthouse CI
-        run: lighthouse http://localhost:4173 --output json --output-path ./lighthouse-results.json
+        run: lighthouse http://localhost:4173 --output json --output-path ./lighthouse-results.json --chrome-flags="--headless --no-sandbox --disable-gpu"
 
       - name: Upload Lighthouse results
         uses: actions/upload-artifact@v2
