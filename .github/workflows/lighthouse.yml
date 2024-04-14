@@ -39,27 +39,33 @@ jobs:
         run: sleep 10
 
       - name: Run Lighthouse CI
-        run: lhci autorun --config=.lighthouserc.cjs
-
-      - name: Extract Accessibility Score
-        id: extract_score
-        run: |
-          LH_FILE=$(ls .lighthouseci/lhr-*.json | head -n 1)
-          SCORE=$(node -pe "JSON.parse(require('fs').readFileSync('${LH_FILE}').toString()).categories.accessibility.score * 100")
-          echo "ACC_SCORE=$SCORE" >> $GITHUB_ENV
-          echo "::set-output name=accessibility_score::$SCORE"
-
-      - name: Create or Update Comment
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            ${{ steps.extract_score.outputs.accessibility_score == '100' && '✅ Good to go!' || '❌ Please check the accessibility score in the detailed report!' }}
-            Lighthouse CI results: See details in the Actions tab. Accessibility Score: ${{ steps.extract_score.outputs.accessibility_score }}%.
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: lhci autorun --config=.lighthouserc.js
 
       - name: Upload Lighthouse results
         uses: actions/upload-artifact@v2
         with:
           name: lighthouse-results
           path: .lighthouseci
+
+      - name: Check Lighthouse CI Outcome
+        id: check_lighthouse
+        run: |
+          if [ -f .lighthouseci/failed ]; then
+            echo "Lighthouse checks failed" > .lighthouseci/failed
+            echo "::set-output name=status::failed"
+          else
+            echo "::set-output name=status::success"
+          fi
+
+      - name: Post Comment on PR
+        if: always()
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ${{ steps.check_lighthouse.outputs.status == 'failed' && '❌ Lighthouse checks failed. Please review the Lighthouse report in the Artifacts.' || '✅ Lighthouse checks passed successfully!' }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fail the Workflow if Lighthouse Failed
+        if: steps.check_lighthouse.outputs.status == 'failed'
+        run: exit 1
