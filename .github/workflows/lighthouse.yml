@@ -40,17 +40,15 @@ jobs:
 
       - name: Run Lighthouse CI
         id: lhci
-        run: lhci autorun --config=.lighthouserc.cjs
+        run: lhci autorun --config=.lighthouserc.cjs | tee lhci.log
         continue-on-error: true
 
       - name: Extract Report URL
         id: extract_url
         run: |
-          URL=$(grep -oP 'https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/\d+-\d+.report.html' lhci.log)
+          URL=$(grep -oP 'https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/\d{13}-\d+.report.html' lhci.log)
+          echo "Report URL is $URL"
           echo "::set-output name=report_url::$URL"
-        env:
-          LHCI_OUTPUT_PATH: lhci.log
-        continue-on-error: true
 
       - name: Post Comment on PR
         uses: peter-evans/create-or-update-comment@v1
