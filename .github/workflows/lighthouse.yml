@@ -43,13 +43,22 @@ jobs:
         run: lhci autorun --config=.lighthouserc.cjs
         continue-on-error: true
 
+      - name: Extract Report URL
+        id: extract_url
+        run: |
+          URL=$(grep -oP 'https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/\d+-\d+.report.html' lhci.log)
+          echo "::set-output name=report_url::$URL"
+        env:
+          LHCI_OUTPUT_PATH: lhci.log
+        continue-on-error: true
+
       - name: Post Comment on PR
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             ${{ steps.lhci.outcome == 'failure' && '❌ Lighthouse checks failed. Please review the Lighthouse report in the Artifacts.' || '✅ Lighthouse checks passed successfully!' }}
-            Report URL: [View Lighthouse Report](${{ steps.lhci.outputs.report_url }})
+            Report URL: [View Lighthouse Report](${{ steps.extract_url.outputs.report_url }})
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fail the Workflow if Lighthouse Failed
