@@ -44,11 +44,12 @@ jobs:
       - name: Extract Accessibility Score
         id: extract_score
         run: |
-          SCORE=$(node -pe "JSON.parse(require('fs').readFileSync('.lighthouseci/lhr-*.json').toString()).categories.accessibility.score * 100")
+          LH_FILE=$(ls .lighthouseci/lhr-*.json | head -n 1)
+          SCORE=$(node -pe "JSON.parse(require('fs').readFileSync('${LH_FILE}').toString()).categories.accessibility.score * 100")
           echo "ACC_SCORE=$SCORE" >> $GITHUB_ENV
           echo "::set-output name=accessibility_score::$SCORE"
 
-      - name: Comment PR with Lighthouse Results
+      - name: Create or Update Comment
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.pull_request.number }}
