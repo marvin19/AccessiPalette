@@ -41,16 +41,24 @@ jobs:
       - name: Run Lighthouse CI
         run: lhci autorun --config=.lighthouserc.cjs
 
+      - name: Extract Accessibility Score
+        id: extract_score
+        run: |
+          SCORE=$(node -pe "JSON.parse(require('fs').readFileSync('.lighthouseci/lhr-*.json').toString()).categories.accessibility.score * 100")
+          echo "ACC_SCORE=$SCORE" >> $GITHUB_ENV
+          echo "::set-output name=accessibility_score::$SCORE"
+
+      - name: Comment PR with Lighthouse Results
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ${{ steps.extract_score.outputs.accessibility_score == '100' && '✅ Good to go!' || '❌ Please check the accessibility score in the detailed report!' }}
+            Lighthouse CI results: See details in the Actions tab. Accessibility Score: ${{ steps.extract_score.outputs.accessibility_score }}%.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload Lighthouse results
         uses: actions/upload-artifact@v2
         with:
           name: lighthouse-results
           path: .lighthouseci
-
-      - name: Create or Update Comment
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            Lighthouse CI results: See details in the Actions tab. Accessibility Score must be 100. Review the artifacts for detailed reports.
-          token: ${{ secrets.GITHUB_TOKEN }}
