@@ -40,25 +40,30 @@ jobs:
 
       - name: Run Lighthouse CI
         id: lhci
-        run: lhci autorun --config=.lighthouserc.cjs | tee lhci.log
+        run: |
+          lhci autorun --config=.lighthouserc.cjs > lhci.log
         continue-on-error: true
 
-      - name: Extract Report URL
-        id: extract_url
+      - name: Check Lighthouse Outcome
+        id: check_lighthouse
         run: |
-          URL=$(grep -oP 'https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/\d{13}-\d+.report.html' lhci.log)
-          echo "Report URL is $URL"
-          echo "::set-output name=report_url::$URL"
+          if grep -q "Assertion failed" lhci.log; then
+            echo "Lighthouse tests failed."
+            echo "::set-output name=status::failed"
+          else
+            echo "Lighthouse tests passed."
+            echo "::set-output name=status::passed"
+          fi
 
       - name: Post Comment on PR
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ${{ steps.lhci.outcome == 'failure' && '❌ Lighthouse checks failed. Please review the Lighthouse report in the Artifacts.' || '✅ Lighthouse checks passed successfully!' }}
+            ${{ steps.check_lighthouse.outputs.status == 'failed' && '❌ Lighthouse checks failed. Please review the Lighthouse report in the Artifacts.' || '✅ Lighthouse checks passed successfully!' }}
             Report URL: [View Lighthouse Report](${{ steps.extract_url.outputs.report_url }})
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fail the Workflow if Lighthouse Failed
-        if: steps.lhci.outcome == 'failure'
+        if: steps.check_lighthouse.outputs.status == 'failed'
         run: exit 1
