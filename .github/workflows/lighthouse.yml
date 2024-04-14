@@ -43,10 +43,10 @@ jobs:
           name: lighthouse-results
           path: .lighthouseci
 
-      - name: Comment PR with Lighthouse Results
-        uses: machine-learning-apps/pr-comment@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create or Update Comment
+        uses: peter-evans/create-or-update-comment@v1
         with:
-          path: .lighthouseci/lhr-*.json
-          message: 'Lighthouse CI results: See details in the actions-tab. Accessibility Score must be 100.'
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Lighthouse CI results: See details in the Actions tab. Accessibility Score must be 100. Review the artifacts for detailed reports.
+          token: ${{ secrets.GITHUB_TOKEN }}
