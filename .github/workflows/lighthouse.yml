@@ -39,33 +39,19 @@ jobs:
         run: sleep 10
 
       - name: Run Lighthouse CI
-        run: lhci autorun --config=.lighthouserc.cjs
-
-      - name: Upload Lighthouse results
-        uses: actions/upload-artifact@v2
-        with:
-          name: lighthouse-results
-          path: .lighthouseci
-
-      - name: Check Lighthouse CI Outcome
-        id: check_lighthouse
-        run: |
-          if [ -f .lighthouseci/failed ]; then
-            echo "Lighthouse checks failed" > .lighthouseci/failed
-            echo "::set-output name=status::failed"
-          else
-            echo "::set-output name=status::success"
-          fi
+        id: lhci
+        run: lhci autorun --config=.lighthouserc.js
+        continue-on-error: true
 
       - name: Post Comment on PR
-        if: always()
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ${{ steps.check_lighthouse.outputs.status == 'failed' && '❌ Lighthouse checks failed. Please review the Lighthouse report in the Artifacts.' || '✅ Lighthouse checks passed successfully!' }}
+            ${{ steps.lhci.outcome == 'failure' && '❌ Lighthouse checks failed. Please review the Lighthouse report in the Artifacts.' || '✅ Lighthouse checks passed successfully!' }}
+            Report URL: [View Lighthouse Report](${{ steps.lhci.outputs.report_url }})
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fail the Workflow if Lighthouse Failed
-        if: steps.check_lighthouse.outputs.status == 'failed'
+        if: steps.lhci.outcome == 'failure'
         run: exit 1
