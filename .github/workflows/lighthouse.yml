@@ -46,32 +46,28 @@ jobs:
       - name: Extract Report URL
         id: extract_url
         run: |
-          URL=$(grep -oP 'https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/\d{13}-\d+.report.html' lhci.log)
+          URL=$(grep -oP 'https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/\d{13}-\d+.report.html' lhci.log | head -1)
           echo "::set-output name=report_url::$URL"
 
       - name: Extract Scores and Determine Outcome
         id: check_scores
         run: |
           SCORE=$(node -pe "const results = JSON.parse(require('fs').readFileSync('./lighthouse-results.json').toString()); const score = results.categories.accessibility.score * 100; console.log(score); score;")
-          echo "::set-output name=accessibility_score::${SCORE}"
           if [[ $(echo "$SCORE < 100" | bc) -eq 1 ]]; then
             echo "::set-output name=status::failed"
+            echo "::set-output name=accessibility_score::$SCORE"
           else
             echo "::set-output name=status::passed"
+            echo "::set-output name=accessibility_score::$SCORE"
           fi
-
-      - name: Debug Outputs
-        run: |
-          echo "Status: ${{ steps.check_scores.outputs.status }}"
-          echo "Accessibility Score: ${{ steps.check_scores.outputs.accessibility_score }}"
-          echo "Report URL: ${{ steps.extract_url.outputs.report_url }}"
+        continue-on-error: true
 
       - name: Post Comment on PR
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ${{ steps.check_scores.outputs.status == 'failed' && '❌ Lighthouse checks failed with an accessibility score of ' || '✅ Lighthouse checks passed successfully with an accessibility score of ' }}${{ steps.check_scores.outputs.accessibility_score }}%!
+            ${{ steps.check_scores.outputs.status == 'failed' && '❌ Lighthouse checks failed with an accessibility score of ${{ steps.check_scores.outputs.accessibility_score }}%. Please review the Lighthouse report in the Artifacts.' || '✅ Lighthouse checks passed successfully with an accessibility score of ${{ steps.check_scores.outputs.accessibility_score }}%!' }}
             Report URL: [View Lighthouse Report](${{ steps.extract_url.outputs.report_url }})
           token: ${{ secrets.GITHUB_TOKEN }}
 
