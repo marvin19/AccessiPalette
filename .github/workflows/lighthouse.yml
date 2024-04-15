@@ -58,7 +58,7 @@ jobs:
       - name: Extract Scores and Determine Outcome
         id: check_scores
         run: |
-          SCORE=$(node -pe "const results = JSON.parse(require('fs').readFileSync('./lighthouse-results.json').toString()); const score = results.categories.accessibility.score * 100; console.log(score); score;")
+          SCORE=$(node -pe "try { const results = JSON.parse(require('fs').readFileSync('./lighthouse-results.json').toString()); const score = results.categories.accessibility.score * 100; console.log(score); score; } catch (error) { console.error('Failed to read or parse lighthouse-results.json:', error); process.exit(1); }")
           if [[ $(echo "$SCORE < 100" | bc) -eq 1 ]]; then
             echo "::set-output name=status::failed"
             echo "::set-output name=accessibility_score::$SCORE"
