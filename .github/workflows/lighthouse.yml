@@ -42,8 +42,7 @@ jobs:
         id: lhci
         run: |
           lhci autorun --config=.lighthouserc.cjs
-          echo "::set-output name=report_url::$(<some-command-to-get-url>)"
-        continue-on-error: true
+          echo "report_url=http://localhost:4173/report.html" >> $GITHUB_ENV  # Assume static URL for demonstration
 
       - name: Post Comment on PR
         uses: peter-evans/create-or-update-comment@v1
@@ -51,7 +50,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             ${{ steps.lhci.outcome == 'failure' && '❌ Lighthouse checks failed. Please review the Lighthouse report in the Artifacts.' || '✅ Lighthouse checks passed successfully!' }}
-            Report URL: [View Lighthouse Report](${{ steps.lhci.outputs.report_url }})
+            Report URL: [View Lighthouse Report](${{ env.report_url }})
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fail the Workflow if Lighthouse Failed
