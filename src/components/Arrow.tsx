@@ -1,11 +1,11 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import type { SizeProp } from '@fortawesome/fontawesome-svg-core';
+// import type { SizeProp } from '@fortawesome/fontawesome-svg-core';
 
 interface ArrowProps {
     direction: 'left' | 'right';
-    size?: SizeProp;
+    // size?: SizeProp;
 }
 
 const Arrow: React.FC<ArrowProps> = ({ direction }): JSX.Element => {

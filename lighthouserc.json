@@ -1,0 +1,23 @@
+{
+    "ci": {
+        "assert": {
+            "assertions": {
+              "categories:performance": "off",
+              "categories:pwa": "off",
+              "categories:accessibility": ["error", { "minScore": 1 }]
+            }
+          },
+      "collect": {
+        "staticDistDir": "dist",
+        "settings": {
+            "preset": "desktop"
+        },
+        "startServerCommand": "yarn build && yarn start",
+        "url": ["http://localhost:5173/"],
+        "numberOfRuns": 3
+      },
+      "upload": {
+        "target": "temporary-public-storage"
+      }
+    }
+  }

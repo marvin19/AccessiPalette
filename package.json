@@ -12,9 +12,13 @@
     "purgecss": "purgecss --config purgecss.config.cjs --output ./purgecss.css",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lhci:mobile": "lhci autorun",
+    "lhci:desktop": "lhci autorun --collect.settings.preset=desktop",
+    "lhci:a11y": "rn lhci autorun --collect.settings.preset=desktop --collect.staticDistDir=./dist --only-categories=accessibility" 
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/react": "^14.2.1",
@@ -25,6 +29,7 @@
     "values.js": "^2.1.1"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.13.0",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
