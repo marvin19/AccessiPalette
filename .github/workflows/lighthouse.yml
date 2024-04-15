@@ -47,6 +47,8 @@ jobs:
         run: |
           mkdir -p lighthouse-results
           lhci collect --config=.lighthouserc.cjs --numberOfRuns=1 --output=json --output-path=./lighthouse-results/results.json
+          echo "Listing files in lighthouse-results directory:"
+          ls -la ./lighthouse-results/
         continue-on-error: true
 
       - name: Extract Scores and Determine Outcome
