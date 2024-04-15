@@ -38,22 +38,35 @@ jobs:
       - name: Wait for HTTP Server to start
         run: sleep 10
 
-      - name: Run Lighthouse CI and Save Results
-        id: lhci
-        run: |
-          lhci autorun --config=.lighthouserc.cjs > ./lighthouse-results/results.json
+      - name: Create Results Directory
+        run: mkdir -p lighthouse-results
+
+      - name: Run Lighthouse CI
+        run: lhci autorun --config=.lighthouserc.cjs
         continue-on-error: true
 
-      - name: Extract Scores and Determine Outcome
-        id: check_scores
+      - name: Collect JSON Results
         run: |
-          SCORE=$(node -pe "const results = JSON.parse(require('fs').readFileSync('./lighthouse-results/results.json').toString()); const score = results[0].categories.accessibility.score * 100; console.log(score); score;")
-          if [[ $(echo "$SCORE < 100" | bc) -eq 1 ]]; then
-            echo "::set-output name=status::failed"
-            echo "::set-output name=accessibility_score::$SCORE"
+          lhci collect --config=.lighthouserc.cjs --numberOfRuns=1
+          lhci report --config=.lighthouserc.cjs --output=json --output-path=./lighthouse-results/results.json
+
+      - name: List Output Files
+        run: ls -la ./lighthouse-results/
+
+      - name: Extract Scores and Determine Outcome
+        run: |
+          if [ -f "./lighthouse-results/results.json" ]; then
+            SCORE=$(node -pe "const results = JSON.parse(require('fs').readFileSync('./lighthouse-results/results.json').toString()); const score = results[0].categories.accessibility.score * 100; console.log(score); score;")
+            if [[ $(echo "$SCORE < 100" | bc) -eq 1 ]]; then
+              echo "::set-output name=status::failed"
+              echo "::set-output name=accessibility_score::$SCORE"
+            else
+              echo "::set-output name=status::passed"
+              echo "::set-output name=accessibility_score::$SCORE"
+            fi
           else
-            echo "::set-output name=status::passed"
-            echo "::set-output name=accessibility_score::$SCORE"
+            echo "Results file does not exist."
+            exit 1
           fi
         continue-on-error: true
 
