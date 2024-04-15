@@ -40,7 +40,9 @@ jobs:
 
       - name: Run Lighthouse CI
         id: lhci
-        run: lhci autorun --config=.lighthouserc.cjs
+        run: |
+          lhci autorun --config=.lighthouserc.js
+          echo "::set-output name=report_url::$(<some-command-to-get-url>)"
         continue-on-error: true
 
       - name: Post Comment on PR
