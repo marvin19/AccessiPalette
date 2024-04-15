@@ -1,0 +1,76 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli
+
+      - name: Start HTTP Server
+        run: npx http-server ./dist -p 4173 &
+        shell: bash
+
+      - name: Wait for HTTP Server to start
+        run: sleep 10
+
+      - name: Run Lighthouse CI
+        id: lhci
+        run: lhci autorun --config=.lighthouserc.cjs | tee lhci.log
+        continue-on-error: true
+
+      - name: Extract Report URL
+        id: extract_url
+        run: |
+          URL=$(grep -oP 'https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/\d{13}-\d+.report.html' lhci.log | head -1)
+          echo "::set-output name=report_url::$URL"
+
+      - name: Extract Scores and Determine Outcome
+        id: check_scores
+        run: |
+          SCORE=$(node -pe "const results = JSON.parse(require('fs').readFileSync('./lighthouse-results.json').toString()); const score = results.categories.accessibility.score * 100; console.log(score); score;")
+          if [[ $(echo "$SCORE < 100" | bc) -eq 1 ]]; then
+            echo "::set-output name=status::failed"
+            echo "::set-output name=accessibility_score::$SCORE"
+          else
+            echo "::set-output name=status::passed"
+            echo "::set-output name=accessibility_score::$SCORE"
+          fi
+        continue-on-error: true
+
+      - name: Post Comment on PR
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ${{ steps.check_scores.outputs.status == 'failed' && '❌ Lighthouse checks failed! Please review report.' || '✅ Lighthouse checks passed successfully!' }}
+            Report URL: [View Lighthouse Report](${{ steps.extract_url.outputs.report_url }})
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fail the Workflow if Lighthouse Failed
+        if: steps.check_scores.outputs.status == 'failed'
+        run: exit 1
