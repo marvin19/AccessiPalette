@@ -38,45 +38,20 @@ jobs:
       - name: Wait for HTTP Server to start
         run: sleep 10
 
-      - name: Create Results Directory
-        run: mkdir -p lighthouse-results
-
       - name: Run Lighthouse CI
-        run: lhci autorun --config=.lighthouserc.cjs
+        id: lhci
+        run: lhci autorun --config=.lighthouserc.js
         continue-on-error: true
-
-      - name: List Output Files
-        run: ls -la ./lighthouse-results/
-
-      - name: Check JSON Output Presence
-        run: if [ ! -f "./lighthouse-results/lhci-report-0.json" ]; then echo "JSON output not found"; exit 1; fi
-
-      - name: Extract Scores and Determine Outcome
-        run: |
-          JSON_FILE="./lighthouse-results/results-0.json"
-          if [ -f "$JSON_FILE" ]; then
-            SCORE=$(node -pe "const results = JSON.parse(require('fs').readFileSync('$JSON_FILE').toString()); const score = results[0].categories.accessibility.score * 100; console.log(score); score;")
-            if [[ $(echo "$SCORE < 100" | bc) -eq 1 ]]; then
-              echo "::set-output name=status::failed"
-              echo "::set-output name=accessibility_score::$SCORE"
-            else
-              echo "::set-output name=status::passed"
-              echo "::set-output name=accessibility_score::$SCORE"
-            fi
-          else
-            echo "Results file does not exist."
-            exit 1
-          fi
 
       - name: Post Comment on PR
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ${{ steps.check_scores.outputs.status == 'failed' && '❌ Lighthouse checks failed with an accessibility score of ${{ steps.check_scores.outputs.accessibility_score }}%. Please review the Lighthouse report in the Artifacts.' || '✅ Lighthouse checks passed successfully with an accessibility score of ${{ steps.check_scores.outputs.accessibility_score }}%!' }}
-            Report URL: [View Lighthouse Report](${{ steps.extract_url.outputs.report_url }})
+            ${{ steps.lhci.outcome == 'failure' && '❌ Lighthouse checks failed. Please review the Lighthouse report in the Artifacts.' || '✅ Lighthouse checks passed successfully!' }}
+            Report URL: [View Lighthouse Report](${{ steps.lhci.outputs.report_url }})
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fail the Workflow if Lighthouse Failed
-        if: steps.check_scores.outputs.status == 'failed'
+        if: steps.lhci.outcome == 'failure'
         run: exit 1
