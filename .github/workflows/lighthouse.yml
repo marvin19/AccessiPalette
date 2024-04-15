@@ -38,17 +38,10 @@ jobs:
       - name: Wait for HTTP Server to start
         run: sleep 10
 
-      - name: Run Lighthouse CI
+      - name: Run Lighthouse CI and Save Results
         id: lhci
-        run: lhci autorun --config=.lighthouserc.cjs
-        continue-on-error: true
-
-      - name: Save Lighthouse JSON Results
         run: |
-          mkdir -p lighthouse-results
-          lhci collect --config=.lighthouserc.cjs --numberOfRuns=1 --output=json --output-path=./lighthouse-results/results.json
-          echo "Listing files in lighthouse-results directory:"
-          ls -la ./lighthouse-results/
+          lhci autorun --config=.lighthouserc.cjs > ./lighthouse-results/results.json
         continue-on-error: true
 
       - name: Extract Scores and Determine Outcome

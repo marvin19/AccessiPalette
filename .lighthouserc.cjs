@@ -3,6 +3,10 @@ module.exports = {
         collect: {
             staticDistDir: './dist',
             url: ['http://localhost:4173'],
+            settings: {
+                output: ['json'],
+                outputPath: './lighthouse-results/results.json',
+            },
         },
         assert: {
             assertions: {
