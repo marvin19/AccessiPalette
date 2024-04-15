@@ -67,7 +67,7 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ${{ steps.check_scores.outputs.status == 'failed' && '❌ Lighthouse checks failed with an accessibility score of ${{ steps.check_scores.outputs.accessibility_score }}%. Please review the Lighthouse report in the Artifacts.' || '✅ Lighthouse checks passed successfully with an accessibility score of ${{ steps.check_scores.outputs.accessibility_score }}%!' }}
+            ${{ steps.check_scores.outputs.status == 'failed' && '❌ Lighthouse checks failed! Please review report.' || '✅ Lighthouse checks passed successfully!' }}
             Report URL: [View Lighthouse Report](${{ steps.extract_url.outputs.report_url }})
           token: ${{ secrets.GITHUB_TOKEN }}
 
