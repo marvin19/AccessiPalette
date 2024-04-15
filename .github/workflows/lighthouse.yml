@@ -41,7 +41,7 @@ jobs:
       - name: Run Lighthouse CI
         id: lhci
         run: |
-          lhci autorun --config=.lighthouserc.js
+          lhci autorun --config=.lighthouserc.cjs
           echo "::set-output name=report_url::$(<some-command-to-get-url>)"
         continue-on-error: true
 
