@@ -51,7 +51,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             ${{ steps.lhci.outcome == 'failure' && '❌ Lighthouse checks failed. Please review the Lighthouse report in the Artifacts.' || '✅ Lighthouse checks passed successfully!' }}
-            Report URL: [View Lighthouse Report](${{ env.report_url }})
+            Report URL: [View Lighthouse Report](${{ steps.extract_url.outputs.report_url  }})
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fail the Workflow if Lighthouse Failed
