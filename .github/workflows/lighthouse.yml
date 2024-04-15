@@ -40,7 +40,7 @@ jobs:
 
       - name: Run Lighthouse CI
         id: lhci
-        run: lhci autorun --config=.lighthouserc.js
+        run: lhci autorun --config=.lighthouserc.cjs
         continue-on-error: true
 
       - name: Post Comment on PR
