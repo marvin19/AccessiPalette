@@ -21,7 +21,7 @@ const CardGrid: React.FC = () => {
         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="flex flex-col bg-white shadow rounded-lg p-4 border-2 border-gray-200">
-                    <h3>Palette Type</h3>
+                    <h2>Palette Type</h2>
                     <div className="copy">
                         <p>Choose the type of color palette to generate.</p>
                         <br />
