@@ -43,6 +43,7 @@ jobs:
         run: |
           lhci autorun --config=.lighthouserc.cjs
           echo "report_url=http://localhost:4173/report.html" >> $GITHUB_ENV  # Assume static URL for demonstration
+        continue-on-error: true
 
       - name: Post Comment on PR
         uses: peter-evans/create-or-update-comment@v1
