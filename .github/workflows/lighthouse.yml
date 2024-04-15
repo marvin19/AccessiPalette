@@ -45,18 +45,17 @@ jobs:
         run: lhci autorun --config=.lighthouserc.cjs
         continue-on-error: true
 
-      - name: Collect JSON Results
-        run: |
-          lhci collect --config=.lighthouserc.cjs --numberOfRuns=1
-          lhci report --config=.lighthouserc.cjs --output=json --output-path=./lighthouse-results/results.json
-
       - name: List Output Files
         run: ls -la ./lighthouse-results/
 
+      - name: Check JSON Output Presence
+        run: if [ ! -f "./lighthouse-results/lhci-report-0.json" ]; then echo "JSON output not found"; exit 1; fi
+
       - name: Extract Scores and Determine Outcome
         run: |
-          if [ -f "./lighthouse-results/results.json" ]; then
-            SCORE=$(node -pe "const results = JSON.parse(require('fs').readFileSync('./lighthouse-results/results.json').toString()); const score = results[0].categories.accessibility.score * 100; console.log(score); score;")
+          JSON_FILE="./lighthouse-results/results-0.json"
+          if [ -f "$JSON_FILE" ]; then
+            SCORE=$(node -pe "const results = JSON.parse(require('fs').readFileSync('$JSON_FILE').toString()); const score = results[0].categories.accessibility.score * 100; console.log(score); score;")
             if [[ $(echo "$SCORE < 100" | bc) -eq 1 ]]; then
               echo "::set-output name=status::failed"
               echo "::set-output name=accessibility_score::$SCORE"
@@ -68,7 +67,6 @@ jobs:
             echo "Results file does not exist."
             exit 1
           fi
-        continue-on-error: true
 
       - name: Post Comment on PR
         uses: peter-evans/create-or-update-comment@v1

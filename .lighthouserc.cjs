@@ -3,10 +3,7 @@ module.exports = {
         collect: {
             staticDistDir: './dist',
             url: ['http://localhost:4173'],
-            settings: {
-                output: ['json'],
-                outputPath: './lighthouse-results/results.json',
-            },
+            numberOfRuns: 1,
         },
         assert: {
             assertions: {
@@ -14,7 +11,9 @@ module.exports = {
             },
         },
         upload: {
-            target: 'temporary-public-storage',
+            target: 'filesystem',
+            outputDir: './lighthouse-results', // Define where to store the results
+            reportFilenamePattern: 'results-%%SUFFIX%%.json', // This will save the file as results-0.json, results-1.json, etc.
         },
     },
 };
