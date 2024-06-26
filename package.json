@@ -15,7 +15,8 @@
     "prepare": "husky",
     "lhci:mobile": "lhci autorun",
     "lhci:desktop": "lhci autorun --collect.settings.preset=desktop",
-    "lhci:a11y": "rn lhci autorun --collect.settings.preset=desktop --collect.staticDistDir=./dist --only-categories=accessibility" 
+    "lhci:a11y": "rn lhci autorun --collect.settings.preset=desktop --collect.staticDistDir=./dist --only-categories=accessibility",
+    "axe:a11y": "axe http://localhost:8000"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",

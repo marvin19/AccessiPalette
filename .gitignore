@@ -2,3 +2,5 @@
 .DS_store
 purgecss.css
 .husky
+.husky/pre-commit
+yarn.lock
