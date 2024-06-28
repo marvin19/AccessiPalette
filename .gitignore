@@ -5,4 +5,3 @@ purgecss.css
 .husky/pre-commit
 yarn.lock
 .lighthouseci/
-__mocks__/
