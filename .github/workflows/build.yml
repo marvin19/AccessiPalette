@@ -31,12 +31,6 @@ jobs:
           node-version: 18
           cache: 'npm'
       - run: npm ci
-      - name: Debug - List directory contents
-        run: ls -R
-      - name: Debug - List __mocks__ contents
-        run: ls -R __mocks__
-      - name: Debug - Print jest.config.js
-        run: cat jest.config.js
       - run: npm test
 
   build:
