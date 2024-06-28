@@ -479,7 +479,8 @@ body {
     gap: 34px;
 }
 
-.contrast-tabs {
+.contrast-tabs,
+.contrast-mode-tabs {
     display: flex;
     height: 38px;
     padding: 4px;
@@ -489,7 +490,8 @@ body {
     border: 1px solid #918fa3;
 }
 
-.contrast-tabs button {
+.contrast-tabs button,
+.contrast-mode-tabs button {
     display: flex;
     padding: 0px 16px;
     justify-content: center;
