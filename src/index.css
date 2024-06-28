@@ -499,3 +499,20 @@ body {
     align-self: stretch;
     border-radius: 4px;
 }
+
+.link-and-logo {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.link-and-logo h1 {
+    color: #000;
+    text-align: center;
+    font-family: 'IBM Plex Sans Var';
+    font-size: 20.95px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 38.949px; /* 185.916% */
+    text-transform: uppercase;
+}

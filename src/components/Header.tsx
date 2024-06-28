@@ -1,6 +1,8 @@
 import logo from '../assets/highcharts-logo.svg';
 import ContrastSelectTab from './ContrastSelectTab';
 import ContrastModeTab from './ContrastModeTab';
+import GitHubLink from './GitHubLink';
+import PalettaLogo from './PalettaLogo';
 
 const Header = (): JSX.Element => {
     return (
@@ -11,6 +13,10 @@ const Header = (): JSX.Element => {
                 </div>
                 <ContrastSelectTab />
                 <ContrastModeTab />
+                <div className="link-and-logo">
+                    <GitHubLink />
+                    <PalettaLogo />
+                </div>
             </div>
         </div>
     );
