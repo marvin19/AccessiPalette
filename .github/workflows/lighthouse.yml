@@ -12,15 +12,27 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - name: List files for debugging
+        run: ls -alh
+
       - name: Install dependencies
         run: yarn
 
-      - name: lighthouse mobile audit
+      - name: Start server
+        run: yarn start &
+
+      - name: Wait for server to be ready
+        run: sleep 10
+
+      - name: Lighthouse mobile audit
         run: yarn lhci:mobile
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
-      - name: lighthouse desktop audit
+      - name: Lighthouse desktop audit
         run: yarn lhci:desktop
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Stop server
+        run: kill $(jobs -p)
