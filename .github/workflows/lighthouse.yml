@@ -12,9 +12,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: List files for debugging
-        run: ls -alh
-
       - name: Install dependencies
         run: yarn
 
@@ -33,6 +30,3 @@ jobs:
         run: yarn lhci:desktop --add-args="--cache-clear"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-
-      - name: Stop server
-        run: kill $(jobs -p)
