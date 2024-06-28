@@ -7,4 +7,5 @@ jest.config.cjs
 babel.config.cjs
 src/vite-env.d.ts
 vite.config.ts
+fileMock.js
 ```
