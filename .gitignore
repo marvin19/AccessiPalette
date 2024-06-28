@@ -4,3 +4,4 @@ purgecss.css
 .husky
 .husky/pre-commit
 yarn.lock
+.lighthouseci/
