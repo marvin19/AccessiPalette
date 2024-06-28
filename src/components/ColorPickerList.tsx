@@ -41,34 +41,36 @@ const ColorPickerList: React.FC<ColorPickerListProps> = ({
         <div>
             {colors.slice(0, visibleColors).map((color, index) => (
                 <Fragment key={index}>
-                    {/* Conditionally render the switch button inside an <li> */}
-                    {checked && index !== 0 && (
-                        <li className="reorder-button flex justify-center">
-                            <button
-                                className="bg-blue-700 text-white my-3 px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 flex items-center justify-center"
-                                data-index={index - 1}
-                                onClick={switchColors}
-                            >
-                                <FaArrowsUpDown /> Switch order
-                            </button>
+                    <ul>
+                        {/* Conditionally render the switch button inside an <li> */}
+                        {checked && index !== 0 && (
+                            <li className="reorder-button flex justify-center">
+                                <button
+                                    className="bg-blue-700 text-white my-3 px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 flex items-center justify-center"
+                                    data-index={index - 1}
+                                    onClick={switchColors}
+                                >
+                                    <FaArrowsUpDown /> Switch order
+                                </button>
+                            </li>
+                        )}
+                        <li className="color-pickers">
+                            <>
+                                <ColorText
+                                    color={color}
+                                    onColorChange={(newColor) => {
+                                        onColorChange(newColor, index);
+                                    }}
+                                />
+                                <ColorPicker
+                                    color={color}
+                                    onColorChange={(newColor) => {
+                                        onColorChange(newColor, index);
+                                    }}
+                                />
+                            </>
                         </li>
-                    )}
-                    <li className="color-pickers">
-                        <>
-                            <ColorText
-                                color={color}
-                                onColorChange={(newColor) => {
-                                    onColorChange(newColor, index);
-                                }}
-                            />
-                            <ColorPicker
-                                color={color}
-                                onColorChange={(newColor) => {
-                                    onColorChange(newColor, index);
-                                }}
-                            />
-                        </>
-                    </li>
+                    </ul>
                 </Fragment>
             ))}
 
