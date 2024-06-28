@@ -25,12 +25,12 @@ jobs:
         run: sleep 10
 
       - name: Lighthouse mobile audit
-        run: yarn lhci:mobile
+        run: yarn lhci:mobile --add-args="--cache-clear"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
       - name: Lighthouse desktop audit
-        run: yarn lhci:desktop
+        run: yarn lhci:desktop --add-args="--cache-clear"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
