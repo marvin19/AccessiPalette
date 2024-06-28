@@ -5,7 +5,7 @@ exports[`Heading Component renders correctly and matches snapshot 1`] = `
   <div
     class="container w-full mx-auto bg-"
   >
-    <h1
+    <h2
       class="h1"
     >
       <span
@@ -14,7 +14,7 @@ exports[`Heading Component renders correctly and matches snapshot 1`] = `
         🎨
       </span>
        AccessiPalette
-    </h1>
+    </h2>
   </div>
 </DocumentFragment>
 `;
