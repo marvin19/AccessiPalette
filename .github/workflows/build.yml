@@ -19,6 +19,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run lint
+
   unit-test:
     runs-on: ubuntu-latest
     steps:
@@ -30,7 +31,10 @@ jobs:
           node-version: 18
           cache: 'npm'
       - run: npm ci
+      - name: Debug - List directory contents
+        run: ls -R
       - run: npm test
+
   build:
     runs-on: ubuntu-latest
     steps:
