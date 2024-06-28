@@ -1,8 +1,7 @@
 name: Lighthouse CI
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
 jobs:
   lighthouse:
     name: Lighthouse Audit
