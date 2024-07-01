@@ -516,3 +516,39 @@ body {
     line-height: 38.949px; /* 185.916% */
     text-transform: uppercase;
 }
+
+.palette {
+    display: flex;
+    padding: 35px 20px 45px 20px;
+    align-items: center;
+    gap: -17px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.color-bars {
+    display: flex;
+    padding: 52px;
+    align-items: center;
+    gap: -7px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 10px;
+    background: #6975ff;
+    box-shadow:
+        207px 108px 65px 0px rgba(0, 0, 0, 0),
+        133px 69px 60px 0px rgba(0, 0, 0, 0.01),
+        75px 39px 50px 0px rgba(0, 0, 0, 0.02),
+        33px 17px 37px 0px rgba(0, 0, 0, 0.04),
+        8px 4px 21px 0px rgba(0, 0, 0, 0.04);
+}
+
+.color-bar-outer {
+    display: flex;
+    transform: rotate(0deg);
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+}
