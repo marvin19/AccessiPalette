@@ -1,5 +1,5 @@
 import Tabs from './Tabs';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const ContrastModeTab = (): JSX.Element => {
     const [selectedTab, setSelectedTab] = useState(0);
