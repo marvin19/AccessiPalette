@@ -72,7 +72,7 @@ html {
 }
 
 body {
-    background: var(--backgroundColor);
+    /*background: var(--backgroundColor);*/
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     line-height: 1;
@@ -430,4 +430,89 @@ input[type='radio']:checked + label {
 
 li {
     padding-bottom: 0.3rem;
+}
+
+/** NEW DESIGN **/
+
+.banner {
+    display: flex;
+    padding: 18px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 5px;
+}
+
+.inside-banner {
+    display: flex;
+    padding: 30px 31px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 8px;
+    background-color: #f6f8ff;
+    backdrop-filter: blur(13.949999809265137px);
+}
+
+.logo-img {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+}
+
+.logo {
+    display: flex;
+    width: 181px;
+    align-items: center;
+    gap: 16px;
+}
+
+body {
+    background-color: black;
+}
+
+.tabs {
+    display: flex;
+    align-items: flex-start;
+    gap: 34px;
+}
+
+.contrast-tabs,
+.contrast-mode-tabs {
+    display: flex;
+    height: 38px;
+    padding: 4px;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 6px;
+    border: 1px solid #918fa3;
+}
+
+.contrast-tabs button,
+.contrast-mode-tabs button {
+    display: flex;
+    padding: 0px 16px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 4px;
+}
+
+.link-and-logo {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.link-and-logo h1 {
+    color: #000;
+    text-align: center;
+    font-family: 'IBM Plex Sans Var';
+    font-size: 20.95px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 38.949px; /* 185.916% */
+    text-transform: uppercase;
 }
