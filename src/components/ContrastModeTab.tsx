@@ -1,30 +1,23 @@
+import Tabs from './Tabs';
+import React, { useState } from 'react';
+
 const ContrastModeTab = (): JSX.Element => {
+    const [selectedTab, setSelectedTab] = useState(0);
+
+    const handleTabSelect = (index: number): void => {
+        setSelectedTab(index);
+    };
+
+    const labels = ['Compare all', 'Only neighbors'];
+
     return (
-        <div className="tabs">
-            <div
-                role="tablist"
-                aria-label="Select contrast level"
-                className="contrast-mode-tabs"
-            >
-                <button
-                    id="tab-1"
-                    type="button"
-                    role="tab"
-                    aria-controls="tabpanel-1"
-                >
-                    Compare all
-                </button>
-                <button
-                    id="tab-2"
-                    type="button"
-                    role="tab"
-                    aria-controls="tabpanel-2"
-                    aria-selected="true"
-                >
-                    Only neighbors
-                </button>
-            </div>
-        </div>
+        <Tabs
+            labels={labels}
+            selectedTab={selectedTab}
+            ariaLabel="Select contrast level"
+            onTabSelect={handleTabSelect}
+            className="contrast-mode-tabs"
+        />
     );
 };
 
