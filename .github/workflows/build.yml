@@ -19,6 +19,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run lint
+
   unit-test:
     runs-on: ubuntu-latest
     steps:
@@ -30,8 +31,8 @@ jobs:
           node-version: 18
           cache: 'npm'
       - run: npm ci
-      - run: npm test -- -u # update snapshot
       - run: npm test
+
   build:
     runs-on: ubuntu-latest
     steps:
