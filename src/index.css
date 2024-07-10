@@ -582,3 +582,13 @@ body {
     text-align: center;
     margin-top: auto;
 }
+
+.add-color-bar {
+    border: 2px solid white;
+}
+
+.add-color-bar-button {
+    color: white;
+    text-align: center;
+    vertical-align: center;
+}

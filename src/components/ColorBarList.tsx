@@ -38,9 +38,14 @@ const ColorBarList = (): JSX.Element => {
                 />
             ))}
             {colorBars.length < 10 && (
-                <button onClick={addColorBar} className="add-color-bar">
-                    + Add color bar
-                </button>
+                <div className="color-bar-outer add-color-bar">
+                    <button
+                        onClick={addColorBar}
+                        className="add-color-bar-button"
+                    >
+                        + Add color
+                    </button>
+                </div>
             )}
         </div>
     );
