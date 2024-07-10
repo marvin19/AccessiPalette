@@ -517,38 +517,68 @@ body {
     text-transform: uppercase;
 }
 
-.palette {
-    display: flex;
-    padding: 35px 20px 45px 20px;
-    align-items: center;
-    gap: -17px;
-    flex: 1 0 0;
-    align-self: stretch;
-}
-
 .color-bars {
     display: flex;
-    padding: 52px;
-    align-items: center;
-    gap: -7px;
-    flex: 1 0 0;
-    align-self: stretch;
-    border-radius: 10px;
-    background: #6975ff;
-    box-shadow:
-        207px 108px 65px 0px rgba(0, 0, 0, 0),
-        133px 69px 60px 0px rgba(0, 0, 0, 0.01),
-        75px 39px 50px 0px rgba(0, 0, 0, 0.02),
-        33px 17px 37px 0px rgba(0, 0, 0, 0.04),
-        8px 4px 21px 0px rgba(0, 0, 0, 0.04);
+    flex-direction: row;
+    flex-wrap: wrap; /* Optional: if you want them to wrap to the next line when there's no space */
+    gap: 20px; /* Adds space between the color bars */
+    padding: 20px;
 }
 
 .color-bar-outer {
+    position: relative;
+    border-radius: 10px;
+    width: 150px; /* Adjust width as needed */
+    height: 300px; /* Adjust height as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     display: flex;
-    transform: rotate(0deg);
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
-    flex: 1 0 0;
-    align-self: stretch;
+    padding: 15px;
+    color: white; /* Ensures the text is visible on colored backgrounds */
+}
+
+.color-bar-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.remove-color {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: white; /* Ensure close button is visible on colored background */
+}
+
+.close-button {
+    width: 20px;
+    height: 20px;
+}
+
+.contrast-text-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.contrast-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+
+.contrast-text-label {
+    font-size: 14px;
+    color: black;
+    text-align: center;
+    margin-top: auto;
 }
