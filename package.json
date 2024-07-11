@@ -16,17 +16,23 @@
     "lhci:mobile": "lhci autorun",
     "lhci:desktop": "lhci autorun --collect.settings.preset=desktop",
     "lhci:a11y": "rn lhci autorun --collect.settings.preset=desktop --collect.staticDistDir=./dist --only-categories=accessibility",
-    "axe:a11y": "axe http://localhost:8000"
+    "axe:a11y": "axe http://localhost:8000",
+    "css-compile": "postcss src/styles/main.scss -o dist/styles/main.css"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/react": "^14.2.1",
+    "highsoft-design-tokens": "^2.0.0",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.0",
+    "postcss-scss": "^4.0.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-toastify": "^9.1.3",
+    "sass": "^1.77.7",
     "values.js": "^2.1.1"
   },
   "devDependencies": {
@@ -41,7 +47,7 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react": "^4.2.0",
-    "autoprefixer": "^10.4.17",
+    "autoprefixer": "^10.4.19",
     "axe-core": "^4.9.0",
     "babel-jest": "^29.7.0",
     "eslint": "^8.56.0",
