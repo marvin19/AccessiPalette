@@ -1,5 +1,6 @@
 import React from 'react';
 import closeButton from '../assets/x-close.svg';
+import { calculateContrastRatio } from '../utils';
 
 interface ColorBarProps {
     onRemove: () => void;
@@ -10,12 +11,15 @@ const ColorBar: React.FC<ColorBarProps> = ({
     onRemove,
     color,
 }): JSX.Element => {
+    const textColor = '#000000';
+    const contrastRatio = calculateContrastRatio(color, textColor).toFixed(2);
+
     return (
         <div className="color-bar-outer" style={{ backgroundColor: color }}>
             <div className="color-bar-inner">
                 <div className="color-bar-inner-inner">
                     <div className="contrast-text-container">
-                        <p className="contrast-text">4.5:1</p>
+                        <p className="contrast-text">{contrastRatio}:1</p>
                     </div>
                     <p className="contrast-text-label">Text Contrast Ratio</p>
                 </div>

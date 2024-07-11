@@ -564,10 +564,11 @@ body {
 }
 
 .contrast-text-container {
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 4px;
-    padding: 5px;
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    align-self: stretch;
 }
 
 .contrast-text {
