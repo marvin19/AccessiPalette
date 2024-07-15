@@ -519,16 +519,22 @@ body {
     text-transform: uppercase;
 }
 
+/** Neighbors Palette **/
+
+
 .color-bars {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
     padding: 20px;
+    position: relative;
+}
+
+.color-bar-wrapper {
+    position: relative;
 }
 
 .color-bar-outer {
-    position: relative;
     border-radius: 10px;
     width: 150px;
     height: 300px;
@@ -539,51 +545,25 @@ body {
     justify-content: space-between;
     padding: 15px;
     color: white;
+    position: relative; /* Ensure this is positioned relative for absolute positioning of children */
 }
 
-.color-bar-inner {
+.checker {
+    position: absolute;
+    top: 50%;
+    left: 105%;
+    width: auto; /* Width will be determined by content */
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    width: 100%;
-}
-
-.remove-color {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: white;
-}
-
-.close-button {
-    width: 20px;
-    height: 20px;
-}
-
-.contrast-text-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    align-self: stretch;
-}
-
-.contrast-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-}
-
-.contrast-text-label {
     font-size: 14px;
-    color: black;
-    text-align: center;
-    margin-top: auto;
+    color: #333;
+    transform: translate(-50%, -50%); /* Center horizontally and vertically */
+    z-index: 2;
 }
 
 .add-color-bar {
@@ -596,10 +576,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition:
-        background-color 0.3s,
-        border-color 0.3s,
-        color 0.3s;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
 .add-color-bar:hover {
@@ -624,3 +601,17 @@ body {
     justify-content: center;
     cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+    .color-bars {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .checker {
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* --------------------------- */

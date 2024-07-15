@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ColorBar from './ColorBar';
+import ContrastBoxNew from './ContrastBoxNew';
 
 const defaultColors = [
     '#6975ff',
@@ -29,13 +30,16 @@ const ColorBarList = (): JSX.Element => {
     return (
         <div className="color-bars">
             {colorBars.map((color, index) => (
-                <ColorBar
-                    key={index}
-                    color={color}
-                    onRemove={() => {
-                        removeColorBar(index);
-                    }}
-                />
+                <div key={index} className="color-bar-wrapper">
+                    <ColorBar
+                        color={color}
+                        onRemove={() => {
+                            removeColorBar(index);
+                        }}
+                        showContrastBox={index === colorBars.length - 1}
+                    />
+                    {index < colorBars.length - 1 && <ContrastBoxNew />}
+                </div>
             ))}
             {colorBars.length < 10 && (
                 <div className="color-bar-outer add-color-bar">

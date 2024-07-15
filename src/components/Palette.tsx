@@ -3,7 +3,7 @@ import ColorBarList from './ColorBarList';
 const Palette = (): JSX.Element => {
     return (
         <div className="palette">
-            <ColorBarList />
+            <ColorBarList />;
         </div>
     );
 };
