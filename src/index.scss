@@ -467,6 +467,23 @@ li {
     align-items: center;
     align-self: stretch;
     border-radius: 4px;
+    background-color: transparent; /* Default background color */
+    color: black; /* Default text color */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and text color */
+}
+
+.contrast-tabs button:hover,
+.contrast-mode-tabs button:hover {
+    background-color: grey; /* Hover background color */
+    color: white; /* Hover text color */
+}
+
+.contrast-tabs button.active,
+.contrast-mode-tabs button.active {
+    background-color: black; /* Active background color */
+    color: white; /* Active text color */
 }
 
 .link-and-logo {

@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import closeButton from '../assets/x-close.svg';
 import ColorPicker from './ColorPicker';
 
 interface ColorBarProps {
     onRemove: () => void;
     color: string;
+    onColorChange: (color: string) => void;
 }
 
 const ColorBar: React.FC<ColorBarProps> = ({
     onRemove,
-    color: initialColor,
+    color,
+    onColorChange,
 }): JSX.Element => {
-    const [color, setColor] = useState<string>(initialColor);
-
     const handleColorChange = (newColor: string): void => {
-        setColor(newColor);
+        onColorChange(newColor);
     };
 
     return (

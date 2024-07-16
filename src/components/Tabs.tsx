@@ -33,6 +33,7 @@ const Tabs: React.FC<TabsProps> = ({
                         onClick={() => {
                             onTabSelect(index);
                         }}
+                        className={selectedTab === index ? 'active' : ''}
                     >
                         {label}
                     </button>

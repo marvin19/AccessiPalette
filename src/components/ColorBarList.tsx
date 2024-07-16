@@ -34,6 +34,12 @@ const ColorBarList = ({ selectedContrast }: ColorBarListProps): JSX.Element => {
         }
     };
 
+    const handleColorChange = (index: number, newColor: string): void => {
+        const updatedColors = [...colorBars];
+        updatedColors[index] = newColor;
+        setColorBars(updatedColors);
+    };
+
     return (
         <div className="color-bars">
             {colorBars.map((color, index) => (
@@ -41,6 +47,9 @@ const ColorBarList = ({ selectedContrast }: ColorBarListProps): JSX.Element => {
                     <div className="color-bar-container">
                         <ColorBar
                             color={color}
+                            onColorChange={(newColor) => {
+                                handleColorChange(index, newColor);
+                            }}
                             onRemove={() => {
                                 removeColorBar(index);
                             }}
