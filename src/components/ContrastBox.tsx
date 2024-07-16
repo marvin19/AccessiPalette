@@ -27,10 +27,10 @@ const ContrastBox: React.FC<ContrastBoxNewProps> = ({
 
     return (
         <div className="checker">
-            <p className="contrast-ratio-box-text">
+            <div className="contrast-ratio-box-text">
                 <WCAGCheck meetsWCAG={meetsWCAG} fontSize="1.0rem" />
-                <span> {`${contrastRatio.toFixed(2)}:1`}</span>
-            </p>
+                <p> {`${contrastRatio.toFixed(2)}:1`}</p>
+            </div>
         </div>
     );
 };
