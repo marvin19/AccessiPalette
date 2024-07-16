@@ -1,5 +1,5 @@
 import ColorBox from './components/ColorBox';
-import ContrastBox from './components/ContrastBox';
+import ContrastBoxOld from './components/old-components/ContrastBoxOld';
 
 export const getRgb = (): number => {
     return Math.floor(Math.random() * 256);
@@ -38,7 +38,7 @@ export const renderColorAndContrastBoxes = (
         // Add ContrastBox between ColorBoxes if there is a next Color
         if (i < visibleColors - 1) {
             elements.push(
-                <ContrastBox
+                <ContrastBoxOld
                     key={`contrast-${i}`}
                     leftColor={colors[i]}
                     rightColor={colors[i + 1]}

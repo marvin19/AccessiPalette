@@ -1,6 +1,6 @@
 import { useState, Fragment } from 'react';
 import ColorBar from './ColorBar';
-import ContrastBoxNew from './ContrastBoxNew';
+import ContrastBoxNew from './ContrastBox';
 
 const defaultColors = [
     '#6975ff',
@@ -38,7 +38,13 @@ const ColorBarList = (): JSX.Element => {
                                 removeColorBar(index);
                             }}
                         />
-                        {index < colorBars.length - 1 && <ContrastBoxNew />}
+                        {index < colorBars.length - 1 && (
+                            <ContrastBoxNew
+                                leftColor={'#000000'}
+                                rightColor={'#FFFFFF'}
+                                selectedContrast={3.0}
+                            />
+                        )}
                     </div>
                 </Fragment>
             ))}
