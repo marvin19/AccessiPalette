@@ -292,11 +292,6 @@ li {
     margin-right: 1rem;
 }
 
-.contrast-ratio {
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-
 .text-under-colorbox {
     font-weight: 700;
     margin: 0;
@@ -320,7 +315,6 @@ li {
 .contrast-text {
     text-align: center;
     line-height: 1.5;
-    /*padding: 10px;*/
 }
 
 .check-text {
@@ -519,6 +513,12 @@ body {
     text-transform: uppercase;
 }
 
+.contrast-ratio-box-text {
+    
+    font-size: 1rem;
+    font-weight: 500;
+}
+
 /** Neighbors Palette **/
 
 .color-bars {
@@ -561,6 +561,8 @@ body {
     left: calc(55% + 75px); 
     transform: translate(-50%, -50%);
     z-index: 1;
+    border-radius: 4px;
+    box-shadow: 0px 21px 6px 0px rgba(0, 0, 0, 0.00), 0px 13px 5px 0px rgba(0, 0, 0, 0.01), 0px 7px 4px 0px rgba(0, 0, 0, 0.02), 0px 3px 3px 0px rgba(0, 0, 0, 0.03), 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
 }
 
 .color-bar-inner {

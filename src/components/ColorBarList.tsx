@@ -1,6 +1,6 @@
 import { useState, Fragment } from 'react';
 import ColorBar from './ColorBar';
-import ContrastBoxNew from './ContrastBox';
+import ContrastBox from './ContrastBox';
 
 const defaultColors = [
     '#6975ff',
@@ -39,7 +39,7 @@ const ColorBarList = (): JSX.Element => {
                             }}
                         />
                         {index < colorBars.length - 1 && (
-                            <ContrastBoxNew
+                            <ContrastBox
                                 leftColor={'#000000'}
                                 rightColor={'#FFFFFF'}
                                 selectedContrast={3.0}
