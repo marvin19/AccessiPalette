@@ -1,4 +1,4 @@
-import AdjacentPalette from './AdjacentPalette';
+import AdjacentPalette from './old-components/AdjacentPalette';
 import FullAccessiblePalette from './FullAccessiblePalette';
 import FindColor from './FindColor';
 

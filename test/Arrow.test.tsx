@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import Arrow from '../src/components/Arrow';
+import Arrow from '../src/components/old-components/Arrow';
 
 jest.mock('@fortawesome/react-fontawesome', () => ({
     FontAwesomeIcon: jest.fn(() => <div>Mock Icon</div>),

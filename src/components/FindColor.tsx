@@ -1,6 +1,6 @@
 import React from 'react';
 import ColorBox from './ColorBox';
-import Arrow from './Arrow';
+import Arrow from './old-components/Arrow';
 import useContrastColor from '../hooks/useContrastColor';
 
 interface FindColorProps {
