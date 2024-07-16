@@ -1,6 +1,6 @@
 import React from 'react';
 import ColorAndContrast from './ColorAndContrast';
-import SectionTitle from '../SectionTitle';
+import SectionTitle from './SectionTitle';
 
 interface AdjacentPaletteProps {
     selectedContrast: number;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Heading from '../../src/components/Heading'; // Adjust the import path as necessary
+import Heading from '../../src/components/old-components/Heading'; // Adjust the import path as necessary
 
 describe('Heading Component', () => {
     it('renders correctly and matches snapshot', () => {

@@ -1,6 +1,6 @@
-import AdjacentPalette from './old-components/AdjacentPalette';
-import FullAccessiblePalette from './FullAccessiblePalette';
-import FindColor from './FindColor';
+import AdjacentPalette from './AdjacentPalette';
+import FullAccessiblePalette from '../FullAccessiblePalette';
+import FindColor from '../FindColor';
 
 interface PaletteHandlerProps {
     paletteType: string;

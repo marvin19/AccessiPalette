@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import InputField from '../InputField';
+import InputField from './InputField';
 import ErrorMessage from '../ErrorMessage';
 import { validateColorInput, formatColorInput } from '../../utils';
 

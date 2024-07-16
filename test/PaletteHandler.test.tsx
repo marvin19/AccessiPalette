@@ -1,6 +1,6 @@
 // PaletteHandler.test.tsx
 import { render } from '@testing-library/react';
-import PaletteHandler from '../src/components/PaletteHandler';
+import PaletteHandler from '../src/components/old-components/PaletteHandler';
 
 describe('PaletteHandler', () => {
     it('renders AdjacentPalette with id "Adjacent" when paletteType is "Adjacent"', () => {
