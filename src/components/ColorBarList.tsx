@@ -16,7 +16,10 @@ const ColorBarList = (): JSX.Element => {
 
     const addColorBar = (): void => {
         if (colorBars.length < 10) {
-            const newColor = '#000000';
+            const randomIndex = Math.floor(
+                Math.random() * defaultColors.length,
+            );
+            const newColor = defaultColors[randomIndex];
             setColorBars([...colorBars, newColor]);
         }
     };
