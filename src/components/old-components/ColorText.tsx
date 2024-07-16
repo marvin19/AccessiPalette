@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import InputField from './InputField';
-import ErrorMessage from './ErrorMessage';
-import { validateColorInput, formatColorInput } from '../utils';
+import InputField from '../InputField';
+import ErrorMessage from '../ErrorMessage';
+import { validateColorInput, formatColorInput } from '../../utils';
 
 interface ColorTextProps {
     color: string;

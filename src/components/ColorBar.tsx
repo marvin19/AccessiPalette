@@ -31,7 +31,7 @@ const ColorBar: React.FC<ColorBarProps> = ({
                         color={color}
                         onColorChange={handleColorChange}
                     />
-                    <p>color</p>
+                    <p>{color}</p>
                 </div>
             </div>
             <button className="remove-color" onClick={onRemove}>

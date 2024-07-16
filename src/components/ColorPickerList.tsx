@@ -1,7 +1,7 @@
 import { FaArrowsUpDown } from 'react-icons/fa6';
 import React, { useState, Fragment } from 'react';
 import ColorPicker from './ColorPicker';
-import ColorText from './ColorText';
+import ColorText from './old-components/ColorText';
 
 interface ColorPickerListProps {
     colors: string[];
