@@ -14,19 +14,15 @@ const WCAGCheck: React.FC<WCAGCheckProps> = ({ meetsWCAG, fontSize }) => {
     return (
         <div className="check-text" style={{ fontSize }}>
             {meetsWCAG ? (
-                <p className="passes">
-                    <FontAwesomeIcon
-                        icon={faCheckCircle}
-                        style={{ color: '#0f8548' }}
-                    />
-                </p>
+                <FontAwesomeIcon
+                    icon={faCheckCircle}
+                    style={{ color: '#0f8548' }}
+                />
             ) : (
-                <p className="fails">
-                    <FontAwesomeIcon
-                        icon={faTimesCircle}
-                        style={{ color: '#b51717' }}
-                    />
-                </p>
+                <FontAwesomeIcon
+                    icon={faTimesCircle}
+                    style={{ color: '#b51717' }}
+                />
             )}
         </div>
     );

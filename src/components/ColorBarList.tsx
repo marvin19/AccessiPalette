@@ -40,8 +40,8 @@ const ColorBarList = (): JSX.Element => {
                         />
                         {index < colorBars.length - 1 && (
                             <ContrastBox
-                                leftColor={'#000000'}
-                                rightColor={'#FFFFFF'}
+                                leftColor={colorBars[index]}
+                                rightColor={colorBars[index + 1]}
                                 selectedContrast={3.0}
                             />
                         )}
