@@ -3,7 +3,7 @@ import ColorSelect from './ColorSelect';
 import ContrastSelect from './ContrastSelect';
 import ColorPickerList from '../ColorPickerList';
 import useColorGeneration from '../../hooks/useColorGeneration';
-import RadioButtonList from '../RadioButtonList';
+import RadioButtonList from './RadioButtonList';
 import SectionTitle from './SectionTitle';
 import PaletteHandler from './PaletteHandler';
 
