@@ -7,7 +7,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ color, onColorChange }) => {
     const colorInputId = `color-input-${color}`;
 
     return (
-        <div>
+        <div className="color-picker">
             <label htmlFor={colorInputId} className="visually-hidden">
                 Choose color
             </label>

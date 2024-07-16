@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import closeButton from '../assets/x-close.svg';
+import ColorPicker from './ColorPicker';
 
 interface ColorBarProps {
     onRemove: () => void;
@@ -8,8 +9,14 @@ interface ColorBarProps {
 
 const ColorBar: React.FC<ColorBarProps> = ({
     onRemove,
-    color,
+    color: initialColor,
 }): JSX.Element => {
+    const [color, setColor] = useState<string>(initialColor);
+
+    const handleColorChange = (newColor: string): void => {
+        setColor(newColor);
+    };
+
     return (
         <div className="color-bar-outer" style={{ backgroundColor: color }}>
             <div className="color-bar-inner">
@@ -18,6 +25,13 @@ const ColorBar: React.FC<ColorBarProps> = ({
                         <p className="contrast-text">4.5:1</p>
                     </div>
                     <p className="contrast-text-label">Text Contrast Ratio</p>
+                </div>
+                <div className="color-picker-container">
+                    <ColorPicker
+                        color={color}
+                        onColorChange={handleColorChange}
+                    />
+                    <p>color</p>
                 </div>
             </div>
             <button className="remove-color" onClick={onRemove}>
