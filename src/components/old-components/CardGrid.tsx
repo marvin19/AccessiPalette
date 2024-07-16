@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import ColorSelect from './ColorSelect';
-import ContrastSelect from './ContrastSelect';
-import ColorPickerList from './ColorPickerList';
-import useColorGeneration from '../hooks/useColorGeneration';
-import RadioButtonList from './RadioButtonList';
-import SectionTitle from './SectionTitle';
-import PaletteHandler from './PaletteHandler';
+import ColorSelect from '../ColorSelect';
+import ContrastSelect from '../ContrastSelect';
+import ColorPickerList from '../ColorPickerList';
+import useColorGeneration from '../../hooks/useColorGeneration';
+import RadioButtonList from '../RadioButtonList';
+import SectionTitle from '../SectionTitle';
+import PaletteHandler from '../PaletteHandler';
 
 const CardGrid: React.FC = () => {
     // You need to have two colors to check contrast
