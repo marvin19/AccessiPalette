@@ -1,5 +1,5 @@
 import React from 'react';
-import ColorAndContrast from '../ColorAndContrast';
+import ColorAndContrast from './ColorAndContrast';
 import SectionTitle from '../SectionTitle';
 
 interface AdjacentPaletteProps {

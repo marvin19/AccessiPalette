@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import ColorAndContrast from '../src/components/ColorAndContrast';
+import ColorAndContrast from '../src/components/old-components/ColorAndContrast';
 import { renderColorAndContrastBoxes } from '../src/utils';
 import { axe, toHaveNoViolations } from 'jest-axe';
 
