@@ -11,7 +11,11 @@ const defaultColors = [
     '#fd2a2a',
 ];
 
-const ColorBarList = (): JSX.Element => {
+interface ColorBarListProps {
+    selectedContrast: number;
+}
+
+const ColorBarList = ({ selectedContrast }: ColorBarListProps): JSX.Element => {
     const [colorBars, setColorBars] = useState<string[]>(defaultColors);
 
     const addColorBar = (): void => {
@@ -45,7 +49,7 @@ const ColorBarList = (): JSX.Element => {
                             <ContrastBox
                                 leftColor={colorBars[index]}
                                 rightColor={colorBars[index + 1]}
-                                selectedContrast={3.0}
+                                selectedContrast={selectedContrast}
                             />
                         )}
                     </div>

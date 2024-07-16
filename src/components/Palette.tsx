@@ -1,9 +1,13 @@
 import ColorBarList from './ColorBarList';
 
-const Palette = (): JSX.Element => {
+interface PaletteProps {
+    selectedContrast: number;
+}
+
+const Palette = ({ selectedContrast }: PaletteProps): JSX.Element => {
     return (
         <div className="palette">
-            <ColorBarList />;
+            <ColorBarList selectedContrast={selectedContrast} />
         </div>
     );
 };
