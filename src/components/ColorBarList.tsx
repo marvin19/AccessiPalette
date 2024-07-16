@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import ColorBar from './ColorBar';
 import ContrastBoxNew from './ContrastBoxNew';
 
@@ -30,25 +30,28 @@ const ColorBarList = (): JSX.Element => {
     return (
         <div className="color-bars">
             {colorBars.map((color, index) => (
-                <div key={index} className="color-bar-wrapper">
-                    <ColorBar
-                        color={color}
-                        onRemove={() => {
-                            removeColorBar(index);
-                        }}
-                        showContrastBox={index === colorBars.length - 1}
-                    />
-                    {index < colorBars.length - 1 && <ContrastBoxNew />}
-                </div>
+                <Fragment key={index}>
+                    <div className="color-bar-container">
+                        <ColorBar
+                            color={color}
+                            onRemove={() => {
+                                removeColorBar(index);
+                            }}
+                        />
+                        {index < colorBars.length - 1 && <ContrastBoxNew />}
+                    </div>
+                </Fragment>
             ))}
             {colorBars.length < 10 && (
-                <div className="color-bar-outer add-color-bar">
-                    <button
-                        onClick={addColorBar}
-                        className="add-color-bar-button"
-                    >
-                        + Add color
-                    </button>
+                <div className="color-bar-container">
+                    <div className="color-bar-outer add-color-bar">
+                        <button
+                            onClick={addColorBar}
+                            className="add-color-bar-button"
+                        >
+                            + Add color
+                        </button>
+                    </div>
                 </div>
             )}
         </div>
