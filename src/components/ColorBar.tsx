@@ -1,4 +1,5 @@
 import React from 'react';
+import { calculateContrastRatio } from '../utils';
 import closeButton from '../assets/x-close.svg';
 import ColorPicker from './ColorPicker';
 
@@ -16,13 +17,18 @@ const ColorBar: React.FC<ColorBarProps> = ({
     const handleColorChange = (newColor: string): void => {
         onColorChange(newColor);
     };
+    const textColor = '#000000';
+
+    const textContrastRatio = calculateContrastRatio(textColor, color);
 
     return (
         <div className="color-bar-outer" style={{ backgroundColor: color }}>
             <div className="color-bar-inner">
                 <div className="color-bar-inner-inner">
                     <div className="contrast-text-container">
-                        <p className="contrast-text">4.5:1</p>
+                        <p className="contrast-text">
+                            {textContrastRatio.toFixed(2)}:1
+                        </p>
                     </div>
                     <p className="contrast-text-label">Text Contrast Ratio</p>
                 </div>
