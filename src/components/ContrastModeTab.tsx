@@ -1,11 +1,19 @@
 import Tabs from './Tabs';
 import { useState } from 'react';
 
-const ContrastModeTab = (): JSX.Element => {
-    const [selectedTab, setSelectedTab] = useState(0);
+interface ContrastModeTabProps {
+    setSelectedMode: (value: string) => void;
+}
+
+const ContrastModeTab = ({
+    setSelectedMode,
+}: ContrastModeTabProps): JSX.Element => {
+    const [selectedTab, setSelectedTab] = useState(1);
 
     const handleTabSelect = (index: number): void => {
         setSelectedTab(index);
+        const modes = ['all', 'neighbors'];
+        setSelectedMode(modes[index]);
     };
 
     const labels = ['Compare all', 'Only neighbors'];

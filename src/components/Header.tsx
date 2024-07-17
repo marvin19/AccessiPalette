@@ -6,9 +6,13 @@ import PalettaLogo from './PalettaLogo';
 
 interface HeaderProps {
     setSelectedContrast: (value: number) => void;
+    setSelectedMode: (value: string) => void;
 }
 
-const Header = ({ setSelectedContrast }: HeaderProps): JSX.Element => {
+const Header = ({
+    setSelectedContrast,
+    setSelectedMode,
+}: HeaderProps): JSX.Element => {
     return (
         <div className="banner">
             <div className="inside-banner">
@@ -16,7 +20,7 @@ const Header = ({ setSelectedContrast }: HeaderProps): JSX.Element => {
                     <img src={logo} className="logo" alt="Highcharts logo" />
                 </div>
                 <ContrastSelectTab setSelectedContrast={setSelectedContrast} />
-                <ContrastModeTab />
+                <ContrastModeTab setSelectedMode={setSelectedMode} />
                 <div className="link-and-logo">
                     <GitHubLink />
                     <PalettaLogo />

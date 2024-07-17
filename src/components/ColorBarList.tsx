@@ -13,10 +13,15 @@ const defaultColors = [
 
 interface ColorBarListProps {
     selectedContrast: number;
+    selectedMode: string;
 }
 
-const ColorBarList = ({ selectedContrast }: ColorBarListProps): JSX.Element => {
+const ColorBarList = ({
+    selectedContrast,
+    selectedMode,
+}: ColorBarListProps): JSX.Element => {
     const [colorBars, setColorBars] = useState<string[]>(defaultColors);
+    console.log(selectedMode);
 
     const addColorBar = (): void => {
         if (colorBars.length < 10) {
