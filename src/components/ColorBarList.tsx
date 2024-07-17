@@ -51,12 +51,14 @@ const ColorBarList = ({
                     <div className="color-bar-container">
                         <ColorBar
                             color={color}
+                            selectedMode={selectedMode}
                             onColorChange={(newColor) => {
                                 handleColorChange(index, newColor);
                             }}
                             onRemove={() => {
                                 removeColorBar(index);
                             }}
+                            allColors={colorBars} // Pass all colors to each ColorBar
                         />
                         {selectedMode === 'neighbor' &&
                             index < colorBars.length - 1 && (

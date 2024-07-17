@@ -525,6 +525,34 @@ li {
     position: relative;
 }
 
+.all-contrast-label {
+    font-size: 14px;
+    color: black;
+    margin: 0;
+}
+
+.contrast-row {
+    display: flex;
+    align-items: center; /* Align items vertically centered */
+    gap: 8px; 
+    margin-bottom: 8px;
+}
+
+.contrast-box-full {
+    background-color: white;
+    margin: 0 auto;
+    padding: 5% 10%;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid black
+}
+
+/* Only for when compare all is selected */
+.all {
+    width: 200px !important;
+    height: 350px !important;
+}
+
 .color-bar-outer {
     border-radius: 10px;
     width: 150px;

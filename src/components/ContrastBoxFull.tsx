@@ -1,40 +1,40 @@
-// import React from 'react';
-// import SmallColorBox from './SmallColorBox';
+import React from 'react';
+import SmallColorBox from './SmallColorBox';
+import { calculateContrastRatio } from '../utils';
 
-// const WCAG_TEXT_CONTRAST_THRESHOLD = 4.5;
+const WCAG_TEXT_CONTRAST_THRESHOLD = 4.5;
 
-// interface ContrastBoxFullProps {
-//     /*color: string;
-//     contrastRatios: number[];*/
-//     colors: string[];
-// }
+interface ContrastBoxFullProps {
+    activeColor: string;
+    otherColors: string[];
+}
 
-// const ContrastBoxFull: React.FC<ContrastBoxFullProps> = ({
-//     color,
-//     /*contrastRatios,
-//     colors,*/
-// }) => {
-//     /*const meetsWCAG = contrastRatios.every(
-//         (ratio) => ratio >= WCAG_TEXT_CONTRAST_THRESHOLD,
-//     );*/
+const ContrastBoxFull: React.FC<ContrastBoxFullProps> = ({
+    activeColor,
+    otherColors,
+}) => {
+    const contrastRatios = otherColors.map((color) =>
+        calculateContrastRatio(activeColor, color),
+    );
 
-//     return (
-//         <div>
-//             <p>Test</p>
-//         </div>
-//         // <div className="contrast-box-full">
-//         //     {contrastRatios.map((ratio, index) => (
-//         //         <div key={index}>
-//         //             <SmallColorBox color={color[index]} />
-//         //             <p>
-//         //                 Contrast Ratio with {color}: {ratio.toFixed(2)}
-//         //             </p>
-//         //         </div>
-//         //     ))}
-//         //     <p>Color: {color}</p>
-//         //     {meetsWCAG ? <p>Passes!</p> : <p>Fails!</p>}
-//         // </div>
-//     );
-// };
+    const meetsWCAG = contrastRatios.every(
+        (ratio) => ratio >= WCAG_TEXT_CONTRAST_THRESHOLD,
+    );
 
-// export default ContrastBoxFull;
+    return (
+        <div className="contrast-box-full">
+            {otherColors.map((color, index) => (
+                <div className="contrast-row" key={index}>
+                    <SmallColorBox color={color} />
+                    <p className="all-contrast-label">
+                        {color}: {contrastRatios[index].toFixed(2)}
+                    </p>
+                </div>
+            ))}
+            {/* <p>Color: {activeColor}</p>
+            {meetsWCAG ? <p>Passes!</p> : <p>Fails!</p>} */}
+        </div>
+    );
+};
+
+export default ContrastBoxFull;
