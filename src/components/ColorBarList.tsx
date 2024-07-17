@@ -1,5 +1,6 @@
 import { useState, Fragment } from 'react';
 import ColorBar from './ColorBar';
+import ContrastBox from './ContrastBox';
 
 const defaultColors = [
     '#6975ff',
@@ -13,15 +14,11 @@ const defaultColors = [
 interface ColorBarListProps {
     selectedContrast: number;
     selectedMode: string;
-    renderModeSpecificContent: (
-        index: number,
-        colorBars: string[],
-    ) => JSX.Element | null;
 }
 
 const ColorBarList = ({
+    selectedContrast,
     selectedMode,
-    renderModeSpecificContent,
 }: ColorBarListProps): JSX.Element => {
     const [colorBars, setColorBars] = useState<string[]>(defaultColors);
 
@@ -50,7 +47,7 @@ const ColorBarList = ({
     return (
         <div className="color-bars">
             {colorBars.map((color, index) => (
-                <Fragment key={`${selectedMode}-${index}-${color}`}>
+                <Fragment key={index}>
                     <div className="color-bar-container">
                         <ColorBar
                             color={color}
@@ -61,7 +58,14 @@ const ColorBarList = ({
                                 removeColorBar(index);
                             }}
                         />
-                        {renderModeSpecificContent(index, colorBars)}
+                        {selectedMode === 'neighbor' &&
+                            index < colorBars.length - 1 && (
+                                <ContrastBox
+                                    leftColor={colorBars[index]}
+                                    rightColor={colorBars[index + 1]}
+                                    selectedContrast={selectedContrast}
+                                />
+                            )}
                     </div>
                 </Fragment>
             ))}
