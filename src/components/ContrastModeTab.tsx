@@ -12,7 +12,7 @@ const ContrastModeTab = ({
 
     const handleTabSelect = (index: number): void => {
         setSelectedTab(index);
-        const modes = ['all', 'neighbors'];
+        const modes = ['all', 'neighbor'];
         setSelectedMode(modes[index]);
     };
 

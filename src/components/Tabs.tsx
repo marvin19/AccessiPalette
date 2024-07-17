@@ -1,44 +1,37 @@
-import React from 'react';
-
 interface TabsProps {
     labels: string[];
     selectedTab: number;
-    ariaLabel: string;
     onTabSelect: (index: number) => void;
+    ariaLabel: string;
     className?: string;
 }
 
-const Tabs: React.FC<TabsProps> = ({
+const Tabs = ({
     labels,
     selectedTab,
-    ariaLabel,
     onTabSelect,
+    ariaLabel,
     className,
-}) => {
+}: TabsProps): JSX.Element => {
     return (
-        <div className="tabs">
-            <div
-                role="tablist"
-                aria-label={ariaLabel}
-                className={`tabs-list ${className}`}
-            >
-                {labels.map((label, index) => (
-                    <button
-                        key={index}
-                        id={`tab-${index + 1}`}
-                        type="button"
-                        role="tab"
-                        aria-controls={`tabpanel-${index + 1}`}
-                        aria-selected={selectedTab === index}
-                        onClick={() => {
-                            onTabSelect(index);
-                        }}
-                        className={selectedTab === index ? 'active' : ''}
-                    >
-                        {label}
-                    </button>
-                ))}
-            </div>
+        <div
+            className={`tabs ${className}`}
+            role="tablist"
+            aria-label={ariaLabel}
+        >
+            {labels.map((label, index) => (
+                <button
+                    key={index}
+                    role="tab"
+                    aria-selected={selectedTab === index}
+                    className={selectedTab === index ? 'active' : ''}
+                    onClick={() => {
+                        onTabSelect(index);
+                    }}
+                >
+                    {label}
+                </button>
+            ))}
         </div>
     );
 };
