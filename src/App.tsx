@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import Palette from './components/Palette';
+import Toolbar from './components/Toolbar';
 
 const App: React.FC = (): React.ReactElement | null => {
     const [selectedContrast, setSelectedContrast] = useState<number>(3.0);
@@ -12,6 +13,7 @@ const App: React.FC = (): React.ReactElement | null => {
                 setSelectedContrast={setSelectedContrast}
                 setSelectedMode={setSelectedMode}
             />
+            <Toolbar />
             <Palette
                 selectedContrast={selectedContrast}
                 selectedMode={selectedMode}

@@ -409,7 +409,10 @@ li {
 /* New Design */
 .banner {
     display: flex;
-    padding: 18px;
+    padding-top: 18px;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-bottom: 2ch;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -427,6 +430,44 @@ li {
     border-radius: 8px;
     background-color: #f6f8ff;
     backdrop-filter: blur(13.949999809265137px);
+}
+
+.toolbar-banner {
+    display: flex;
+    padding-top: 18px;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-bottom: 2ch;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 5px;
+}
+
+.toolbar-inside-banner {
+    display: flex;
+    flex-direction: row; /* Change to row to align items horizontally */
+    padding: 30px 31px;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center;
+    align-self: stretch;
+    border-radius: 8px;
+    background-color: #f6f8ff;
+    backdrop-filter: blur(13.949999809265137px);
+    gap: 20px; /* Add some gap between items */
+}
+
+.toolbar-inside-banner h2 {
+    font-size: 1.2rem;
+    font-weight: 1000;
+}
+
+.toolbar-tools {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Adjust gap between label and input */
 }
 
 .logo-img {
@@ -743,4 +784,8 @@ input[type="color"]::-moz-color-swatch {
 
 }
 
+.toolbar h2 {
+    font-size: 1rem;
+    font-weight: 700;
+}
 
