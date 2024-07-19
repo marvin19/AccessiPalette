@@ -5,11 +5,12 @@ import ColorPicker from './ColorPicker';
 import ContrastBoxFull from './ContrastBoxFull';
 
 interface ColorBarProps {
-    onRemove: () => void;
+    onRemove?: () => void;
     color: string;
-    selectedMode: string;
-    onColorChange: (color: string) => void;
-    allColors: string[];
+    selectedMode?: string;
+    onColorChange?: (color: string) => void;
+    allColors?: string[];
+    selectedContrast?: number;
 }
 
 const ColorBar: React.FC<ColorBarProps> = ({
@@ -17,10 +18,13 @@ const ColorBar: React.FC<ColorBarProps> = ({
     color,
     selectedMode,
     onColorChange,
-    allColors,
+    allColors = [],
+    selectedContrast,
 }): JSX.Element => {
     const handleColorChange = (newColor: string): void => {
-        onColorChange(newColor);
+        if (onColorChange) {
+            onColorChange(newColor);
+        }
     };
 
     const otherColors = allColors.filter((c) => c !== color);
@@ -54,6 +58,7 @@ const ColorBar: React.FC<ColorBarProps> = ({
                     <ContrastBoxFull
                         activeColor={color}
                         otherColors={otherColors}
+                        selectedContrast={selectedContrast}
                     />
                 )}
                 <div className="color-picker-container">
@@ -64,9 +69,15 @@ const ColorBar: React.FC<ColorBarProps> = ({
                     <p>{color}</p>
                 </div>
             </div>
-            <button className="remove-color" onClick={onRemove}>
-                <img src={closeButton} className="close-button" alt="Remove" />
-            </button>
+            {onRemove && (
+                <button className="remove-color" onClick={onRemove}>
+                    <img
+                        src={closeButton}
+                        className="close-button"
+                        alt="Remove"
+                    />
+                </button>
+            )}
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import { useState, Fragment } from 'react';
 import ColorBar from './ColorBar';
 import ContrastBox from './ContrastBox';
+import ThirdColor from './ThirdColor';
 
 const defaultColors = [
     '#6975ff',
@@ -44,6 +45,10 @@ const ColorBarList = ({
         setColorBars(updatedColors);
     };
 
+    if (selectedMode === 'third') {
+        return <ThirdColor selectedContrast={selectedContrast} />;
+    }
+
     return (
         <div className="color-bars">
             {colorBars.map((color, index) => (
@@ -59,6 +64,7 @@ const ColorBarList = ({
                                 removeColorBar(index);
                             }}
                             allColors={colorBars} // Pass all colors to each ColorBar
+                            selectedContrast={selectedContrast}
                         />
                         {selectedMode === 'neighbor' &&
                             index < colorBars.length - 1 && (
