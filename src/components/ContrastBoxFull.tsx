@@ -2,7 +2,7 @@ import React from 'react';
 import SmallColorBox from './SmallColorBox';
 import { calculateContrastRatio } from '../utils';
 
-const WCAG_TEXT_CONTRAST_THRESHOLD = 4.5;
+//const WCAG_TEXT_CONTRAST_THRESHOLD = 4.5;
 
 interface ContrastBoxFullProps {
     activeColor: string;
@@ -17,9 +17,9 @@ const ContrastBoxFull: React.FC<ContrastBoxFullProps> = ({
         calculateContrastRatio(activeColor, color),
     );
 
-    const meetsWCAG = contrastRatios.every(
+    /*const meetsWCAG = contrastRatios.every(
         (ratio) => ratio >= WCAG_TEXT_CONTRAST_THRESHOLD,
-    );
+    );*/
 
     return (
         <div className="contrast-box-full">

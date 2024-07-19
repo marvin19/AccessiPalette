@@ -1,5 +1,5 @@
 import AdjacentPalette from './AdjacentPalette';
-import FullAccessiblePalette from '../FullAccessiblePalette';
+import FullAccessiblePalette from './FullAccessiblePalette';
 import FindColor from '../FindColor';
 
 interface PaletteHandlerProps {

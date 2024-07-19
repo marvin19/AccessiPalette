@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { calculateContrastRatio } from '../utils';
-import SmallColorBox from './SmallColorBox';
-import ColorBox from './ColorBox';
-import WCAGCheck from './WCAGCheck';
+import { calculateContrastRatio } from '../../utils';
+import SmallColorBox from '../SmallColorBox';
+import ColorBox from '../ColorBox';
+import WCAGCheck from '../WCAGCheck';
 
 interface FullAccessiblePaletteProps {
     selectedContrast: number;

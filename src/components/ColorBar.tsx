@@ -26,7 +26,15 @@ const ColorBar: React.FC<ColorBarProps> = ({
     const otherColors = allColors.filter((c) => c !== color);
     const textColor = '#000000';
     const textContrastRatio = calculateContrastRatio(textColor, color);
-    const parentClass = selectedMode !== 'neighbor' ? 'all' : 'neighbor';
+    let parentClass = '';
+
+    if (selectedMode === 'neighbor') {
+        parentClass = 'neighbor';
+    } else if (selectedMode === 'all') {
+        parentClass = 'all';
+    } else if (selectedMode === 'thirdMode') {
+        parentClass = 'third';
+    }
 
     return (
         <div
@@ -42,7 +50,7 @@ const ColorBar: React.FC<ColorBarProps> = ({
                     </div>
                     <p className="contrast-text-label">Text Contrast Ratio</p>
                 </div>
-                {selectedMode !== 'neighbor' && (
+                {selectedMode === 'all' && (
                     <ContrastBoxFull
                         activeColor={color}
                         otherColors={otherColors}

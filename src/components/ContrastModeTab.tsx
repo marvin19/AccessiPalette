@@ -12,11 +12,11 @@ const ContrastModeTab = ({
 
     const handleTabSelect = (index: number): void => {
         setSelectedTab(index);
-        const modes = ['all', 'neighbor'];
+        const modes = ['all', 'neighbor', 'third'];
         setSelectedMode(modes[index]);
     };
 
-    const labels = ['Compare all', 'Only neighbors'];
+    const labels = ['Compare all', 'Only neighbors', 'Find third color'];
 
     return (
         <Tabs
