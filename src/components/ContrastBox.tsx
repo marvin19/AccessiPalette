@@ -1,5 +1,7 @@
 import { calculateContrastRatio } from '../utils';
 import WCAGCheck from './WCAGCheck';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 
 interface ContrastBoxNewProps {
     leftColor: string;
@@ -34,8 +36,16 @@ const ContrastBox: React.FC<ContrastBoxNewProps> = ({
     return (
         <div className="checker">
             <div className="contrast-ratio-box-text">
+                <FontAwesomeIcon
+                    icon={faCaretLeft}
+                    style={{ color: '#000000' }}
+                />
                 <WCAGCheck meetsWCAG={meetsWCAG} fontSize="1.0rem" />
                 <p> {`${contrastRatio.toFixed(2)}:1(${level})`}</p>
+                <FontAwesomeIcon
+                    icon={faCaretRight}
+                    style={{ color: '#000000' }}
+                />
             </div>
         </div>
     );
