@@ -12,6 +12,8 @@ const Toolbar = ({
             <div className="toolbar-inside-banner">
                 <h2>Toolbar:</h2>
                 <div className="toolbar-tools">
+                    <label htmlFor="drag-and-drop">Change text color:</label>
+                    <input type="color" id="change-text-color" />
                     <input
                         type="checkbox"
                         id="drag-and-drop"
@@ -20,7 +22,9 @@ const Toolbar = ({
                             setEnableDragAndDrop(e.target.checked);
                         }}
                     />
-                    <label htmlFor="drag-and-drop">Enable drag and drop</label>
+                    <label htmlFor="change-text-color">
+                        Enable drag and drop
+                    </label>
                 </div>
             </div>
         </div>
