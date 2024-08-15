@@ -16,13 +16,11 @@ const defaultColors = [
 interface ColorBarListProps {
     selectedContrast: number;
     selectedMode: string;
-    enableDragAndDrop: boolean;
 }
 
 const ColorBarList = ({
     selectedContrast,
     selectedMode,
-    enableDragAndDrop,
 }: ColorBarListProps): JSX.Element => {
     const [colorBars, setColorBars] = useState<string[]>(defaultColors);
 
@@ -66,7 +64,7 @@ const ColorBarList = ({
 
     return (
         <div className="color-bars">
-            {enableDragAndDrop ? (
+            {
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="colorBars" direction="horizontal">
                         {(provided) => (
@@ -159,47 +157,7 @@ const ColorBarList = ({
                         )}
                     </Droppable>
                 </DragDropContext>
-            ) : (
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        flexWrap: 'wrap',
-                    }}
-                >
-                    {colorBars.map((color, index) => (
-                        <Fragment key={index}>
-                            <div
-                                className="color-bar-container"
-                                style={{ margin: '8px', borderRadius: '5px' }}
-                            >
-                                {' '}
-                                {/* Add margin for spacing */}
-                                <ColorBar
-                                    color={color}
-                                    selectedMode={selectedMode}
-                                    onColorChange={(newColor) => {
-                                        handleColorChange(index, newColor);
-                                    }}
-                                    onRemove={() => {
-                                        removeColorBar(index);
-                                    }}
-                                    allColors={colorBars} // Pass all colors to each ColorBar
-                                    selectedContrast={selectedContrast}
-                                />
-                                {selectedMode === 'neighbor' &&
-                                    index < colorBars.length - 1 && (
-                                        <ContrastBox
-                                            leftColor={colorBars[index]}
-                                            rightColor={colorBars[index + 1]}
-                                            selectedContrast={selectedContrast}
-                                        />
-                                    )}
-                            </div>
-                        </Fragment>
-                    ))}
-                </div>
-            )}
+            }
             {colorBars.length < 10 && (
                 <div
                     className="color-bar-container"

@@ -9,14 +9,12 @@ interface PaletteProps {
 const Palette = ({
     selectedContrast,
     selectedMode,
-    enableDragAndDrop,
 }: PaletteProps): JSX.Element => {
     return (
         <div className="palette">
             <ColorBarList
                 selectedContrast={selectedContrast}
                 selectedMode={selectedMode}
-                enableDragAndDrop={enableDragAndDrop}
             />
         </div>
     );
