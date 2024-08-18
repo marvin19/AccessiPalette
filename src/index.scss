@@ -534,6 +534,7 @@ li {
 }
 
 .link-and-logo h1 {
+    margin: 0;
     color: #000;
     text-align: center;
     /*font-family: 'IBM Plex Sans Var';*/
@@ -542,6 +543,17 @@ li {
     font-weight: 600;
     line-height: 38.949px;
     text-transform: uppercase;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center; /* Aligns items vertically centered */
+    gap: 10px; /* Adjusts the spacing between the h1 and the svg */
+}
+
+.header-container svg {
+    width: 26px;
+    height: 29px;
 }
 
 .contrast-ratio-box-text {
