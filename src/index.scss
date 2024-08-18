@@ -527,6 +527,51 @@ li {
     color: white; /* Active text color */
 }
 
+label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 2px;
+}
+
+.contrast-select-dropdown,
+.contrast-mode-dropdown {
+    width: 150px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    color: #212529;
+    appearance: none;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%23343a40" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.contrast-select-dropdown,
+.contrast-mode-dropdown {
+    width: 150px;
+}
+
+@media screen and (min-width: 1350px) {
+    .contrast-select-dropdown,
+    .contrast-mode-dropdown {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1349px) {
+    .contrast-tabs,
+    .contrast-mode-tabs {
+        display: none;
+    }
+}
+
 .link-and-logo {
     display: flex;
     align-items: center;
