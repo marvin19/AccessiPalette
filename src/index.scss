@@ -506,6 +506,111 @@ li {
 
 }
 
+/** Mobile menu **/
+
+/* Global Styles */
+.hamburger-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Media query for screen sizes between 320px and 767px */
+@media (max-width: 767px) {
+
+    label {
+        display: none;
+    }
+
+    .inside-banner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .contrast-select-dropdown,
+    .contrast-mode-dropdown,
+    .contrast-tabs,
+    .contrast-mode-tabs {
+        display: none; /* Hide dropdowns and tabs initially */
+    }
+
+    .hamburger-icon {
+        display: block; /* Show the hamburger icon */
+    }
+
+    .dropdown-menu {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        background-color: #f6f8ff;
+        padding: 10px;
+        border-radius: 8px;
+        width: 100%;
+    }
+    .dropdown-menu div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .dropdown-menu label {
+        display: flex;
+    }
+
+    .dropdown-menu .contrast-select-dropdown,
+    .dropdown-menu .contrast-mode-dropdown,
+    .dropdown-menu .contrast-tabs,
+    .dropdown-menu .contrast-mode-tabs {
+        display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo {
+        display: none;
+    }
+    .only-logo {
+        display: flex;
+        width: 35px;
+    }
+    h1 {
+        display: none;
+    }
+    .dropdown-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .dropdown-menu label {
+        margin-right: 10px;
+
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1349px) {
+    .contrast-select-dropdown,
+    .contrast-mode-dropdown {
+        width: 150px;
+    }
+
+    .contrast-tabs,
+    .contrast-mode-tabs {
+        display: none;
+    }
+}
+
+/* Larger screen adjustments */
+@media screen and (min-width: 1350px) {
+    .contrast-select-dropdown,
+    .contrast-mode-dropdown {
+        display: none;
+    }
+}
+
+/*********/
+
 .tabs {
     display: flex;
     align-items: flex-start;
