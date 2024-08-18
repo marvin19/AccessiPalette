@@ -1,6 +1,6 @@
 const GitHubLink = (): JSX.Element => {
     return (
-        <div>
+        <div className="icon-wrapper">
             <a
                 href="https://github.com/marvin19/AccessiPalette"
                 aria-label="GitHub repository"

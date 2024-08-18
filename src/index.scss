@@ -530,7 +530,19 @@ li {
 .link-and-logo {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 10px;
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    height: 16px;
+}
+
+.icon-wrapper svg,
+.icon-wrapper .fa-question-circle {
+    width: 16px;
+    height: 16px;
 }
 
 .link-and-logo h1 {
