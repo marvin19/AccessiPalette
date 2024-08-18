@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from '../assets/highcharts-logo.svg';
 import onlyLogo from '../assets/highcharts-only-logo.svg';
 import ContrastSelectTab from './ContrastSelectTab';
@@ -22,6 +22,20 @@ const Header = ({
     const toggleMenu = (): void => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    // Close the menu if the window is resized above 767px
+    useEffect(() => {
+        const handleResize = (): void => {
+            if (window.innerWidth > 767) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     return (
         <div className="banner">
