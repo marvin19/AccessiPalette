@@ -47,16 +47,13 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                         contrastColor !== null ? (
                             <ColorBar
                                 color={contrastColor}
-                                onColorChange={(newColor) => {
-                                    // Handle the change for the contrast color if needed
-                                }}
                                 onRemove={() => {
                                     // Handle the removal of the contrast color if needed
                                 }}
                                 allColors={[...colors, contrastColor]}
                             />
                         ) : (
-                            //<p>Contrast Color: {contrastColor}</p>
+                            // <p>Contrast Color: {contrastColor}</p>
                             <p>
                                 No colors available with enough contrast. Adjust
                                 color input.

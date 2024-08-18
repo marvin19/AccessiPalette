@@ -47,15 +47,20 @@ const ColorBarList = ({
     };
 
     const onDragEnd = (result: any): void => {
-        if (!result.destination) {
-            return;
+        /* eslint-disable @typescript-eslint/strict-boolean-expressions */
+        if (
+            result.destination &&
+            typeof result.destination.index === 'number'
+        ) {
+            const sourceIndex: number = result.source.index as number;
+            const destinationIndex: number = result.destination.index as number;
+
+            const newColorBars = Array.from(colorBars);
+            const [movedColor] = newColorBars.splice(sourceIndex, 1);
+            newColorBars.splice(destinationIndex, 0, movedColor);
+
+            setColorBars(newColorBars);
         }
-
-        const newColorBars = Array.from(colorBars);
-        const [movedColor] = newColorBars.splice(result.source.index, 1);
-        newColorBars.splice(result.destination.index, 0, movedColor);
-
-        setColorBars(newColorBars);
     };
 
     if (selectedMode === 'third') {
@@ -96,7 +101,8 @@ const ColorBarList = ({
                                                             .draggableProps
                                                             .style,
                                                         backgroundColor:
-                                                            snapshot.isDragging
+                                                            snapshot.isDragging ===
+                                                            true
                                                                 ? 'transparent'
                                                                 : 'transparent',
                                                         borderRadius: '5px',
