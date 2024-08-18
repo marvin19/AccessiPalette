@@ -483,6 +483,29 @@ li {
     gap: 16px;
 }
 
+.only-logo {
+    display: none;
+}
+
+/* After 992px, hide the default logo and show the new one */
+@media (max-width: 992px) and (min-width: 768px) {
+    .logo {
+        display: none;
+    }
+
+    .only-logo {
+        display: flex;
+        width: 35px;
+        align-items: center;
+        gap: 16px;
+    }
+
+    h1 {
+        display: none;
+    }
+
+}
+
 .tabs {
     display: flex;
     align-items: flex-start;

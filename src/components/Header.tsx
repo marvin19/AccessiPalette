@@ -1,4 +1,5 @@
 import logo from '../assets/highcharts-logo.svg';
+import onlyLogo from '../assets/highcharts-only-logo.svg';
 import ContrastSelectTab from './ContrastSelectTab';
 import ContrastModeTab from './ContrastModeTab';
 import GitHubLink from './GitHubLink';
@@ -20,6 +21,11 @@ const Header = ({
             <div className="inside-banner">
                 <div className="logo-img">
                     <img src={logo} className="logo" alt="Highcharts logo" />
+                    <img
+                        src={onlyLogo}
+                        className="only-logo"
+                        alt="Highcharts logo"
+                    />
                 </div>
                 <ContrastSelectTab setSelectedContrast={setSelectedContrast} />
                 <ContrastModeTab setSelectedMode={setSelectedMode} />
