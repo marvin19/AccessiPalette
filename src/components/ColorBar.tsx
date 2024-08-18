@@ -59,13 +59,7 @@ const ColorBar: React.FC<ColorBarProps> = ({
                         selectedContrast={selectedContrast ?? 0}
                     />
                 )}
-                <div className="color-picker-container">
-                    <ColorPicker
-                        color={color}
-                        onColorChange={handleColorChange}
-                    />
-                    <p>{color}</p>
-                </div>
+                <ColorPicker color={color} onColorChange={handleColorChange} />
             </div>
             <button className="remove-color" onClick={onRemove}>
                 <img src={closeButton} className="close-button" alt="Remove" />
