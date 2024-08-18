@@ -3,7 +3,6 @@ import ColorBarList from './ColorBarList';
 interface PaletteProps {
     selectedContrast: number;
     selectedMode: string;
-    enableDragAndDrop: boolean;
 }
 
 const Palette = ({

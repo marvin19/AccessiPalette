@@ -9,12 +9,6 @@ interface ContrastBoxFullProps {
     selectedContrast: number;
 }
 
-const WCAG_THRESHOLDS = {
-    AAA: 7,
-    AA: 4.5,
-    A: 3,
-};
-
 const WCAG_TRIPLE_AA_TEXT_CONTRAST_THRESHOLD = 7;
 const WCAG_TEXT_CONTRAST_THRESHOLD = 4.5;
 const WCAG_GRAPHIC_CONTRAST_THRESHOLD = 3;
@@ -24,9 +18,8 @@ const ContrastBoxFull: React.FC<ContrastBoxFullProps> = ({
     otherColors,
     selectedContrast,
 }): JSX.Element => {
-    let level = '';
-    let meetsWCAG = false;
-    const threshold = WCAG_THRESHOLDS[selectedContrast];
+    let level = '',
+        meetsWCAG = false;
 
     return (
         <div className="contrast-box-full">
