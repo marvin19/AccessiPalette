@@ -483,6 +483,134 @@ li {
     gap: 16px;
 }
 
+.only-logo {
+    display: none;
+}
+
+/* After 992px, hide the default logo and show the new one */
+@media (max-width: 992px) and (min-width: 768px) {
+    .logo {
+        display: none;
+    }
+
+    .only-logo {
+        display: flex;
+        width: 35px;
+        align-items: center;
+        gap: 16px;
+    }
+
+    h1 {
+        display: none;
+    }
+
+}
+
+/** Mobile menu **/
+
+/* Global Styles */
+.hamburger-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Media query for screen sizes between 320px and 767px */
+@media (max-width: 767px) {
+
+    label {
+        display: none;
+    }
+
+    .inside-banner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .contrast-select-dropdown,
+    .contrast-mode-dropdown,
+    .contrast-tabs,
+    .contrast-mode-tabs {
+        display: none; /* Hide dropdowns and tabs initially */
+    }
+
+    .hamburger-icon {
+        display: block; /* Show the hamburger icon */
+    }
+
+    .dropdown-menu {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        background-color: #f6f8ff;
+        padding: 10px;
+        border-radius: 8px;
+        width: 100%;
+    }
+    .dropdown-menu div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .dropdown-menu label {
+        display: flex;
+    }
+
+    .dropdown-menu .contrast-select-dropdown,
+    .dropdown-menu .contrast-mode-dropdown,
+    .dropdown-menu .contrast-tabs,
+    .dropdown-menu .contrast-mode-tabs {
+        display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo {
+        display: none;
+    }
+    .only-logo {
+        display: flex;
+        width: 35px;
+    }
+    h1 {
+        display: none;
+    }
+    .dropdown-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .dropdown-menu label {
+        margin-right: 10px;
+
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1349px) {
+    .contrast-select-dropdown,
+    .contrast-mode-dropdown {
+        width: 150px;
+    }
+
+    .contrast-tabs,
+    .contrast-mode-tabs {
+        display: none;
+    }
+}
+
+/* Larger screen adjustments */
+@media screen and (min-width: 1350px) {
+    .contrast-select-dropdown,
+    .contrast-mode-dropdown {
+        display: none;
+    }
+}
+
+/*********/
+
 .tabs {
     display: flex;
     align-items: flex-start;
@@ -517,7 +645,7 @@ li {
 
 .contrast-tabs button:hover,
 .contrast-mode-tabs button:hover {
-    background-color: grey; /* Hover background color */
+    background-color: #757575; /* Hover background color */
     color: white; /* Hover text color */
 }
 
@@ -527,21 +655,90 @@ li {
     color: white; /* Active text color */
 }
 
+label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 2px;
+}
+
+.contrast-select-dropdown,
+.contrast-mode-dropdown {
+    width: 150px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    color: #212529;
+    appearance: none;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%23343a40" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.contrast-select-dropdown,
+.contrast-mode-dropdown {
+    width: 150px;
+}
+
+@media screen and (min-width: 1350px) {
+    .contrast-select-dropdown,
+    .contrast-mode-dropdown {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1349px) {
+    .contrast-tabs,
+    .contrast-mode-tabs {
+        display: none;
+    }
+}
+
 .link-and-logo {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 10px;
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    height: 16px;
+}
+
+.icon-wrapper svg,
+.icon-wrapper .fa-question-circle {
+    width: 16px;
+    height: 16px;
 }
 
 .link-and-logo h1 {
+    margin: 0;
     color: #000;
     text-align: center;
-    font-family: 'IBM Plex Sans Var';
+    /*font-family: 'IBM Plex Sans Var';*/
     font-size: 20.95px;
     font-style: italic;
     font-weight: 600;
     line-height: 38.949px;
     text-transform: uppercase;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center; /* Aligns items vertically centered */
+    gap: 10px; /* Adjusts the spacing between the h1 and the svg */
+}
+
+.header-container svg {
+    width: 26px;
+    height: 29px;
 }
 
 .contrast-ratio-box-text {
@@ -621,7 +818,7 @@ li {
 
 .checker {
     background-color: white;
-    padding: 10px 15px;
+    padding: 10px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
