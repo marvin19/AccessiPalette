@@ -517,7 +517,7 @@ li {
 
 .contrast-tabs button:hover,
 .contrast-mode-tabs button:hover {
-    background-color: grey; /* Hover background color */
+    background-color: #757575; /* Hover background color */
     color: white; /* Hover text color */
 }
 
@@ -536,7 +536,7 @@ li {
 .link-and-logo h1 {
     color: #000;
     text-align: center;
-    font-family: 'IBM Plex Sans Var';
+    /*font-family: 'IBM Plex Sans Var';*/
     font-size: 20.95px;
     font-style: italic;
     font-weight: 600;
