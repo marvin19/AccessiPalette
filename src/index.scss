@@ -903,31 +903,34 @@ label {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .add-color-bar:hover {
     background-color: #f0f0f0;
     border-color: #888;
-    color: #000;
 }
 
-.add-color-bar-button:hover {
-    color: #000;
-}
-
-.add-color-bar-button {
+.add-color-bar .add-color-bar-button {
     width: 100%;
     height: 100%;
     border: none;
     background: transparent;
     font-size: 16px;
-    color: #ffffff;
+    color: #ffffff; /* Default color is white */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: color 0.3s; /* Add transition for smooth color change */
 }
+
+.add-color-bar:hover .add-color-bar-button {
+    color: #000 !important; /* Change text color to black on hover */
+}
+
+
+
 
 @media screen and (max-width: 600px) {
     .color-bars {
