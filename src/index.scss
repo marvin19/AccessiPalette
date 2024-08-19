@@ -765,7 +765,8 @@ label {
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
-    position: relative;
+    align-items: flex-start;
+    /*position: relative;*/
 }
 
 .all-contrast-label {
@@ -810,10 +811,15 @@ label {
 }
 
 .color-bar-container {
+    flex: 0 0 auto;
     display: flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
     align-items: center;
     position: relative;
+}
+
+.droppable-placeholder {
+    display: none;
 }
 
 .checker {
