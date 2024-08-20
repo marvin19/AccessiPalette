@@ -917,20 +917,17 @@ label {
     border: none;
     background: transparent;
     font-size: 16px;
-    color: #ffffff; /* Default color is white */
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: color 0.3s; /* Add transition for smooth color change */
+    transition: color 0.3s;
 }
 
 .add-color-bar:hover .add-color-bar-button {
-    color: #000 !important; /* Change text color to black on hover */
+    color: #000 !important;
 }
-
-
-
 
 @media screen and (max-width: 600px) {
     .color-bars {
