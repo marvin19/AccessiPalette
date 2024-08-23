@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import AddNewColor from './AddNewColor';
 import ColorBar from './ColorBar';
 import ContrastBox from './ContrastBox';
 import ThirdColor from './ThirdColor';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { useState } from 'react';
 
 const defaultColors = [
     '#6975ff',
@@ -83,6 +84,7 @@ const ColorBarList = ({
                         selectedContrast={selectedContrast}
                     />
                 ))}
+                <AddNewColor addColorBar={addColorBar} colorBars={colorBars} />
             </div>
         );
     } else {
@@ -145,19 +147,10 @@ const ColorBarList = ({
                                 </Draggable>
                             ))}
                             {provided.placeholder}
-                            {/* Add color button */}
-                            {colorBars.length < 10 && (
-                                <div className="color-bar-container">
-                                    <div className="color-bar-outer add-color-bar">
-                                        <button
-                                            onClick={addColorBar}
-                                            className="add-color-bar-button"
-                                        >
-                                            + Add color
-                                        </button>
-                                    </div>
-                                </div>
-                            )}
+                            <AddNewColor
+                                addColorBar={addColorBar}
+                                colorBars={colorBars}
+                            />
                         </div>
                     )}
                 </Droppable>
