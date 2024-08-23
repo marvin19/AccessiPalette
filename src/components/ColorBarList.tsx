@@ -1,5 +1,6 @@
 import AddNewColor from './AddNewColor';
 import ColorBar from './ColorBar';
+import CompareAll from './CompareAll';
 import ContrastBox from './ContrastBox';
 import ThirdColor from './ThirdColor';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -68,29 +69,14 @@ const ColorBarList = ({
         return <ThirdColor selectedContrast={selectedContrast} />;
     } else if (selectedMode === 'all') {
         return (
-            <div className="color-bars">
-                {colorBars.map((color, index) => (
-                    <div className="color-bar-container" key={index}>
-                        <ColorBar
-                            color={color}
-                            selectedMode={selectedMode}
-                            onColorChange={(newColor) => {
-                                handleColorChange(index, newColor);
-                            }}
-                            onRemove={() => {
-                                removeColorBar(index);
-                            }}
-                            allColors={colorBars}
-                            selectedContrast={selectedContrast}
-                        />
-                    </div>
-                ))}
-                <AddNewColor
-                    addColorBar={addColorBar}
-                    colorBars={colorBars}
-                    selectedMode={selectedMode}
-                />
-            </div>
+            <CompareAll
+                colorBars={colorBars}
+                selectedMode={selectedMode}
+                selectedContrast={selectedContrast}
+                addColorBar={addColorBar}
+                handleColorChange={handleColorChange}
+                removeColorBar={removeColorBar}
+            />
         );
     } else {
         return (
