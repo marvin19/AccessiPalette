@@ -1,8 +1,8 @@
-import React from 'react';
-import { calculateContrastRatio } from '../utils';
-import closeButton from '../assets/x-close.svg';
-import ColorPicker from './ColorPicker';
-import ContrastBoxFull from './ContrastBoxFull';
+import React, { useState, useEffect } from 'react';
+import { calculateContrastRatio } from '../utils'; // Ensure this function is correctly implemented in utils
+import closeButton from '../assets/x-close.svg'; // Ensure this asset exists
+import ColorPicker from './ColorPicker'; // Ensure this component is correctly implemented
+import ContrastBoxFull from './ContrastBoxFull'; // Ensure this component is correctly implemented
 
 interface ColorBarProps {
     color: string;
@@ -21,15 +21,25 @@ const ColorBar: React.FC<ColorBarProps> = ({
     allColors = [],
     selectedContrast,
 }): JSX.Element => {
+    const [textColor, setTextColor] = useState('#000000');
+
+    useEffect(() => {
+        const textContrastRatio = calculateContrastRatio('#000000', color);
+        if (textContrastRatio < 3.0) {
+            setTextColor('#FFFFFF');
+        } else {
+            setTextColor('#000000');
+        }
+    }, [color]);
+
     const handleColorChange = (newColor: string): void => {
         onColorChange(newColor);
     };
 
     const otherColors = allColors.filter((c) => c !== color);
-    const textColor = '#000000';
     const textContrastRatio = calculateContrastRatio(textColor, color);
-    let parentClass = '';
 
+    let parentClass = '';
     if (selectedMode === 'neighbor') {
         parentClass = 'neighbor';
     } else if (selectedMode === 'all') {
@@ -46,7 +56,10 @@ const ColorBar: React.FC<ColorBarProps> = ({
             <div className="color-bar-inner">
                 <div className="color-bar-inner-inner">
                     <div className="contrast-text-container">
-                        <p className="contrast-text">
+                        <p
+                            className="contrast-text"
+                            style={{ color: textColor }}
+                        >
                             {textContrastRatio.toFixed(2)}:1
                         </p>
                     </div>
