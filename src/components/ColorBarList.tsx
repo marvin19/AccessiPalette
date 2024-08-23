@@ -65,80 +65,105 @@ const ColorBarList = ({
 
     if (selectedMode === 'third') {
         return <ThirdColor selectedContrast={selectedContrast} />;
-    }
-
-    return (
-        <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="colorBars" direction="horizontal">
-                {(provided) => (
-                    <div
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        className="color-bars"
-                    >
-                        {colorBars.map((color, index) => (
-                            <Draggable
-                                key={index}
-                                draggableId={`color-${index}`}
-                                index={index}
-                            >
-                                {(provided) => (
-                                    <div
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                        className="color-bar-container"
-                                    >
-                                        <ColorBar
-                                            color={color}
-                                            selectedMode={selectedMode}
-                                            onColorChange={(newColor) => {
-                                                handleColorChange(
-                                                    index,
-                                                    newColor,
-                                                );
-                                            }}
-                                            onRemove={() => {
-                                                removeColorBar(index);
-                                            }}
-                                            allColors={colorBars}
-                                            selectedContrast={selectedContrast}
-                                        />
-                                        {selectedMode === 'neighbor' &&
-                                            index < colorBars.length - 1 && (
-                                                <ContrastBox
-                                                    leftColor={colorBars[index]}
-                                                    rightColor={
-                                                        colorBars[index + 1]
-                                                    }
-                                                    selectedContrast={
-                                                        selectedContrast
-                                                    }
-                                                />
-                                            )}
+    } else if (selectedMode === 'all') {
+        return (
+            <div className="color-bars">
+                {colorBars.map((color, index) => (
+                    <ColorBar
+                        key={index}
+                        color={color}
+                        selectedMode={selectedMode}
+                        onColorChange={(newColor) => {
+                            handleColorChange(index, newColor);
+                        }}
+                        onRemove={() => {
+                            removeColorBar(index);
+                        }}
+                        allColors={colorBars}
+                        selectedContrast={selectedContrast}
+                    />
+                ))}
+            </div>
+        );
+    } else {
+        return (
+            <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="colorBars" direction="horizontal">
+                    {(provided) => (
+                        <div
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                            className="color-bars"
+                        >
+                            {colorBars.map((color, index) => (
+                                <Draggable
+                                    key={index}
+                                    draggableId={`color-${index}`}
+                                    index={index}
+                                >
+                                    {(provided) => (
+                                        <div
+                                            ref={provided.innerRef}
+                                            {...provided.draggableProps}
+                                            {...provided.dragHandleProps}
+                                            className="color-bar-container"
+                                        >
+                                            <ColorBar
+                                                color={color}
+                                                selectedMode={selectedMode}
+                                                onColorChange={(newColor) => {
+                                                    handleColorChange(
+                                                        index,
+                                                        newColor,
+                                                    );
+                                                }}
+                                                onRemove={() => {
+                                                    removeColorBar(index);
+                                                }}
+                                                allColors={colorBars}
+                                                selectedContrast={
+                                                    selectedContrast
+                                                }
+                                            />
+                                            {selectedMode === 'neighbor' &&
+                                                index <
+                                                    colorBars.length - 1 && (
+                                                    <ContrastBox
+                                                        leftColor={
+                                                            colorBars[index]
+                                                        }
+                                                        rightColor={
+                                                            colorBars[index + 1]
+                                                        }
+                                                        selectedContrast={
+                                                            selectedContrast
+                                                        }
+                                                    />
+                                                )}
+                                        </div>
+                                    )}
+                                </Draggable>
+                            ))}
+                            {provided.placeholder}
+                            {/* Add color button */}
+                            {colorBars.length < 10 && (
+                                <div className="color-bar-container">
+                                    <div className="color-bar-outer add-color-bar">
+                                        <button
+                                            onClick={addColorBar}
+                                            className="add-color-bar-button"
+                                        >
+                                            + Add color
+                                        </button>
                                     </div>
-                                )}
-                            </Draggable>
-                        ))}
-                        {provided.placeholder}
-                        {/* Add color button */}
-                        {colorBars.length < 10 && (
-                            <div className="color-bar-container">
-                                <div className="color-bar-outer add-color-bar">
-                                    <button
-                                        onClick={addColorBar}
-                                        className="add-color-bar-button"
-                                    >
-                                        + Add color
-                                    </button>
                                 </div>
-                            </div>
-                        )}
-                    </div>
-                )}
-            </Droppable>
-        </DragDropContext>
-    );
+                            )}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
+        );
+    }
 };
 
 export default ColorBarList;
