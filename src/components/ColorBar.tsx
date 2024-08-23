@@ -62,8 +62,13 @@ const ColorBar: React.FC<ColorBarProps> = ({
                         >
                             {textContrastRatio.toFixed(2)}:1
                         </p>
+                        <p
+                            className="contrast-text-label"
+                            style={{ color: textColor }}
+                        >
+                            Text Contrast Ratio
+                        </p>
                     </div>
-                    <p className="contrast-text-label">Text Contrast Ratio</p>
                 </div>
                 {selectedMode === 'all' && (
                     <ContrastBoxFull
