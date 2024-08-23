@@ -70,21 +70,26 @@ const ColorBarList = ({
         return (
             <div className="color-bars">
                 {colorBars.map((color, index) => (
-                    <ColorBar
-                        key={index}
-                        color={color}
-                        selectedMode={selectedMode}
-                        onColorChange={(newColor) => {
-                            handleColorChange(index, newColor);
-                        }}
-                        onRemove={() => {
-                            removeColorBar(index);
-                        }}
-                        allColors={colorBars}
-                        selectedContrast={selectedContrast}
-                    />
+                    <div className="color-bar-container" key={index}>
+                        <ColorBar
+                            color={color}
+                            selectedMode={selectedMode}
+                            onColorChange={(newColor) => {
+                                handleColorChange(index, newColor);
+                            }}
+                            onRemove={() => {
+                                removeColorBar(index);
+                            }}
+                            allColors={colorBars}
+                            selectedContrast={selectedContrast}
+                        />
+                    </div>
                 ))}
-                <AddNewColor addColorBar={addColorBar} colorBars={colorBars} />
+                <AddNewColor
+                    addColorBar={addColorBar}
+                    colorBars={colorBars}
+                    selectedMode={selectedMode}
+                />
             </div>
         );
     } else {
