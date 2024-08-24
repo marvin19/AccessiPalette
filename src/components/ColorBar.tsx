@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { calculateContrastRatio, getParentClassForMode } from '../utils';
 
 import ColorPicker from './ColorPicker';
 import ContrastBoxFull from './ContrastBoxFull';
 import RemoveColorButton from './RemoveColorButton';
+import useTextColor from '../hooks/useTextColor';
 
 interface ColorBarProps {
     color: string;
@@ -22,16 +23,7 @@ const ColorBar: React.FC<ColorBarProps> = ({
     onRemove = () => {},
     onColorChange = () => {},
 }): JSX.Element => {
-    const [textColor, setTextColor] = useState('#000000');
-
-    useEffect(() => {
-        const textContrastRatio = calculateContrastRatio('#000000', color);
-        if (textContrastRatio < 3.0) {
-            setTextColor('#FFFFFF');
-        } else {
-            setTextColor('#000000');
-        }
-    }, [color]);
+    const textColor = useTextColor(color);
 
     const handleColorChange = (newColor: string): void => {
         onColorChange(newColor);
