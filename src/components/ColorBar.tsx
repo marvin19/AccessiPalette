@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { getParentClassForMode } from '../utils';
 import ColorBarContent from './ColorBarContent';
 
 interface ColorBarProps {
     color: string;
-    selectedMode?: string;
+    selectedMode?: 'all' | 'third' | 'neighbor';
     allColors?: string[];
     selectedContrast?: number;
     removeColorBar?: () => void;
     onColorChange?: (color: string) => void;
 }
 
-const ColorBar: React.FC<ColorBarProps> = ({
+const ColorBar = ({
     color,
     selectedMode,
     allColors = [],
     selectedContrast,
     removeColorBar = () => {},
     onColorChange = () => {},
-}): JSX.Element => {
+}: ColorBarProps): JSX.Element => {
     const parentClass = getParentClassForMode(selectedMode);
 
     return (
@@ -38,4 +38,4 @@ const ColorBar: React.FC<ColorBarProps> = ({
     );
 };
 
-export default ColorBar;
+export default memo(ColorBar);
