@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { calculateContrastRatio } from '../utils'; // Ensure this function is correctly implemented in utils
+import { calculateContrastRatio, getParentClassForMode } from '../utils'; // Ensure this function is correctly implemented in utils
 import closeButton from '../assets/x-close.svg'; // Ensure this asset exists
 import ColorPicker from './ColorPicker'; // Ensure this component is correctly implemented
 import ContrastBoxFull from './ContrastBoxFull'; // Ensure this component is correctly implemented
@@ -39,14 +39,7 @@ const ColorBar: React.FC<ColorBarProps> = ({
     const otherColors = allColors.filter((c) => c !== color);
     const textContrastRatio = calculateContrastRatio(textColor, color);
 
-    let parentClass = '';
-    if (selectedMode === 'neighbor') {
-        parentClass = 'neighbor';
-    } else if (selectedMode === 'all') {
-        parentClass = 'all';
-    } else if (selectedMode === 'thirdMode') {
-        parentClass = 'third';
-    }
+    const parentClass = getParentClassForMode(selectedMode);
 
     return (
         <div
