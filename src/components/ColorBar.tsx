@@ -1,6 +1,6 @@
 import React from 'react';
-import { calculateContrastRatio, getParentClassForMode } from '../utils';
-
+import { getParentClassForMode } from '../utils';
+import ContrastText from './ContrastText';
 import ColorPicker from './ColorPicker';
 import ContrastBoxFull from './ContrastBoxFull';
 import RemoveColorButton from './RemoveColorButton';
@@ -30,7 +30,6 @@ const ColorBar: React.FC<ColorBarProps> = ({
     };
 
     const otherColors = allColors.filter((c) => c !== color);
-    const textContrastRatio = calculateContrastRatio(textColor, color);
     const parentClass = getParentClassForMode(selectedMode);
 
     return (
@@ -40,20 +39,7 @@ const ColorBar: React.FC<ColorBarProps> = ({
         >
             <div className="color-bar-inner">
                 <div className="color-bar-inner-inner">
-                    <div className="contrast-text-container">
-                        <p
-                            className="contrast-text"
-                            style={{ color: textColor }}
-                        >
-                            {textContrastRatio.toFixed(2)}:1
-                        </p>
-                        <p
-                            className="contrast-text-label"
-                            style={{ color: textColor }}
-                        >
-                            Text Contrast Ratio
-                        </p>
-                    </div>
+                    <ContrastText color={color} textColor={textColor} />
                 </div>
                 {selectedMode === 'all' && (
                     <ContrastBoxFull
