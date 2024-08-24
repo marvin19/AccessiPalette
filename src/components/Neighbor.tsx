@@ -7,20 +7,20 @@ interface NeighborProps {
     colorBars: string[];
     selectedMode: string;
     selectedContrast: number;
-    setColorBars: (colorBars: string[]) => void;
     handleColorChange: (index: number, newColor: string) => void;
     removeColorBar: (index: number) => void;
     addColorBar: () => void;
+    setColorBars: (newColors: string[]) => void;
 }
 
 const Neighbor = ({
     colorBars,
     selectedMode,
     selectedContrast,
-    setColorBars,
     handleColorChange,
     removeColorBar,
     addColorBar,
+    setColorBars,
 }: NeighborProps): JSX.Element => {
     const onDragEnd = (result: any): void => {
         /* eslint-disable @typescript-eslint/strict-boolean-expressions */

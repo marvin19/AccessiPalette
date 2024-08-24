@@ -1,52 +1,76 @@
-import { useState } from 'react';
-// import { generateAdditionalColors } from '../utils';
+import { useState, useCallback, useMemo } from 'react';
 
 interface ColorGenerationResult {
     colors: string[];
     handleColorChange: (index: number, newColor: string) => void;
     addColorBar: () => void;
     removeColorBar: (index: number) => void;
+    setColorBars: (newColors: string[]) => void;
 }
 
+const MAX_COLOR_BARS = 20;
+const MIN_COLOR_BARS = 2;
+
 const useColorGeneration = (): ColorGenerationResult => {
-    const defaultColors = [
-        '#6975ff',
-        '#084fd7',
-        '#64bdc6',
-        '#eeca34',
-        '#fe7135',
-        '#fd2a2a',
-    ];
+    const defaultColors = useMemo(
+        () => [
+            '#6975ff',
+            '#084fd7',
+            '#64bdc6',
+            '#eeca34',
+            '#fe7135',
+            '#fd2a2a',
+        ],
+        [],
+    );
+
     const [colors, setColors] = useState<string[]>(defaultColors);
 
-    // TODO: Implement random colors
-    const addColorBar = (): void => {
-        if (colors.length < 10) {
+    const addColorBar = useCallback((): void => {
+        if (colors.length < MAX_COLOR_BARS) {
             const randomIndex = Math.floor(
                 Math.random() * defaultColors.length,
             );
             const newColor = defaultColors[randomIndex];
-            setColors([...colors, newColor]);
+            setColors((prevColors) => [...prevColors, newColor]);
         }
-    };
+    }, [colors.length, defaultColors]);
 
-    const removeColorBar = (index: number): void => {
-        if (colors.length > 2) {
-            setColors(colors.filter((_, i) => i !== index));
-        }
-    };
+    const removeColorBar = useCallback(
+        (index: number): void => {
+            if (colors.length > MIN_COLOR_BARS) {
+                setColors((prevColors) =>
+                    prevColors.filter((_, i) => i !== index),
+                );
+            }
+        },
+        [colors.length],
+    );
 
-    const handleColorChange = (index: number, newColor: string): void => {
-        const updatedColors = [...colors];
-        updatedColors[index] = newColor;
-        setColors(updatedColors);
-    };
+    const handleColorChange = useCallback(
+        (index: number, newColor: string): void => {
+            setColors((prevColors) => {
+                if (index >= 0 && index < prevColors.length) {
+                    const updatedColors = [...prevColors];
+                    updatedColors[index] = newColor;
+                    return updatedColors;
+                }
+                return prevColors;
+            });
+        },
+        [],
+    );
+
+    const setColorBars = useCallback((newColors: string[]): void => {
+        setColors(newColors);
+    }, []);
 
     return {
         colors,
         addColorBar,
         handleColorChange,
         removeColorBar,
+        setColorBars,
     };
 };
 

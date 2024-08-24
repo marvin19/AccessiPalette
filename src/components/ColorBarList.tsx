@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import CompareAll from './CompareAll';
 import ThirdColor from './ThirdColor';
 import Neighbor from './Neighbor';
@@ -17,12 +18,12 @@ const ColorBarList = ({
         handleColorChange,
         addColorBar,
         removeColorBar,
+        setColorBars,
     } = useColorGeneration();
 
-    if (selectedMode === 'third') {
-        return <ThirdColor selectedContrast={selectedContrast} />;
-    } else if (selectedMode === 'all') {
-        return (
+    const componentMapping: Record<string, JSX.Element> = {
+        third: <ThirdColor selectedContrast={selectedContrast} />,
+        all: (
             <CompareAll
                 colorBars={colorBars}
                 selectedMode={selectedMode}
@@ -31,22 +32,21 @@ const ColorBarList = ({
                 handleColorChange={handleColorChange}
                 removeColorBar={removeColorBar}
             />
-        );
-    } else {
-        return (
+        ),
+        neighbor: (
             <Neighbor
                 colorBars={colorBars}
                 selectedMode={selectedMode}
                 selectedContrast={selectedContrast}
-                setColorBars={(setColors) => {
-                    handleColorChange(0, setColors[0]);
-                }}
+                setColorBars={setColorBars}
                 handleColorChange={handleColorChange}
                 removeColorBar={removeColorBar}
                 addColorBar={addColorBar}
             />
-        );
-    }
+        ),
+    };
+
+    return componentMapping[selectedMode];
 };
 
-export default ColorBarList;
+export default memo(ColorBarList);
