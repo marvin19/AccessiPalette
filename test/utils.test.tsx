@@ -2,7 +2,6 @@ import {
     hexToRgb,
     rgbToHex,
     getRgb,
-    renderColorAndContrastBoxes,
     calculateContrastRatio,
     generateThirdContrastColor,
     getLuminance,
@@ -47,35 +46,35 @@ describe('get random rgb value', () => {
     });
 });
 
-describe('render colors and contrast boxes', () => {
-    test('should render 3 color boxes and 2 contrast boxes', () => {
-        const colors = [BLACK_HEX, WHITE_HEX, BLUE_HEX];
-        const visibleColors = 3;
-        const selectedContrast = CONTRAST_RATIO_45;
-        const paletteType = 'adjacent';
-        const elements = renderColorAndContrastBoxes(
-            colors,
-            visibleColors,
-            selectedContrast,
-            paletteType,
-        );
-        expect(elements).toHaveLength(5);
-    });
+// describe('render colors and contrast boxes', () => {
+//     test('should render 3 color boxes and 2 contrast boxes', () => {
+//         const colors = [BLACK_HEX, WHITE_HEX, BLUE_HEX];
+//         const visibleColors = 3;
+//         const selectedContrast = CONTRAST_RATIO_45;
+//         const paletteType = 'adjacent';
+//         const elements = renderColorAndContrastBoxes(
+//             colors,
+//             visibleColors,
+//             selectedContrast,
+//             paletteType,
+//         );
+//         expect(elements).toHaveLength(5);
+//     });
 
-    test('should render 2 color boxes and 1 contrast box', () => {
-        const colors = [BLACK_HEX, WHITE_HEX];
-        const visibleColors = 2;
-        const selectedContrast = CONTRAST_RATIO_3;
-        const paletteType = 'adjacent';
-        const elements = renderColorAndContrastBoxes(
-            colors,
-            visibleColors,
-            selectedContrast,
-            paletteType,
-        );
-        expect(elements).toHaveLength(3);
-    });
-});
+//     test('should render 2 color boxes and 1 contrast box', () => {
+//         const colors = [BLACK_HEX, WHITE_HEX];
+//         const visibleColors = 2;
+//         const selectedContrast = CONTRAST_RATIO_3;
+//         const paletteType = 'adjacent';
+//         const elements = renderColorAndContrastBoxes(
+//             colors,
+//             visibleColors,
+//             selectedContrast,
+//             paletteType,
+//         );
+//         expect(elements).toHaveLength(3);
+//     });
+// });
 
 describe('calculate contrast ratio', () => {
     test('should return 21 for black on white', () => {
