@@ -1,5 +1,4 @@
-import ColorBox from './components/ColorBox';
-import ContrastBoxOld from './components/old-components/ContrastBoxOld';
+// import ColorBox from './components/ColorBox';
 
 export const getRgb = (): number => {
     return Math.floor(Math.random() * 256);
@@ -25,31 +24,31 @@ export const generateAdditionalColors = (count: number): string[] => {
 };
 
 // Render color and contrast boxes together
-export const renderColorAndContrastBoxes = (
-    colors: string[],
-    visibleColors: number,
-    selectedContrast: number,
-    paletteType: string,
-): JSX.Element[] => {
-    const elements: JSX.Element[] = [];
-    for (let i = 0; i < visibleColors; i++) {
-        elements.push(<ColorBox key={`color-${i}`} color={colors[i]} />);
+// export const renderColorAndContrastBoxes = (
+//     colors: string[],
+//     visibleColors: number,
+//     selectedContrast: number,
+//     paletteType: string,
+// ): JSX.Element[] => {
+//     const elements: JSX.Element[] = [];
+//     for (let i = 0; i < visibleColors; i++) {
+//         elements.push(<ColorBox key={`color-${i}`} color={colors[i]} />);
 
-        // Add ContrastBox between ColorBoxes if there is a next Color
-        if (i < visibleColors - 1) {
-            elements.push(
-                <ContrastBoxOld
-                    key={`contrast-${i}`}
-                    leftColor={colors[i]}
-                    rightColor={colors[i + 1]}
-                    selectedContrast={selectedContrast}
-                    paletteType={paletteType}
-                />,
-            );
-        }
-    }
-    return elements;
-};
+//         // Add ContrastBox between ColorBoxes if there is a next Color
+//         if (i < visibleColors - 1) {
+//             elements.push(
+//                 <ContrastBoxOld
+//                     key={`contrast-${i}`}
+//                     leftColor={colors[i]}
+//                     rightColor={colors[i + 1]}
+//                     selectedContrast={selectedContrast}
+//                     paletteType={paletteType}
+//                 />,
+//             );
+//         }
+//     }
+//     return elements;
+// };
 
 // Color coming in as hex
 export const calculateContrastRatio = (
