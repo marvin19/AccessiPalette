@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { calculateContrastRatio, getParentClassForMode } from '../utils'; // Ensure this function is correctly implemented in utils
-import closeButton from '../assets/x-close.svg'; // Ensure this asset exists
-import ColorPicker from './ColorPicker'; // Ensure this component is correctly implemented
-import ContrastBoxFull from './ContrastBoxFull'; // Ensure this component is correctly implemented
+import { calculateContrastRatio, getParentClassForMode } from '../utils';
+
+import ColorPicker from './ColorPicker';
+import ContrastBoxFull from './ContrastBoxFull';
+import RemoveColorButton from './RemoveColorButton';
 
 interface ColorBarProps {
     color: string;
@@ -14,12 +15,12 @@ interface ColorBarProps {
 }
 
 const ColorBar: React.FC<ColorBarProps> = ({
-    onRemove = () => {},
     color,
     selectedMode,
-    onColorChange = () => {},
     allColors = [],
     selectedContrast,
+    onRemove = () => {},
+    onColorChange = () => {},
 }): JSX.Element => {
     const [textColor, setTextColor] = useState('#000000');
 
@@ -38,7 +39,6 @@ const ColorBar: React.FC<ColorBarProps> = ({
 
     const otherColors = allColors.filter((c) => c !== color);
     const textContrastRatio = calculateContrastRatio(textColor, color);
-
     const parentClass = getParentClassForMode(selectedMode);
 
     return (
@@ -72,9 +72,7 @@ const ColorBar: React.FC<ColorBarProps> = ({
                 )}
                 <ColorPicker color={color} onColorChange={handleColorChange} />
             </div>
-            <button className="remove-color" onClick={onRemove}>
-                <img src={closeButton} className="close-button" alt="Remove" />
-            </button>
+            <RemoveColorButton onRemove={onRemove} />
         </div>
     );
 };
