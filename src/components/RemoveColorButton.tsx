@@ -1,14 +1,14 @@
 import closeButton from '../assets/x-close.svg';
 
 interface RemoveColorButtonProps {
-    onRemove: () => void;
+    removeColorBar: () => void;
 }
 
 const removeColorButton = ({
-    onRemove,
+    removeColorBar,
 }: RemoveColorButtonProps): JSX.Element => {
     return (
-        <button className="remove-color" onClick={onRemove}>
+        <button className="remove-color" onClick={removeColorBar}>
             <img src={closeButton} className="close-button" alt="Remove" />
         </button>
     );
