@@ -1,51 +1,52 @@
-import { useEffect, useState } from 'react';
-import { generateAdditionalColors } from '../utils';
+import { useState } from 'react';
+// import { generateAdditionalColors } from '../utils';
 
 interface ColorGenerationResult {
     colors: string[];
-    visibleColors: number;
-    handleColorChange: (newColors: string[]) => void;
-    handleGeneratePalette: () => void;
+    handleColorChange: (index: number, newColor: string) => void;
+    addColorBar: () => void;
+    removeColorBar: (index: number) => void;
 }
 
-const useColorGeneration = (selectedOption: number): ColorGenerationResult => {
-    const [colors, setColors] = useState<string[]>([]);
-    const [visibleColors, setVisibleColors] = useState<number>(0);
+const useColorGeneration = (): ColorGenerationResult => {
+    const defaultColors = [
+        '#6975ff',
+        '#084fd7',
+        '#64bdc6',
+        '#eeca34',
+        '#fe7135',
+        '#fd2a2a',
+    ];
+    const [colors, setColors] = useState<string[]>(defaultColors);
 
-    const handleColorChange = (newColors: string[]): void => {
-        setColors(newColors);
-    };
-
-    const handleGeneratePalette = (): void => {
-        const newColors = generateAdditionalColors(visibleColors);
-        setColors(newColors);
-    };
-
-    const updateVisibleColors = (newVisibleColors: number): void => {
-        if (newVisibleColors < 2) {
-            // eslint-disable-next-line no-console
-            console.error('visibleColors cannot be less than 2 ');
-            return;
-        }
-        setVisibleColors(newVisibleColors);
-    };
-
-    useEffect(() => {
-        if (selectedOption > colors.length) {
-            // If selectedOption increases, generate new colors for the additional color pickers
-            const additionalColors = generateAdditionalColors(
-                selectedOption - colors.length,
+    // TODO: Implement random colors
+    const addColorBar = (): void => {
+        if (colors.length < 10) {
+            const randomIndex = Math.floor(
+                Math.random() * defaultColors.length,
             );
-            setColors((prevColors) => [...prevColors, ...additionalColors]);
+            const newColor = defaultColors[randomIndex];
+            setColors([...colors, newColor]);
         }
-        updateVisibleColors(selectedOption);
-    }, [colors.length, selectedOption]);
+    };
+
+    const removeColorBar = (index: number): void => {
+        if (colors.length > 2) {
+            setColors(colors.filter((_, i) => i !== index));
+        }
+    };
+
+    const handleColorChange = (index: number, newColor: string): void => {
+        const updatedColors = [...colors];
+        updatedColors[index] = newColor;
+        setColors(updatedColors);
+    };
 
     return {
         colors,
-        visibleColors,
+        addColorBar,
         handleColorChange,
-        handleGeneratePalette,
+        removeColorBar,
     };
 };
 
