@@ -4,7 +4,9 @@ import Palette from './components/Palette';
 
 const App: React.FC = (): React.ReactElement | null => {
     const [selectedContrast, setSelectedContrast] = useState<number>(3.0);
-    const [selectedMode, setSelectedMode] = useState<string>('neighbor');
+    const [selectedMode, setSelectedMode] = useState<
+        'all' | 'third' | 'neighbor'
+    >('neighbor');
 
     return (
         <main>

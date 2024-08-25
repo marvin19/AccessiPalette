@@ -3,7 +3,7 @@ import AddNewColor from './AddNewColor';
 
 interface CompareAllProps {
     colorBars: string[];
-    selectedMode: string;
+    selectedMode: 'all' | 'third' | 'neighbor'; // Narrowing down the type
     selectedContrast: number;
     addColorBar: () => void;
     handleColorChange: (index: number, newColor: string) => void;
@@ -28,7 +28,7 @@ const CompareAll = ({
                         onColorChange={(newColor) => {
                             handleColorChange(index, newColor);
                         }}
-                        onRemove={() => {
+                        removeColorBar={() => {
                             removeColorBar(index);
                         }}
                         allColors={colorBars}

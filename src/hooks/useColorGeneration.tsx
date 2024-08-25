@@ -1,51 +1,76 @@
-import { useEffect, useState } from 'react';
-import { generateAdditionalColors } from '../utils';
+import { useState, useCallback, useMemo } from 'react';
 
 interface ColorGenerationResult {
     colors: string[];
-    visibleColors: number;
-    handleColorChange: (newColors: string[]) => void;
-    handleGeneratePalette: () => void;
+    handleColorChange: (index: number, newColor: string) => void;
+    addColorBar: () => void;
+    removeColorBar: (index: number) => void;
+    setColorBars: (newColors: string[]) => void;
 }
 
-const useColorGeneration = (selectedOption: number): ColorGenerationResult => {
-    const [colors, setColors] = useState<string[]>([]);
-    const [visibleColors, setVisibleColors] = useState<number>(0);
+const MAX_COLOR_BARS = 20;
+const MIN_COLOR_BARS = 2;
 
-    const handleColorChange = (newColors: string[]): void => {
-        setColors(newColors);
-    };
+const useColorGeneration = (): ColorGenerationResult => {
+    const defaultColors = useMemo(
+        () => [
+            '#6975ff',
+            '#084fd7',
+            '#64bdc6',
+            '#eeca34',
+            '#fe7135',
+            '#fd2a2a',
+        ],
+        [],
+    );
 
-    const handleGeneratePalette = (): void => {
-        const newColors = generateAdditionalColors(visibleColors);
-        setColors(newColors);
-    };
+    const [colors, setColors] = useState<string[]>(defaultColors);
 
-    const updateVisibleColors = (newVisibleColors: number): void => {
-        if (newVisibleColors < 2) {
-            // eslint-disable-next-line no-console
-            console.error('visibleColors cannot be less than 2 ');
-            return;
-        }
-        setVisibleColors(newVisibleColors);
-    };
-
-    useEffect(() => {
-        if (selectedOption > colors.length) {
-            // If selectedOption increases, generate new colors for the additional color pickers
-            const additionalColors = generateAdditionalColors(
-                selectedOption - colors.length,
+    const addColorBar = useCallback((): void => {
+        if (colors.length < MAX_COLOR_BARS) {
+            const randomIndex = Math.floor(
+                Math.random() * defaultColors.length,
             );
-            setColors((prevColors) => [...prevColors, ...additionalColors]);
+            const newColor = defaultColors[randomIndex];
+            setColors((prevColors) => [...prevColors, newColor]);
         }
-        updateVisibleColors(selectedOption);
-    }, [colors.length, selectedOption]);
+    }, [colors.length, defaultColors]);
+
+    const removeColorBar = useCallback(
+        (index: number): void => {
+            if (colors.length > MIN_COLOR_BARS) {
+                setColors((prevColors) =>
+                    prevColors.filter((_, i) => i !== index),
+                );
+            }
+        },
+        [colors.length],
+    );
+
+    const handleColorChange = useCallback(
+        (index: number, newColor: string): void => {
+            setColors((prevColors) => {
+                if (index >= 0 && index < prevColors.length) {
+                    const updatedColors = [...prevColors];
+                    updatedColors[index] = newColor;
+                    return updatedColors;
+                }
+                return prevColors;
+            });
+        },
+        [],
+    );
+
+    const setColorBars = useCallback((newColors: string[]): void => {
+        setColors(newColors);
+    }, []);
 
     return {
         colors,
-        visibleColors,
+        addColorBar,
         handleColorChange,
-        handleGeneratePalette,
+        removeColorBar,
+        setColorBars,
     };
 };
 
