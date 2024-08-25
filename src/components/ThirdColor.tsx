@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import ColorBar from './ColorBar';
 import ContrastBox from './ContrastBox';
 import useContrastColor from '../hooks/useContrastColor';
+import { generateNewRandomColor } from '../utils';
 
-const defaultColors = ['#6975ff', '#084fd7'];
+const defaultColors = [generateNewRandomColor(), generateNewRandomColor()];
 
 interface ThirdColorProps {
     onColorChange?: (colors: string[]) => void;
@@ -67,8 +68,8 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                     ) : (
                         <div className="color-bar-outer no-button">
                             <p className="no-colors">
-                                No colors available with enough contrast. Adjust
-                                color input.
+                                No colors available with contrast level{' '}
+                                {selectedContrast}:1 set. Adjust color input.
                             </p>
                         </div>
                     )
