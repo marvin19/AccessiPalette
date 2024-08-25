@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { getParentClassForMode } from '../utils';
+
 import ColorBarContent from './ColorBarContent';
 
 interface ColorBarProps {
@@ -19,13 +19,8 @@ const ColorBar = ({
     removeColorBar = () => {},
     onColorChange = () => {},
 }: ColorBarProps): JSX.Element => {
-    const parentClass = getParentClassForMode(selectedMode);
-
     return (
-        <div
-            className={`color-bar-outer ${parentClass}`}
-            style={{ backgroundColor: color }}
-        >
+        <div className="color-bar-outer" style={{ backgroundColor: color }}>
             <ColorBarContent
                 removeColorBar={removeColorBar}
                 onColorChange={onColorChange}

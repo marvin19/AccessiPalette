@@ -791,10 +791,21 @@ label {
     border: 1px solid black
 }
 
-/* Only for when compare all is selected */
 .all {
-    width: 200px !important;
-    height: 350px !important;
+    .contrast-box-full {
+        padding: 4% 5%;
+    }
+    .color-bar-outer {
+        flex: 0 0 auto;
+        margin-bottom: 10px;
+        width: 200px;
+        min-height: 350px;
+        height: auto;
+    }
+
+    .color-picker-container {
+        margin: 10px auto;
+    }
 }
 
 .color-bar-outer {
