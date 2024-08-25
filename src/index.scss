@@ -876,6 +876,12 @@ label {
     border: none;
     cursor: pointer;
     color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    padding: 5px;
+}
+
+.remove-color:hover {
+    transform: scale(1.4); /* Slightly enlarge the button on hover */
 }
 
 .close-button {
