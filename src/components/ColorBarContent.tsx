@@ -3,6 +3,7 @@ import ColorPicker from './ColorPicker';
 import ContrastBoxFull from './ContrastBoxFull';
 import RemoveColorButton from './RemoveColorButton';
 import useTextColor from '../hooks/useTextColor';
+import useOtherColor from '../hooks/useOtherColor';
 
 interface ColorBarContentProps {
     allColors: string[];
@@ -22,7 +23,7 @@ const ColorBarContent = ({
     selectedContrast,
 }: ColorBarContentProps): JSX.Element => {
     const textColor = useTextColor(color);
-    const otherColors = allColors.filter((c) => c !== color);
+    const otherColors = useOtherColor(allColors, color);
     const handleColorChange = (newColor: string): void => {
         onColorChange(newColor);
     };
