@@ -21,10 +21,8 @@ export const rgbToHex = (r: number, g: number, b: number): string => {
 };
 
 // Generate an array of random colors at a given length
-export const generateAdditionalColors = (count: number): string[] => {
-    return Array.from({ length: count }, () => {
-        return rgbToHex(getRgb(), getRgb(), getRgb());
-    });
+export const generateNewRandomColor = (): string => {
+    return rgbToHex(getRgb(), getRgb(), getRgb());
 };
 
 // Render color and contrast boxes together

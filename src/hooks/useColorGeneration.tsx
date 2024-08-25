@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
+import { generateNewRandomColor } from '../utils';
 
 interface ColorGenerationResult {
     colors: string[];
@@ -28,13 +29,10 @@ const useColorGeneration = (): ColorGenerationResult => {
 
     const addColorBar = useCallback((): void => {
         if (colors.length < MAX_COLOR_BARS) {
-            const randomIndex = Math.floor(
-                Math.random() * defaultColors.length,
-            );
-            const newColor = defaultColors[randomIndex];
+            const newColor = generateNewRandomColor();
             setColors((prevColors) => [...prevColors, newColor]);
         }
-    }, [colors.length, defaultColors]);
+    }, [colors.length]);
 
     const removeColorBar = useCallback(
         (index: number): void => {
