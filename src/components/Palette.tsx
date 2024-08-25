@@ -2,7 +2,7 @@ import ColorBarList from './ColorBarList';
 
 interface PaletteProps {
     selectedContrast: number;
-    selectedMode: string;
+    selectedMode: 'all' | 'third' | 'neighbor';
 }
 
 const Palette = ({

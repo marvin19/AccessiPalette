@@ -2,7 +2,7 @@ import Tabs from './Tabs';
 import { useState, useEffect } from 'react';
 
 interface ContrastModeTabProps {
-    setSelectedMode: (value: string) => void;
+    setSelectedMode: (value: 'all' | 'neighbor' | 'third') => void; // Updated to the union type
 }
 
 const ContrastModeTab = ({
@@ -13,7 +13,11 @@ const ContrastModeTab = ({
 
     const handleTabSelect = (index: number): void => {
         setSelectedTab(index);
-        const modes = ['all', 'neighbor', 'third'];
+        const modes: Array<'all' | 'neighbor' | 'third'> = [
+            'all',
+            'neighbor',
+            'third',
+        ]; // Ensure TypeScript knows this is a union type array
         setSelectedMode(modes[index]);
     };
 

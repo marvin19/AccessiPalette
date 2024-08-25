@@ -6,7 +6,7 @@ import useColorGeneration from '../hooks/useColorGeneration';
 
 interface ColorBarListProps {
     selectedContrast: number;
-    selectedMode: string;
+    selectedMode: 'all' | 'third' | 'neighbor';
 }
 
 const ColorBarList = ({

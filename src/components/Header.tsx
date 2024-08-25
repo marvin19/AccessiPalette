@@ -10,7 +10,7 @@ import { faQuestionCircle, faBars } from '@fortawesome/free-solid-svg-icons';
 
 interface HeaderProps {
     setSelectedContrast: (value: number) => void;
-    setSelectedMode: (value: string) => void;
+    setSelectedMode: (value: 'all' | 'third' | 'neighbor') => void;
 }
 
 const Header = ({

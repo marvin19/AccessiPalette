@@ -5,7 +5,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 interface NeighborProps {
     colorBars: string[];
-    selectedMode: string;
+    selectedMode: 'all' | 'third' | 'neighbor';
     selectedContrast: number;
     handleColorChange: (index: number, newColor: string) => void;
     removeColorBar: (index: number) => void;
@@ -70,7 +70,7 @@ const Neighbor = ({
                                                     newColor,
                                                 );
                                             }}
-                                            onRemove={() => {
+                                            removeColorBar={() => {
                                                 removeColorBar(index);
                                             }}
                                             allColors={colorBars}

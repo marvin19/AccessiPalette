@@ -37,7 +37,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                     onColorChange={(newColor) => {
                         handleColorChange(0, newColor);
                     }}
-                    onRemove={() => {}}
+                    removeColorBar={() => {}}
                     allColors={colors}
                 />
             </div>
@@ -47,7 +47,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                         contrastColor !== null ? (
                             <ColorBar
                                 color={contrastColor}
-                                onRemove={() => {
+                                removeColorBar={() => {
                                     // Handle the removal of the contrast color if needed
                                 }}
                                 allColors={[...colors, contrastColor]}
@@ -75,7 +75,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                     onColorChange={(newColor) => {
                         handleColorChange(1, newColor);
                     }}
-                    onRemove={() => {}}
+                    removeColorBar={() => {}}
                     allColors={colors}
                 />
             </div>

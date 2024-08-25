@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { getParentClassForMode } from '../utils';
 import ColorBarContent from './ColorBarContent';
 
