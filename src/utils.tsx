@@ -1,5 +1,9 @@
 // import ColorBox from './components/ColorBox';
 
+const WCAG_TRIPLE_AA_TEXT_CONTRAST_THRESHOLD = 7;
+const WCAG_TEXT_CONTRAST_THRESHOLD = 4.5;
+const WCAG_GRAPHIC_CONTRAST_THRESHOLD = 3;
+
 export const getRgb = (): number => {
     return Math.floor(Math.random() * 256);
 };
@@ -143,4 +147,27 @@ export const getParentClassForMode = (selectedMode?: string): string => {
         return 'third';
     }
     return '';
+};
+
+export const getWCAGLevel = (
+    contrastRatio: number,
+    selectedContrast: number,
+): { level: string; meetsWCAG: boolean } => {
+    if (selectedContrast === WCAG_TEXT_CONTRAST_THRESHOLD) {
+        return {
+            level: 'AA',
+            meetsWCAG: contrastRatio >= WCAG_TEXT_CONTRAST_THRESHOLD,
+        };
+    } else if (selectedContrast === WCAG_GRAPHIC_CONTRAST_THRESHOLD) {
+        return {
+            level: 'A',
+            meetsWCAG: contrastRatio >= WCAG_GRAPHIC_CONTRAST_THRESHOLD,
+        };
+    } else if (selectedContrast === WCAG_TRIPLE_AA_TEXT_CONTRAST_THRESHOLD) {
+        return {
+            level: 'AAA',
+            meetsWCAG: contrastRatio >= WCAG_TRIPLE_AA_TEXT_CONTRAST_THRESHOLD,
+        };
+    }
+    return { level: '', meetsWCAG: false };
 };
