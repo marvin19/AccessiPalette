@@ -169,3 +169,13 @@ export const getWCAGLevel = (
     }
     return { level: '', meetsWCAG: false };
 };
+
+export const shuffleArray = (array: string[]): string[] => {
+    const newArray = [...array]; // Copy the array to avoid mutation
+
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+};

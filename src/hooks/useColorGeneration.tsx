@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { generateNewRandomColor } from '../utils';
+import { generateNewRandomColor, shuffleArray } from '../utils';
 
 interface ColorGenerationResult {
     colors: string[];
@@ -14,14 +14,15 @@ const MIN_COLOR_BARS = 2;
 
 const useColorGeneration = (): ColorGenerationResult => {
     const defaultColors = useMemo(
-        () => [
-            '#6975ff',
-            '#084fd7',
-            '#64bdc6',
-            '#eeca34',
-            '#fe7135',
-            '#fd2a2a',
-        ],
+        () =>
+            shuffleArray([
+                '#6975ff',
+                '#084fd7',
+                '#64bdc6',
+                '#eeca34',
+                '#fe7135',
+                '#fd2a2a',
+            ]),
         [],
     );
 
