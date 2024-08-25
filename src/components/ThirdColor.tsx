@@ -9,11 +9,13 @@ const defaultColors = [generateNewRandomColor(), generateNewRandomColor()];
 interface ThirdColorProps {
     onColorChange?: (colors: string[]) => void;
     selectedContrast: number;
+    selectedMode?: 'all' | 'third' | 'neighbor';
 }
 
 const ThirdColor: React.FC<ThirdColorProps> = ({
     onColorChange,
     selectedContrast,
+    selectedMode,
 }) => {
     const [colors, setColors] = useState<string[]>(defaultColors);
     const [buttonClicked, setButtonClicked] = useState<boolean>(false);
@@ -41,6 +43,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                     }}
                     removeColorBar={() => {}}
                     allColors={colors}
+                    selectedMode={selectedMode}
                 />
                 {buttonClicked && contrastColor !== null && (
                     <ContrastBox
@@ -58,6 +61,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                                 color={contrastColor}
                                 removeColorBar={() => {}}
                                 allColors={[...colors, contrastColor]}
+                                selectedMode={selectedMode}
                             />
                             <ContrastBox
                                 leftColor={contrastColor}
@@ -95,6 +99,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                     }}
                     removeColorBar={() => {}}
                     allColors={colors}
+                    selectedMode={selectedMode}
                 />
             </div>
         </div>
