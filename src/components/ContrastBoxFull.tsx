@@ -2,6 +2,7 @@ import React from 'react';
 import { calculateContrastRatio } from '../utils';
 import WCAGCheck from './WCAGCheck';
 import SmallColorBox from './SmallColorBox';
+import useOtherColor from '../hooks/useOtherColor';
 
 interface ContrastBoxFullProps {
     activeColor: string;
@@ -21,14 +22,16 @@ const ContrastBoxFull: React.FC<ContrastBoxFullProps> = ({
     let level = '',
         meetsWCAG = false;
 
+    const filteredColors = useOtherColor(otherColors, activeColor);
+    const uniqueOtherColors = Array.from(new Set(filteredColors));
+
     return (
         <div className="contrast-box-full">
-            {otherColors.map((otherColor, index) => {
+            {uniqueOtherColors.map((otherColor, index) => {
                 const contrastRatio = calculateContrastRatio(
                     activeColor,
                     otherColor,
                 );
-                //const meetsWCAG = contrastRatio >= threshold;
 
                 if (selectedContrast === WCAG_TEXT_CONTRAST_THRESHOLD) {
                     meetsWCAG = contrastRatio >= WCAG_TEXT_CONTRAST_THRESHOLD;
