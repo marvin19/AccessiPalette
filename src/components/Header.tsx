@@ -6,7 +6,11 @@ import ContrastModeTab from './ContrastModeTab';
 import GitHubLink from './GitHubLink';
 import PalettaLogo from './PalettaLogo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestionCircle, faBars } from '@fortawesome/free-solid-svg-icons';
+import {
+    faQuestionCircle,
+    faBars,
+    faX,
+} from '@fortawesome/free-solid-svg-icons';
 
 interface HeaderProps {
     setSelectedContrast: (value: number) => void;
@@ -60,7 +64,7 @@ const Header = ({
                     <GitHubLink />
                     <PalettaLogo />
                     <FontAwesomeIcon
-                        icon={faBars}
+                        icon={isMenuOpen ? faX : faBars}
                         className="hamburger-icon"
                         onClick={toggleMenu}
                         style={{ color: '#000000' }}
