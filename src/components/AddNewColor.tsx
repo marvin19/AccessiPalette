@@ -10,7 +10,6 @@ const AddNewColor = ({
     selectedMode,
 }: AddNewColorProps): JSX.Element | null => {
     if (colorBars.length >= 20) return null;
-
     return (
         <div className="color-bar-container">
             <div

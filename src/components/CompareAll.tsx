@@ -1,5 +1,6 @@
 import ColorBar from './ColorBar';
 import AddNewColor from './AddNewColor';
+import { getParentClassForMode } from '../utils';
 
 interface CompareAllProps {
     colorBars: string[];
@@ -18,8 +19,10 @@ const CompareAll = ({
     handleColorChange,
     removeColorBar,
 }: CompareAllProps): JSX.Element => {
+    const parentClass = getParentClassForMode(selectedMode);
+
     return (
-        <div className="color-bars">
+        <div className={`color-bars ${parentClass}`}>
             {colorBars.map((color, index) => (
                 <div className="color-bar-container" key={index}>
                     <ColorBar

@@ -487,6 +487,8 @@ li {
     display: none;
 }
 
+
+
 /* After 992px, hide the default logo and show the new one */
 @media (max-width: 992px) and (min-width: 768px) {
     .logo {
@@ -706,16 +708,33 @@ label {
     gap: 10px;
 }
 
-.icon-wrapper {
+.icon-wrapper{
     display: flex;
     align-items: center;
     height: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 50%;
+}
+
+.icon-wrapper:hover {
+    transform: scale(1.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.burger:hover {
+    transform: scale(1.3);
+    padding: 2px;
+
 }
 
 .icon-wrapper svg,
 .icon-wrapper .fa-question-circle {
     width: 16px;
     height: 16px;
+}
+
+.icon-wrapper a {
+    
 }
 
 .link-and-logo h1 {
@@ -791,10 +810,21 @@ label {
     border: 1px solid black
 }
 
-/* Only for when compare all is selected */
 .all {
-    width: 200px !important;
-    height: 350px !important;
+    .contrast-box-full {
+        padding: 5% 4%;
+    }
+    .color-bar-outer {
+        flex: 0 0 auto;
+        margin-bottom: 10px;
+        width: 200px;
+        min-height: 350px;
+        height: auto;
+    }
+
+    .color-picker-container {
+        margin: 10px auto;
+    }
 }
 
 .color-bar-outer {
@@ -865,6 +895,12 @@ label {
     border: none;
     cursor: pointer;
     color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    padding: 5px;
+}
+
+.remove-color:hover {
+    transform: scale(1.4); /* Slightly enlarge the button on hover */
 }
 
 .close-button {
@@ -905,9 +941,21 @@ label {
     transition: background-color 0.3s, border-color 0.3s;
 }
 
-.add-color-bar:hover {
+.add-color-bar:has(button):hover {
     background-color: #f0f0f0;
     border-color: #888;
+}
+
+.add-color-bar.no-button {
+    background-color: black;
+    border: 1px solid #eee;
+    cursor: default; /* Prevent the hand cursor */
+    pointer-events: none; /* Disable click events */
+}
+
+.add-color-bar.no-button:hover {
+    background-color: #f9f9f9;
+    border-color: #eee;
 }
 
 .add-color-bar .add-color-bar-button {
@@ -923,6 +971,18 @@ label {
     cursor: pointer;
     transition: color 0.3s;
 }
+
+.add-color-bar-button.disabled {
+    background-color: #ccc; /* Example: Greyed out */
+    cursor: default;
+    color: #999; /* Example: Lighter text color */
+    text-align: center;
+    padding: 10px;
+    border: none;
+    pointer-events: none; /* Disable interaction */
+    width: 100%;
+}
+
 
 .add-color-bar:hover .add-color-bar-button {
     color: #000 !important;

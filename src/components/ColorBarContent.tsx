@@ -27,6 +27,7 @@ const ColorBarContent = ({
     const handleColorChange = (newColor: string): void => {
         onColorChange(newColor);
     };
+    const lengthOfColors = allColors.length;
 
     return (
         <>
@@ -43,7 +44,12 @@ const ColorBarContent = ({
                 )}
                 <ColorPicker color={color} onColorChange={handleColorChange} />
             </div>
-            <RemoveColorButton removeColorBar={removeColorBar} />
+            {selectedMode !== 'third' && lengthOfColors > 2 && (
+                <RemoveColorButton
+                    removeColorBar={removeColorBar}
+                    textColor={textColor}
+                />
+            )}
         </>
     );
 };

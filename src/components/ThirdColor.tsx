@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import ColorBar from './ColorBar';
+import ContrastBox from './ContrastBox';
 import useContrastColor from '../hooks/useContrastColor';
+import { generateNewRandomColor } from '../utils';
 
-const defaultColors = ['#6975ff', '#084fd7'];
+const defaultColors = [generateNewRandomColor(), generateNewRandomColor()];
 
 interface ThirdColorProps {
     onColorChange?: (colors: string[]) => void;
     selectedContrast: number;
+    selectedMode?: 'all' | 'third' | 'neighbor';
 }
 
 const ThirdColor: React.FC<ThirdColorProps> = ({
     onColorChange,
     selectedContrast,
+    selectedMode,
 }) => {
     const [colors, setColors] = useState<string[]>(defaultColors);
     const [buttonClicked, setButtonClicked] = useState<boolean>(false);
@@ -39,36 +43,54 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                     }}
                     removeColorBar={() => {}}
                     allColors={colors}
+                    selectedMode={selectedMode}
                 />
+                {buttonClicked && contrastColor !== null && (
+                    <ContrastBox
+                        leftColor={colors[0]}
+                        rightColor={contrastColor}
+                        selectedContrast={selectedContrast}
+                    />
+                )}
             </div>
             <div className="color-bar-container">
-                <div className="color-bar-outer add-color-bar">
-                    {buttonClicked ? (
-                        contrastColor !== null ? (
+                {buttonClicked ? (
+                    contrastColor !== null ? (
+                        <>
                             <ColorBar
                                 color={contrastColor}
-                                removeColorBar={() => {
-                                    // Handle the removal of the contrast color if needed
-                                }}
+                                removeColorBar={() => {}}
                                 allColors={[...colors, contrastColor]}
+                                selectedMode={selectedMode}
                             />
-                        ) : (
-                            // <p>Contrast Color: {contrastColor}</p>
-                            <p>
-                                No colors available with enough contrast. Adjust
-                                color input.
-                            </p>
-                        )
+                            <ContrastBox
+                                leftColor={contrastColor}
+                                rightColor={colors[1]}
+                                selectedContrast={selectedContrast}
+                            />
+                        </>
                     ) : (
+                        <div className="color-bar-outer no-button">
+                            <p className="no-colors">
+                                No colors available with contrast level{' '}
+                                {selectedContrast}:1 set. Adjust color input.
+                            </p>
+                        </div>
+                    )
+                ) : (
+                    <div className="color-bar-outer add-color-bar">
                         <button
+                            id="find-button"
                             onClick={addColorBar}
                             className="add-color-bar-button"
                         >
                             + Find contrast color
                         </button>
-                    )}
-                </div>
+                    </div>
+                )}
             </div>
+
+            {/* Last ColorBar */}
             <div className="color-bar-container">
                 <ColorBar
                     color={colors[1]}
@@ -77,6 +99,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                     }}
                     removeColorBar={() => {}}
                     allColors={colors}
+                    selectedMode={selectedMode}
                 />
             </div>
         </div>

@@ -22,7 +22,12 @@ const ColorBarList = ({
     } = useColorGeneration();
 
     const componentMapping: Record<string, JSX.Element> = {
-        third: <ThirdColor selectedContrast={selectedContrast} />,
+        third: (
+            <ThirdColor
+                selectedContrast={selectedContrast}
+                selectedMode={selectedMode}
+            />
+        ) as JSX.Element,
         all: (
             <CompareAll
                 colorBars={colorBars}

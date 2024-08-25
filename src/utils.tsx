@@ -1,5 +1,9 @@
 // import ColorBox from './components/ColorBox';
 
+const WCAG_TRIPLE_AA_TEXT_CONTRAST_THRESHOLD = 7;
+const WCAG_TEXT_CONTRAST_THRESHOLD = 4.5;
+const WCAG_GRAPHIC_CONTRAST_THRESHOLD = 3;
+
 export const getRgb = (): number => {
     return Math.floor(Math.random() * 256);
 };
@@ -17,10 +21,8 @@ export const rgbToHex = (r: number, g: number, b: number): string => {
 };
 
 // Generate an array of random colors at a given length
-export const generateAdditionalColors = (count: number): string[] => {
-    return Array.from({ length: count }, () => {
-        return rgbToHex(getRgb(), getRgb(), getRgb());
-    });
+export const generateNewRandomColor = (): string => {
+    return rgbToHex(getRgb(), getRgb(), getRgb());
 };
 
 // Render color and contrast boxes together
@@ -143,4 +145,44 @@ export const getParentClassForMode = (selectedMode?: string): string => {
         return 'third';
     }
     return '';
+};
+
+export const getWCAGLevel = (
+    contrastRatio: number,
+    selectedContrast: number,
+): { level: string; meetsWCAG: boolean } => {
+    if (selectedContrast === WCAG_TEXT_CONTRAST_THRESHOLD) {
+        return {
+            level: 'AA',
+            meetsWCAG: contrastRatio >= WCAG_TEXT_CONTRAST_THRESHOLD,
+        };
+    } else if (selectedContrast === WCAG_GRAPHIC_CONTRAST_THRESHOLD) {
+        return {
+            level: 'A',
+            meetsWCAG: contrastRatio >= WCAG_GRAPHIC_CONTRAST_THRESHOLD,
+        };
+    } else if (selectedContrast === WCAG_TRIPLE_AA_TEXT_CONTRAST_THRESHOLD) {
+        return {
+            level: 'AAA',
+            meetsWCAG: contrastRatio >= WCAG_TRIPLE_AA_TEXT_CONTRAST_THRESHOLD,
+        };
+    }
+    return { level: '', meetsWCAG: false };
+};
+
+/**
+ * Shuffle algorith to randomize array order
+ *
+ * @param {string[]} array - Array to shuffle
+ * @returns {string[]} newArray - Shuffled array
+ */
+
+export const shuffleArray = (array: string[]): string[] => {
+    const newArray = [...array]; // Copy the array to avoid mutation
+
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
 };
