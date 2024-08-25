@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ColorBar from './ColorBar';
+import ContrastBox from './ContrastBox';
 import useContrastColor from '../hooks/useContrastColor';
 
 const defaultColors = ['#6975ff', '#084fd7'];
@@ -40,21 +41,30 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                     removeColorBar={() => {}}
                     allColors={colors}
                 />
+                {buttonClicked && contrastColor !== null && (
+                    <ContrastBox
+                        leftColor={colors[0]}
+                        rightColor={contrastColor}
+                        selectedContrast={selectedContrast}
+                    />
+                )}
             </div>
-
             <div className="color-bar-container">
                 {buttonClicked ? (
                     contrastColor !== null ? (
-                        // If a contrast color is found, render the ColorBar directly
-                        <ColorBar
-                            color={contrastColor}
-                            removeColorBar={() => {
-                                // Handle the removal of the contrast color if needed
-                            }}
-                            allColors={[...colors, contrastColor]}
-                        />
+                        <>
+                            <ColorBar
+                                color={contrastColor}
+                                removeColorBar={() => {}}
+                                allColors={[...colors, contrastColor]}
+                            />
+                            <ContrastBox
+                                leftColor={contrastColor}
+                                rightColor={colors[1]}
+                                selectedContrast={selectedContrast}
+                            />
+                        </>
                     ) : (
-                        // No contrast color found, show message
                         <div className="color-bar-outer no-button">
                             <p className="no-colors">
                                 No colors available with enough contrast. Adjust
@@ -63,7 +73,6 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                         </div>
                     )
                 ) : (
-                    // Initial state with the button
                     <div className="color-bar-outer add-color-bar">
                         <button
                             id="find-button"
@@ -76,6 +85,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                 )}
             </div>
 
+            {/* Last ColorBar */}
             <div className="color-bar-container">
                 <ColorBar
                     color={colors[1]}
