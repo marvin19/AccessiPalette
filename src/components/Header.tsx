@@ -63,12 +63,14 @@ const Header = ({
                     </a>
                     <GitHubLink />
                     <PalettaLogo />
-                    <FontAwesomeIcon
-                        icon={isMenuOpen ? faX : faBars}
-                        className="hamburger-icon"
-                        onClick={toggleMenu}
-                        style={{ color: '#000000' }}
-                    />
+                    <button className="burger">
+                        <FontAwesomeIcon
+                            icon={isMenuOpen ? faX : faBars}
+                            className="hamburger-icon"
+                            onClick={toggleMenu}
+                            style={{ color: '#000000' }}
+                        />
+                    </button>
                 </div>
             </div>
             {isMenuOpen && (
