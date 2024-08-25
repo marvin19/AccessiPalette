@@ -916,9 +916,21 @@ label {
     transition: background-color 0.3s, border-color 0.3s;
 }
 
-.add-color-bar:hover {
+.add-color-bar:has(button):hover {
     background-color: #f0f0f0;
     border-color: #888;
+}
+
+.add-color-bar.no-button {
+    background-color: black;
+    border: 1px solid #eee;
+    cursor: default; /* Prevent the hand cursor */
+    pointer-events: none; /* Disable click events */
+}
+
+.add-color-bar.no-button:hover {
+    background-color: #f9f9f9;
+    border-color: #eee;
 }
 
 .add-color-bar .add-color-bar-button {
@@ -934,6 +946,18 @@ label {
     cursor: pointer;
     transition: color 0.3s;
 }
+
+.add-color-bar-button.disabled {
+    background-color: #ccc; /* Example: Greyed out */
+    cursor: default;
+    color: #999; /* Example: Lighter text color */
+    text-align: center;
+    padding: 10px;
+    border: none;
+    pointer-events: none; /* Disable interaction */
+    width: 100%;
+}
+
 
 .add-color-bar:hover .add-color-bar-button {
     color: #000 !important;
