@@ -1,15 +1,18 @@
-import closeButton from '../assets/x-close.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 
 interface RemoveColorButtonProps {
+    textColor: string;
     removeColorBar: () => void;
 }
 
 const removeColorButton = ({
     removeColorBar,
+    textColor,
 }: RemoveColorButtonProps): JSX.Element => {
     return (
         <button className="remove-color" onClick={removeColorBar}>
-            <img src={closeButton} className="close-button" alt="Remove" />
+            <FontAwesomeIcon icon={faX} style={{ color: textColor }} />
         </button>
     );
 };
