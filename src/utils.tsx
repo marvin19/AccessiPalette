@@ -170,6 +170,13 @@ export const getWCAGLevel = (
     return { level: '', meetsWCAG: false };
 };
 
+/**
+ * Shuffle algorith to randomize array order
+ *
+ * @param {string[]} array - Array to shuffle
+ * @returns {string[]} newArray - Shuffled array
+ */
+
 export const shuffleArray = (array: string[]): string[] => {
     const newArray = [...array]; // Copy the array to avoid mutation
 
