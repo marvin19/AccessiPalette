@@ -33,6 +33,15 @@ const Neighbor = ({
         setSelectedIndex,
     } = useColorBarInteractions({ colorBars, setColorBars });
 
+    const handleClick = (index: number, event: React.MouseEvent): void => {
+        if (draggedIndex === null) {
+            setSelectedIndex(null); // This removes focus
+            (event.currentTarget as HTMLDivElement).blur();
+        } else {
+            setSelectedIndex(index);
+        }
+    };
+
     return (
         <div
             className="color-bars"
@@ -51,8 +60,8 @@ const Neighbor = ({
                     tabIndex={0}
                     draggable // Enable drag-and-drop
                     ref={(el) => (colorBarRefs.current[index] = el)}
-                    onClick={() => {
-                        setSelectedIndex(index);
+                    onClick={(event) => {
+                        handleClick(index, event);
                     }}
                     onFocus={() => {
                         setSelectedIndex(index);
