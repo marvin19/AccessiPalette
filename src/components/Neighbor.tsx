@@ -1,7 +1,7 @@
+import React, { useState, useEffect, useRef } from 'react';
 import AddNewColor from './AddNewColor';
 import ColorBar from './ColorBar';
 import ContrastBox from './ContrastBox';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 interface NeighborProps {
     colorBars: string[];
@@ -10,7 +10,7 @@ interface NeighborProps {
     handleColorChange: (index: number, newColor: string) => void;
     removeColorBar: (index: number) => void;
     addColorBar: () => void;
-    setColorBars: (newColors: string[]) => void;
+    setColorBars: (newColorBars: string[]) => void;
 }
 
 const Neighbor = ({
@@ -22,85 +22,66 @@ const Neighbor = ({
     addColorBar,
     setColorBars,
 }: NeighborProps): JSX.Element => {
-    const onDragEnd = (result: any): void => {
-        /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-        if (
-            result.destination &&
-            typeof result.destination.index === 'number'
-        ) {
-            const sourceIndex: number = result.source.index as number;
-            const destinationIndex: number = result.destination.index as number;
+    const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+    const colorBarRefs = useRef<Array<HTMLDivElement | null>>([]);
 
-            const newColorBars = Array.from(colorBars);
-            const [movedColor] = newColorBars.splice(sourceIndex, 1);
-            newColorBars.splice(destinationIndex, 0, movedColor);
+    useEffect(() => {
+        if (selectedIndex !== null) {
+            colorBarRefs.current[selectedIndex]?.focus();
+        }
+    }, [selectedIndex]);
 
-            setColorBars(newColorBars);
+    const handleKeyDown = (event: React.KeyboardEvent, index: number): void => {
+        if (event.key === 'ArrowRight' && index < colorBars.length - 1) {
+            setSelectedIndex(index + 1);
+            console.log('ArrowRight');
+        } else if (event.key === 'ArrowLeft' && index > 0) {
+            console.log('ArrowLeft');
+            setSelectedIndex(index - 1);
+        } else if (event.key === ' ' && selectedIndex !== null) {
+            console.log('Enter is pressed');
         }
     };
 
     return (
-        <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="colorBars" direction="horizontal">
-                {(provided) => (
-                    <div
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        className="color-bars"
-                    >
-                        {colorBars.map((color, index) => (
-                            <Draggable
-                                key={index}
-                                draggableId={`color-${index}`}
-                                index={index}
-                            >
-                                {(provided) => (
-                                    <div
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                        className="color-bar-container"
-                                    >
-                                        <ColorBar
-                                            color={color}
-                                            selectedMode={selectedMode}
-                                            onColorChange={(newColor) => {
-                                                handleColorChange(
-                                                    index,
-                                                    newColor,
-                                                );
-                                            }}
-                                            removeColorBar={() => {
-                                                removeColorBar(index);
-                                            }}
-                                            allColors={colorBars}
-                                            selectedContrast={selectedContrast}
-                                        />
-                                        {selectedMode === 'neighbor' &&
-                                            index < colorBars.length - 1 && (
-                                                <ContrastBox
-                                                    leftColor={colorBars[index]}
-                                                    rightColor={
-                                                        colorBars[index + 1]
-                                                    }
-                                                    selectedContrast={
-                                                        selectedContrast
-                                                    }
-                                                />
-                                            )}
-                                    </div>
-                                )}
-                            </Draggable>
-                        ))}
-                        {provided.placeholder}
-                        <AddNewColor
-                            addColorBar={addColorBar}
-                            colorBars={colorBars}
-                        />
-                    </div>
-                )}
-            </Droppable>
-        </DragDropContext>
+        <div className="color-bars">
+            {colorBars.map((color, index) => (
+                <div
+                    key={index}
+                    className={`color-bar-container ${index === selectedIndex ? 'selected' : ''}`}
+                    tabIndex={0}
+                    ref={(el) => (colorBarRefs.current[index] = el)}
+                    onClick={() => {
+                        setSelectedIndex(index);
+                    }}
+                    onKeyDown={(event) => {
+                        handleKeyDown(event, index);
+                    }}
+                >
+                    <ColorBar
+                        color={color}
+                        selectedMode={selectedMode}
+                        onColorChange={(newColor) => {
+                            handleColorChange(index, newColor);
+                        }}
+                        removeColorBar={() => {
+                            removeColorBar(index);
+                        }}
+                        allColors={colorBars}
+                        selectedContrast={selectedContrast}
+                    />
+                    {selectedMode === 'neighbor' &&
+                        index < colorBars.length - 1 && (
+                            <ContrastBox
+                                leftColor={colorBars[index]}
+                                rightColor={colorBars[index + 1]}
+                                selectedContrast={selectedContrast}
+                            />
+                        )}
+                </div>
+            ))}
+            <AddNewColor addColorBar={addColorBar} colorBars={colorBars} />
+        </div>
     );
 };
 
