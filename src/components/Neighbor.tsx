@@ -63,31 +63,81 @@ const Neighbor = ({
         } else if (event.key === ' ' && selectedIndex !== null) {
             if (draggedIndex === null) {
                 setDraggedIndex(selectedIndex);
-                console.log('Picked up color bar at index:', selectedIndex);
             } else {
                 setDraggedIndex(null);
-                console.log('Dropped color bar at index:', selectedIndex);
+                setSelectedIndex(null); // Remove focus after dropping
+
+                // Cast currentTarget to HTMLDivElement and call blur
+                (event.currentTarget as HTMLDivElement).blur();
             }
         }
     };
 
+    const handleDragStart = (index: number): void => {
+        setDraggedIndex(index);
+    };
+
+    const handleDragEnter = (index: number): void => {
+        if (draggedIndex !== null && draggedIndex !== index) {
+            swapColors(draggedIndex, index);
+            setDraggedIndex(index);
+            setSelectedIndex(index);
+        }
+    };
+
+    const handleDragOver = (event: React.DragEvent): void => {
+        // Prevent the default drag image
+        event.preventDefault();
+    };
+
+    const handleDragEnd = (): void => {
+        if (
+            draggedIndex !== null &&
+            draggedIndex >= 0 &&
+            draggedIndex < colorBarRefs.current.length
+        ) {
+            const ref = colorBarRefs.current[draggedIndex];
+            if (ref !== null && ref !== undefined) {
+                ref.blur(); // Blur the last dragged element to remove focus
+            }
+        }
+        setDraggedIndex(null);
+        setSelectedIndex(null); // Remove focus after dropping
+    };
+
     return (
-        <div className="color-bars">
+        <div
+            className="color-bars"
+            onClick={() => {
+                setSelectedIndex(null);
+            }}
+        >
+            {' '}
+            {/* Allow clicking outside to clear focus */}
             {colorBars.map((color, index) => (
                 <div
                     key={index}
                     className={`color-bar-container ${index === selectedIndex ? 'selected' : ''} ${index === draggedIndex ? 'dragging' : ''}`}
                     tabIndex={0}
+                    draggable // Enable drag-and-drop
                     ref={(el) => (colorBarRefs.current[index] = el)}
                     onClick={() => {
                         setSelectedIndex(index);
                     }}
                     onFocus={() => {
                         setSelectedIndex(index);
-                    }} // Focus when the element is tabbed into
+                    }}
                     onKeyDown={(event) => {
                         handleKeyDown(event, index);
                     }}
+                    onDragStart={() => {
+                        handleDragStart(index);
+                    }}
+                    onDragEnter={() => {
+                        handleDragEnter(index);
+                    }}
+                    onDragOver={handleDragOver} // Prevent default drag image
+                    onDragEnd={handleDragEnd}
                     style={{ transition: 'transform 0.3s ease' }}
                 >
                     <ColorBar

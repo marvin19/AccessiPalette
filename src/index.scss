@@ -746,6 +746,10 @@ label {
     cursor: move;
 }
 
+.color-bar-container:active {
+    cursor: grabbing;
+}
+
 .color-bar-container.dragging {
     opacity: 0.8;
     transform: scale(1.05);
@@ -879,6 +883,7 @@ label {
     align-items: center;
     position: relative;
     border: 2px solid black;
+    cursor: grabbing;
 }
 
 .droppable-placeholder {
