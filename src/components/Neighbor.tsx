@@ -23,6 +23,7 @@ const Neighbor = ({
     setColorBars,
 }: NeighborProps): JSX.Element => {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+    const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
     const colorBarRefs = useRef<Array<HTMLDivElement | null>>([]);
 
     useEffect(() => {
@@ -31,15 +32,42 @@ const Neighbor = ({
         }
     }, [selectedIndex]);
 
+    const swapColors = (fromIndex: number, toIndex: number): void => {
+        const newColorBars = [...colorBars];
+        const temp = newColorBars[fromIndex];
+        newColorBars[fromIndex] = newColorBars[toIndex];
+        newColorBars[toIndex] = temp;
+        setColorBars(newColorBars);
+        setDraggedIndex(toIndex); // Update draggedIndex to follow the moved color bar
+    };
+
     const handleKeyDown = (event: React.KeyboardEvent, index: number): void => {
         if (event.key === 'ArrowRight' && index < colorBars.length - 1) {
-            setSelectedIndex(index + 1);
-            console.log('ArrowRight');
+            if (draggedIndex !== null && draggedIndex === selectedIndex) {
+                if (selectedIndex !== null) {
+                    swapColors(selectedIndex, selectedIndex + 1);
+                    setSelectedIndex(selectedIndex + 1);
+                }
+            } else {
+                setSelectedIndex(index + 1);
+            }
         } else if (event.key === 'ArrowLeft' && index > 0) {
-            console.log('ArrowLeft');
-            setSelectedIndex(index - 1);
+            if (draggedIndex !== null && draggedIndex === selectedIndex) {
+                if (selectedIndex !== null) {
+                    swapColors(selectedIndex, selectedIndex - 1);
+                    setSelectedIndex(selectedIndex - 1);
+                }
+            } else {
+                setSelectedIndex(index - 1);
+            }
         } else if (event.key === ' ' && selectedIndex !== null) {
-            console.log('Enter is pressed');
+            if (draggedIndex === null) {
+                setDraggedIndex(selectedIndex);
+                console.log('Picked up color bar at index:', selectedIndex);
+            } else {
+                setDraggedIndex(null);
+                console.log('Dropped color bar at index:', selectedIndex);
+            }
         }
     };
 
@@ -48,15 +76,19 @@ const Neighbor = ({
             {colorBars.map((color, index) => (
                 <div
                     key={index}
-                    className={`color-bar-container ${index === selectedIndex ? 'selected' : ''}`}
+                    className={`color-bar-container ${index === selectedIndex ? 'selected' : ''} ${index === draggedIndex ? 'dragging' : ''}`}
                     tabIndex={0}
                     ref={(el) => (colorBarRefs.current[index] = el)}
                     onClick={() => {
                         setSelectedIndex(index);
                     }}
+                    onFocus={() => {
+                        setSelectedIndex(index);
+                    }} // Focus when the element is tabbed into
                     onKeyDown={(event) => {
                         handleKeyDown(event, index);
                     }}
+                    style={{ transition: 'transform 0.3s ease' }}
                 >
                     <ColorBar
                         color={color}
