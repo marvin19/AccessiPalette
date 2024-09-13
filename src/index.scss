@@ -770,6 +770,11 @@ label {
     border-radius: 10px;
 }
 
+.color-bar-container:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-2);
+}
+
 /* ** */
 
 .link-and-logo h1 {
