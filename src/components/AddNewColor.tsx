@@ -11,15 +11,16 @@ const AddNewColor = ({
 }: AddNewColorProps): JSX.Element | null => {
     if (colorBars.length >= 20) return null;
     return (
-        <div className="color-bar-container">
+        <button
+            className="color-bar-container add-color-bar-button"
+            onClick={addColorBar}
+        >
             <div
                 className={`color-bar-outer add-color-bar ${selectedMode === 'all' ? 'all' : ''}`}
             >
-                <button onClick={addColorBar} className="add-color-bar-button">
-                    + Add color
-                </button>
+                <span>+ Add color</span>
             </div>
-        </div>
+        </button>
     );
 };
 
