@@ -8,12 +8,16 @@ interface UseColorBarInteractionsProps {
 interface UseColorBarInteractionsReturnType {
     selectedIndex: number | null;
     draggedIndex: number | null;
+    visibleContrastBoxIndex: number | null;
     colorBarRefs: React.MutableRefObject<Array<HTMLDivElement | null>>;
     handleKeyDown: (event: React.KeyboardEvent, index: number) => void;
     handleDragStart: (index: number) => void;
     handleDragEnter: (index: number) => void;
     handleDragEnd: () => void;
     setSelectedIndex: React.Dispatch<React.SetStateAction<number | null>>;
+    setVisibleContrastBoxIndex: React.Dispatch<
+        React.SetStateAction<number | null>
+    >;
 }
 
 /**
@@ -26,12 +30,14 @@ interface UseColorBarInteractionsReturnType {
  * @returns {Object} - The return value of the hook.
  * @returns {number | null} selectedIndex - The index of the currently selected color bar, or null if none is selected.
  * @returns {number | null} draggedIndex - The index of the color bar currently being dragged, or null if none is being dragged.
+ * @returns {number | null} visibleContrastBoxIndex - The index of the color bar for which the contrast box is visible, or null if none is visible.
  * @returns {React.MutableRefObject<HTMLDivElement[]>} colorBarRefs - A ref object to keep track of color bar elements.
  * @returns {(event: React.KeyboardEvent, index: number) => void} handleKeyDown - Function to handle keyboard events for navigation and selection.
  * @returns {(index: number) => void} handleDragStart - Function to initiate dragging of a color bar.
  * @returns {(index: number) => void} handleDragEnter - Function to handle entering a drag target (another color bar).
  * @returns {() => void} handleDragEnd - Function to handle the end of a drag action.
  * @returns {React.Dispatch<React.SetStateAction<number | null>>} setSelectedIndex - Function to manually set the selected index.
+ * @returns {React.Dispatch<React.SetStateAction<number | null>>} setVisibleContrastBoxIndex - Function to manually set the visible contrast box index.
  */
 
 export const useColorBarInteractions = ({
@@ -40,12 +46,15 @@ export const useColorBarInteractions = ({
 }: UseColorBarInteractionsProps): UseColorBarInteractionsReturnType => {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null); // Selected index is the index of the current color bar
     const [draggedIndex, setDraggedIndex] = useState<number | null>(null); // Index of the color bar currently being dragged
+    const [visibleContrastBoxIndex, setVisibleContrastBoxIndex] = useState<
+        number | null
+    >(null); // Index of the color bar for which contrast box is visible
     const colorBarRefs = useRef<Array<HTMLDivElement | null>>([]); // Keeps track of references to the DOM elements of the color bars
 
     // Runs when the `selectedIndex` changes.
     useEffect(() => {
         if (selectedIndex !== null) {
-            // If a color bar is selected, the corresponding DOM element is focues
+            // If a color bar is selected, the corresponding DOM element is focused
             colorBarRefs.current[selectedIndex]?.focus();
         }
     }, [selectedIndex]);
@@ -102,6 +111,7 @@ export const useColorBarInteractions = ({
     // Sets `draggedIndex` to the index of the color bar being dragged
     const handleDragStart = (index: number): void => {
         setDraggedIndex(index);
+        setVisibleContrastBoxIndex(null); // To hide the contrast box when dragging starts
     };
 
     // Swaps the color bar currently being dragged with the one at `index` where the drag started.
@@ -129,6 +139,7 @@ export const useColorBarInteractions = ({
         }
         setDraggedIndex(null);
         setSelectedIndex(null); // Remove focus after dropping
+        setVisibleContrastBoxIndex(draggedIndex); // Show the contrast box again after dragging
 
         // By resetting focus after drag ends, user can continue interacting with the UI without
         // unintended focus issues.
@@ -137,11 +148,13 @@ export const useColorBarInteractions = ({
     return {
         selectedIndex,
         draggedIndex,
+        visibleContrastBoxIndex,
         colorBarRefs,
         handleKeyDown,
         handleDragStart,
         handleDragEnter,
         handleDragEnd,
         setSelectedIndex,
+        setVisibleContrastBoxIndex,
     };
 };
