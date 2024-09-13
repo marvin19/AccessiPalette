@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 interface TabsProps {
     labels: string[];
     selectedTab: number;
@@ -13,6 +15,13 @@ const Tabs = ({
     ariaLabel,
     className,
 }: TabsProps): JSX.Element => {
+    const handleTabClick = useCallback(
+        (index: number) => {
+            onTabSelect(index);
+        },
+        [onTabSelect],
+    );
+
     return (
         <div
             className={`tabs ${className}`}
@@ -24,9 +33,11 @@ const Tabs = ({
                     key={index}
                     role="tab"
                     aria-selected={selectedTab === index}
+                    aria-controls={`tabpanel-${index}`}
+                    id={`tab-${index}`}
                     className={selectedTab === index ? 'active' : ''}
                     onClick={() => {
-                        onTabSelect(index);
+                        handleTabClick(index);
                     }}
                 >
                     {label}
