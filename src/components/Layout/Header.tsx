@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import logo from '../assets/highcharts-logo.svg';
-import onlyLogo from '../assets/highcharts-only-logo.svg';
-import ContrastSelectTab from './ContrastSelectTab';
-import ContrastModeTab from './ContrastModeTab';
-import GitHubLink from './GitHubLink';
-import PalettaLogo from './PalettaLogo';
+import logo from '../../assets/highcharts-logo.svg';
+import onlyLogo from '../../assets/highcharts-only-logo.svg';
+import ContrastSelectTab from '../ContrastSelectTab';
+import ContrastModeTab from '../ContrastModeTab';
+import GitHubLink from '../GitHubLink';
+import PalettaLogo from '../PalettaLogo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faQuestionCircle,

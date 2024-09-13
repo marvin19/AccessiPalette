@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from './components/Header';
+import Header from './components/Layout/Header';
 import Palette from './components/Palette';
 
 const App: React.FC = (): React.ReactElement | null => {
