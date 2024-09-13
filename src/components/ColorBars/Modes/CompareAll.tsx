@@ -1,5 +1,5 @@
-import ColorBar from '../../ColorBar';
-import AddNewColor from '../../AddNewColor';
+import ColorBar from '../ColorBar';
+import AddNewColor from '../AddNewColor';
 import { getParentClassForMode } from '../../../utils';
 
 interface CompareAllProps {

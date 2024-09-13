@@ -1,6 +1,6 @@
-import AddNewColor from '../../AddNewColor';
-import ColorBar from '../../ColorBar';
-import ContrastBox from '../../ContrastBox';
+import AddNewColor from '../AddNewColor';
+import ColorBar from '../ColorBar';
+import ContrastBox from '../ContrastBox';
 import { useColorBarInteractions } from '../../../hooks/useColorBarInteractions';
 
 interface NeighborProps {

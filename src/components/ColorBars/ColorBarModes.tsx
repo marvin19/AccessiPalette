@@ -1,8 +1,8 @@
 import { memo } from 'react';
-import CompareAll from './ColorBars/Modes/CompareAll';
-import ThirdColor from './ColorBars/Modes/ThirdColor';
-import Neighbor from './ColorBars/Modes/Neighbor';
-import useColorGeneration from '../hooks/useColorGeneration';
+import CompareAll from './Modes/CompareAll';
+import ThirdColor from './Modes/ThirdColor';
+import Neighbor from './Modes/Neighbor';
+import useColorGeneration from '../../hooks/useColorGeneration';
 
 interface ColorBarModesProps {
     selectedContrast: number;

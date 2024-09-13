@@ -1,4 +1,4 @@
-import Tabs from './Layout/Tabs';
+import Tabs from '../Layout/Tabs';
 import { useState, useEffect } from 'react';
 
 interface ContrastModeTabProps {

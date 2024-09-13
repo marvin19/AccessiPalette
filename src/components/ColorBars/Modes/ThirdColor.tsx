@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ColorBar from '../../ColorBar';
-import ContrastBox from '../../ContrastBox';
+import ColorBar from '../ColorBar';
+import ContrastBox from '../ContrastBox';
 import useContrastColor from '../../../hooks/useContrastColor';
 import { generateNewRandomColor } from '../../../utils';
 

@@ -1,4 +1,4 @@
-import ColorBarModes from './ColorBarModes';
+import ColorBarModes from '../ColorBars/ColorBarModes';
 
 interface PaletteProps {
     selectedContrast: number;

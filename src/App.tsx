@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from './components/Layout/Header';
-import Palette from './components/Palette';
+import Palette from './components/Containers/Palette';
 
 const App: React.FC = (): React.ReactElement | null => {
     const [selectedContrast, setSelectedContrast] = useState<number>(3.0);

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Tabs from './Layout/Tabs';
+import Tabs from '../Layout/Tabs';
 interface ContrastSelectTabProps {
     setSelectedContrast: (value: number) => void;
 }
