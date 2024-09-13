@@ -59,6 +59,7 @@ const Neighbor = ({
                     }`}
                     tabIndex={0}
                     role="button"
+                    aria-label={`Draggable color bar with color ${color}`}
                     draggable // Enable drag-and-drop
                     ref={(el) => (colorBarRefs.current[index] = el)}
                     onClick={(event) => {
