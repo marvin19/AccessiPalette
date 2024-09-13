@@ -1,6 +1,6 @@
 // ColorBarList.test.tsx
 // import { render } from '@testing-library/react';
-// import ColorBarList from '../src/components/ColorBarList';
+// import ColorBarModes from '../src/components/ColorBarModes';
 
 // Dummy test to allow file to be committed
 describe('Dummy test', () => {

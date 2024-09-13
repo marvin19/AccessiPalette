@@ -1,4 +1,4 @@
-import ColorBarList from './ColorBarList';
+import ColorBarModes from './ColorBarModes';
 
 interface PaletteProps {
     selectedContrast: number;
@@ -11,7 +11,7 @@ const Palette = ({
 }: PaletteProps): JSX.Element => {
     return (
         <div className="palette">
-            <ColorBarList
+            <ColorBarModes
                 selectedContrast={selectedContrast}
                 selectedMode={selectedMode}
             />

@@ -4,15 +4,15 @@ import ThirdColor from './ThirdColor';
 import Neighbor from './Neighbor';
 import useColorGeneration from '../hooks/useColorGeneration';
 
-interface ColorBarListProps {
+interface ColorBarModesProps {
     selectedContrast: number;
     selectedMode: 'all' | 'third' | 'neighbor';
 }
 
-const ColorBarList = ({
+const ColorBarModes = ({
     selectedContrast,
     selectedMode,
-}: ColorBarListProps): JSX.Element => {
+}: ColorBarModesProps): JSX.Element => {
     const {
         colors: colorBars,
         handleColorChange,
@@ -54,4 +54,4 @@ const ColorBarList = ({
     return componentMapping[selectedMode];
 };
 
-export default memo(ColorBarList);
+export default memo(ColorBarModes);
