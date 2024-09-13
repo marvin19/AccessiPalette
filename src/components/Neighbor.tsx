@@ -58,6 +58,7 @@ const Neighbor = ({
                             : ''
                     }`}
                     tabIndex={0}
+                    role="button"
                     draggable // Enable drag-and-drop
                     ref={(el) => (colorBarRefs.current[index] = el)}
                     onClick={(event) => {

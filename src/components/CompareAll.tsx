@@ -24,7 +24,7 @@ const CompareAll = ({
     return (
         <div className={`color-bars ${parentClass}`}>
             {colorBars.map((color, index) => (
-                <div className="color-bar-container" key={index}>
+                <div className="color-bar-container" key={index} role="button">
                     <ColorBar
                         color={color}
                         selectedMode={selectedMode}
