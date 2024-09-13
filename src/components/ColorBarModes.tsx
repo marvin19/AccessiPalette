@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import CompareAll from './CompareAll';
-import ThirdColor from './ThirdColor';
-import Neighbor from './Neighbor';
+import CompareAll from './ColorBars/Modes/CompareAll';
+import ThirdColor from './ColorBars/Modes/ThirdColor';
+import Neighbor from './ColorBars/Modes/Neighbor';
 import useColorGeneration from '../hooks/useColorGeneration';
 
 interface ColorBarModesProps {

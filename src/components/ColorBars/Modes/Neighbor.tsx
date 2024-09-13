@@ -1,7 +1,7 @@
-import AddNewColor from './AddNewColor';
-import ColorBar from './ColorBar';
-import ContrastBox from './ContrastBox';
-import { useColorBarInteractions } from '../hooks/useColorBarInteractions';
+import AddNewColor from '../../AddNewColor';
+import ColorBar from '../../ColorBar';
+import ContrastBox from '../../ContrastBox';
+import { useColorBarInteractions } from '../../../hooks/useColorBarInteractions';
 
 interface NeighborProps {
     colorBars: string[];
