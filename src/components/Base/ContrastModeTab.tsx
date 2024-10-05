@@ -1,5 +1,8 @@
 import Tabs from '../Layout/Tabs';
-import { useState, useEffect } from 'react';
+import Dropdown from '../Layout/Dropdown';
+import useIsDropdown from '../../hooks/useIsDropdown';
+import useTabSelection from '../../hooks/useTabSelection';
+import { useEffect } from 'react';
 
 interface ContrastModeTabProps {
     setSelectedMode: (value: 'all' | 'neighbor' | 'third') => void; // Updated to the union type
@@ -8,50 +11,22 @@ interface ContrastModeTabProps {
 const ContrastModeTab = ({
     setSelectedMode,
 }: ContrastModeTabProps): JSX.Element => {
-    const [selectedTab, setSelectedTab] = useState(1);
-    const [isDropdown, setIsDropdown] = useState(false);
+    const isDropdown = useIsDropdown(1350);
+    const [selectedTab, selectedMode, handleTabSelect] = useTabSelection();
 
-    const handleTabSelect = (index: number): void => {
-        setSelectedTab(index);
-        const modes: Array<'all' | 'neighbor' | 'third'> = [
-            'all',
-            'neighbor',
-            'third',
-        ]; // Ensure TypeScript knows this is a union type array
-        setSelectedMode(modes[index]);
-    };
-
+    // Set the selected mode when tab changes
     useEffect(() => {
-        const handleResize = (): void => {
-            setIsDropdown(window.innerWidth < 1350);
-        };
-        window.addEventListener('resize', handleResize);
-        handleResize();
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+        setSelectedMode(selectedMode);
+    }, [selectedMode, setSelectedMode]);
 
     const labels = ['Compare all', 'Only neighbors', 'Find third color'];
 
     return isDropdown ? (
-        <div>
-            <label htmlFor="contrast-mode-dropdown">Contrast mode:</label>
-            <select
-                value={selectedTab}
-                onChange={(e) => {
-                    handleTabSelect(Number(e.target.value));
-                }}
-                aria-label="Select contrast mode"
-                className="contrast-mode-dropdown"
-            >
-                {labels.map((label, index) => (
-                    <option value={index} key={index}>
-                        {label}
-                    </option>
-                ))}
-            </select>
-        </div>
+        <Dropdown
+            labels={labels}
+            selectedTab={selectedTab}
+            handleTabSelect={handleTabSelect}
+        />
     ) : (
         <Tabs
             labels={labels}
