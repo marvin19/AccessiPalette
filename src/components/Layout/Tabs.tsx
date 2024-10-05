@@ -22,6 +22,11 @@ const Tabs = ({
         [onTabSelect],
     );
 
+    const getButtonClass = useCallback(
+        (index: number) => (selectedTab === index ? 'active' : ''),
+        [selectedTab],
+    );
+
     return (
         <div
             className={`tabs ${className}`}
@@ -35,7 +40,7 @@ const Tabs = ({
                     aria-selected={selectedTab === index}
                     aria-controls={`tabpanel-${index}`}
                     id={`tab-${index}`}
-                    className={selectedTab === index ? 'active' : ''}
+                    className={getButtonClass(index)}
                     onClick={() => {
                         handleTabClick(index);
                     }}
