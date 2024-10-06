@@ -88,6 +88,7 @@ describe('ContrastModeTab', () => {
         // Ensure the tab select function is called
         expect(handleTabSelect).toHaveBeenCalledWith(1);
     });
+
     it('updates selectedMode when a dropdown option is selected', () => {
         const handleTabSelect = jest.fn();
         (useIsDropdown as jest.Mock).mockReturnValue(true);
