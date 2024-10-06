@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ColorPicker from '../src/components/Base/ColorPicker';
+import ColorPicker from '../../../src/components/Base/ColorPicker';
 
 describe('ColorPicker', () => {
     it('renders the color picker with the correct initial color', () => {

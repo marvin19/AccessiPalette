@@ -1,10 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import ContrastModeTab from '../src/components/Base/ContrastModeTab';
-import useIsDropdown from '../src/hooks/useIsDropdown';
-import useTabSelection from '../src/hooks/useTabSelection';
+import ContrastModeTab from '../../../src/components/Base/ContrastModeTab';
+import useIsDropdown from '../../../src/hooks/useIsDropdown';
+import useTabSelection from '../../../src/hooks/useTabSelection';
 
-jest.mock('../src/hooks/useIsDropdown');
-jest.mock('../src/hooks/useTabSelection');
+jest.mock('../../../src/hooks/useIsDropdown');
+jest.mock('../../../src/hooks/useTabSelection');
 
 describe('ContrastModeTab', () => {
     const mockSetSelectedMode = jest.fn();
