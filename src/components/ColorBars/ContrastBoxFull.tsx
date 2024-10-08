@@ -1,6 +1,6 @@
 import React from 'react';
-import ContrastBoxSmall from './ContrastBoxSmall';
-import useOtherColor from '../hooks/useOtherColor';
+import ContrastBoxSmall from '../ColorBars/ContrastBoxSmall';
+import useOtherColor from '../../hooks/useOtherColor';
 
 interface ContrastBoxFullProps {
     activeColor: string;

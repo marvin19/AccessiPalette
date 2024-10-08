@@ -1,5 +1,5 @@
-import { calculateContrastRatio, getWCAGLevel } from '../utils';
-import WCAGCheck from './WCAGCheck';
+import { calculateContrastRatio, getWCAGLevel } from '../../utils';
+import WCAGCheck from '../ColorBars/WCAGCheck';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 interface ContrastBoxProps {

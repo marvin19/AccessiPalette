@@ -1,4 +1,4 @@
-import { calculateContrastRatio, getWCAGLevel } from '../utils';
+import { calculateContrastRatio, getWCAGLevel } from '../../utils';
 import WCAGCheck from './WCAGCheck';
 import SmallColorBox from './SmallColorBox';
 

@@ -1,9 +1,9 @@
-import ContrastText from './ContrastText';
-import ColorPicker from './ColorPicker';
+import ContrastText from '../Base/ContrastText';
+import ColorPicker from '../Base/ColorPicker';
 import ContrastBoxFull from './ContrastBoxFull';
-import RemoveColorButton from './RemoveColorButton';
-import useTextColor from '../hooks/useTextColor';
-import useOtherColor from '../hooks/useOtherColor';
+import RemoveColorButton from '../Base/RemoveColorButton';
+import useTextColor from '../../hooks/useTextColor';
+import useOtherColor from '../../hooks/useOtherColor';
 
 interface ColorBarContentProps {
     allColors: string[];
