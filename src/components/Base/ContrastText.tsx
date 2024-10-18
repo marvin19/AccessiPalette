@@ -1,4 +1,4 @@
-import { calculateContrastRatio } from '../utils';
+import { calculateContrastRatio } from '../../utils';
 
 interface ContrastTextProps {
     color: string;
