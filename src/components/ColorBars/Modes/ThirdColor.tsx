@@ -53,7 +53,8 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                     />
                 )}
             </div>
-            <div className="color-bar-container">
+            <div className="color-bar-container third-contrast-color">
+                {/* TODO: Implement text color rendering for contrast in this mode as well */}
                 {buttonClicked ? (
                     contrastColor !== null ? (
                         <>
@@ -62,6 +63,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                                 removeColorBar={() => {}}
                                 allColors={[...colors, contrastColor]}
                                 selectedMode={selectedMode}
+                                isThirdContrastColor={true}
                             />
                             <ContrastBox
                                 leftColor={contrastColor}
