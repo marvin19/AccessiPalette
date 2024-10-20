@@ -10,7 +10,7 @@ const WHITE = '#FFFFFF';
  *
  * The hook calculates the contrast ratio between the given background color
  * and black (`#000000` which is the default. If the contrast ratio is less than
- * 3.0, which indicateds poor readability, it sets the text color to white
+ * 3.0, which indicates poor readability, it sets the text color to white
  * (`#FFFFFF`).
  *
  * If both black and white fail to meet the contrast threshold, default to black
@@ -18,18 +18,16 @@ const WHITE = '#FFFFFF';
  *
  * @param {string} backgroundColor - The background color to check for contrast.
  * @param {number} selectedContrast - The selected contrast ratio.
- * @returns {string} The calculated text color (either black or white).
+ * @returns {[string, string]} The calculated text color (either black or white), and the contrast ratio text.
  */
-
-// TODO: Something is not right. When changing colors in the 7 text contrast mode, it hops down to white and three to one and then hops back to seven. Might not be calculating something correct?
-// Also it should automatically change whenever a selectedContrast is changed.
 
 const useTextColor = (
     backgroundColor: string,
     selectedContrast: number,
-): string => {
-    const [textColor, setTextColor] = useState('#000000');
-    const [contrastText, setContrastText] = useState<string | null>(null);
+): [string, string] => {
+    const [textColor, setTextColor] = useState<string>(BLACK);
+    // TODO: Find better wording than N/A ?
+    const [contrastText, setContrastText] = useState<string>('N/A');
 
     useEffect(() => {
         const blackContrastRatio: number = calculateContrastRatio(
@@ -48,8 +46,15 @@ const useTextColor = (
             setTextColor(WHITE);
             setContrastText(whiteContrastRatio.toFixed(2));
         } else {
-            // Change this so that it sets the textColor with the highest contrast ratio
-            setTextColor(BLACK);
+            // Find which color has the highest ratio when selected
+            // contrast cannot be fulfilled
+            const highestContrastRatio = Math.max(
+                blackContrastRatio,
+                whiteContrastRatio,
+            );
+            setTextColor(
+                highestContrastRatio === blackContrastRatio ? BLACK : WHITE,
+            );
             setContrastText('N/A');
         }
     }, [backgroundColor, selectedContrast]);

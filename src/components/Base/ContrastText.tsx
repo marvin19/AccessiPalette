@@ -3,6 +3,7 @@ interface ContrastTextProps {
     contrastRatio: string | null;
 }
 
+// TODO: Rename contrastRatio to textContrastRatio
 const ContrastText = ({
     textColor,
     contrastRatio,
@@ -10,7 +11,7 @@ const ContrastText = ({
     return (
         <div className="contrast-text-container">
             <p className="contrast-text" style={{ color: textColor }}>
-                {contrastRatio != null ? `${contrastRatio}:1` : 'N/A'}
+                {contrastRatio !== 'N/A' ? `${contrastRatio}:1` : 'N/A'}
             </p>
             <p className="contrast-text-label" style={{ color: textColor }}>
                 Text Contrast Ratio
