@@ -41,6 +41,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                     onColorChange={(newColor) => {
                         handleColorChange(0, newColor);
                     }}
+                    selectedContrast={selectedContrast}
                     removeColorBar={() => {}}
                     allColors={colors}
                     selectedMode={selectedMode}
@@ -62,6 +63,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                                 color={contrastColor}
                                 removeColorBar={() => {}}
                                 allColors={[...colors, contrastColor]}
+                                selectedContrast={selectedContrast}
                                 selectedMode={selectedMode}
                                 isThirdContrastColor={true}
                             />
@@ -99,6 +101,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                     onColorChange={(newColor) => {
                         handleColorChange(1, newColor);
                     }}
+                    selectedContrast={selectedContrast}
                     removeColorBar={() => {}}
                     allColors={colors}
                     selectedMode={selectedMode}
