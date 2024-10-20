@@ -1,5 +1,5 @@
 import ContrastBoxSmall from './ContrastBoxSmall';
-import useOtherColor from '../hooks/useOtherColor';
+import useOtherColor from '../../hooks/useOtherColor';
 
 interface ContrastBoxFullProps {
     activeColor: string;
@@ -12,7 +12,7 @@ const ContrastBoxFull = ({
     otherColors,
     selectedContrast,
 }: ContrastBoxFullProps): JSX.Element => {
-    const filteredColors = useOtherColor(otherColors, activeColor);
+    const filteredColors: string[] = useOtherColor(otherColors, activeColor);
     const uniqueOtherColors = Array.from(new Set(filteredColors));
 
     return (
