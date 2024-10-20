@@ -9,6 +9,7 @@ interface ColorBarProps {
     selectedContrast?: number;
     removeColorBar?: () => void;
     onColorChange?: (color: string) => void;
+    isThirdContrastColor?: boolean;
 }
 
 const ColorBar = ({
@@ -18,6 +19,7 @@ const ColorBar = ({
     selectedContrast,
     removeColorBar = () => {},
     onColorChange = () => {},
+    isThirdContrastColor = false, // default value
 }: ColorBarProps): JSX.Element => {
     return (
         <div className="color-bar-outer" style={{ backgroundColor: color }}>
@@ -28,6 +30,7 @@ const ColorBar = ({
                 selectedMode={selectedMode ?? ''}
                 selectedContrast={selectedContrast}
                 allColors={allColors}
+                isThirdContrastColor={isThirdContrastColor}
             />
         </div>
     );

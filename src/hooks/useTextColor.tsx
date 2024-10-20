@@ -18,16 +18,16 @@ const WHITE = '#FFFFFF';
  *
  * @param {string} backgroundColor - The background color to check for contrast.
  * @param {number} selectedContrast - The selected contrast ratio.
- * @returns {[string, string]} The calculated text color (either black or white), and the contrast ratio text.
+ * @returns {[string, number]} The calculated text color (either black or white), and the contrast ratio text.
  */
 
 const useTextColor = (
     backgroundColor: string,
     selectedContrast: number,
-): [string, string] => {
+): [string, number] => {
     const [textColor, setTextColor] = useState<string>(BLACK);
     // TODO: Find better wording than N/A ?
-    const [contrastText, setContrastText] = useState<string>('N/A');
+    const [contrastTextRatio, setContrastTextRatio] = useState<number>(0);
 
     useEffect(() => {
         const blackContrastRatio: number = calculateContrastRatio(
@@ -41,10 +41,10 @@ const useTextColor = (
 
         if (blackContrastRatio >= selectedContrast) {
             setTextColor(BLACK);
-            setContrastText(blackContrastRatio.toFixed(2));
+            setContrastTextRatio(blackContrastRatio);
         } else if (whiteContrastRatio >= selectedContrast) {
             setTextColor(WHITE);
-            setContrastText(whiteContrastRatio.toFixed(2));
+            setContrastTextRatio(whiteContrastRatio);
         } else {
             // Find which color has the highest ratio when selected
             // contrast cannot be fulfilled
@@ -55,11 +55,11 @@ const useTextColor = (
             setTextColor(
                 highestContrastRatio === blackContrastRatio ? BLACK : WHITE,
             );
-            setContrastText('N/A');
+            setContrastTextRatio(0);
         }
     }, [backgroundColor, selectedContrast]);
 
-    return [textColor, contrastText];
+    return [textColor, contrastTextRatio];
 };
 
 export default useTextColor;

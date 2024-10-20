@@ -12,8 +12,8 @@ interface ColorBarContentProps {
     color: string;
     onColorChange: (color: string) => void;
     removeColorBar: () => void;
+    isThirdContrastColor?: boolean | undefined;
 }
-
 // TODO: Fix the selectedContrast ?? 0 typing
 
 const ColorBarContent = ({
@@ -23,8 +23,9 @@ const ColorBarContent = ({
     removeColorBar,
     onColorChange,
     selectedContrast,
+    isThirdContrastColor,
 }: ColorBarContentProps): JSX.Element => {
-    const [textColor, contrastRatio] = useTextColor(
+    const [textColor, textContrastRatio] = useTextColor(
         color,
         selectedContrast ?? 0,
     );
@@ -40,7 +41,8 @@ const ColorBarContent = ({
                 <div className="color-bar-inner-inner">
                     <ContrastText
                         textColor={textColor}
-                        contrastRatio={contrastRatio}
+                        textContrastRatio={textContrastRatio}
+                        selectedContrast={selectedContrast ?? 0}
                     />
                 </div>
                 {selectedMode === 'all' && (
@@ -50,7 +52,12 @@ const ColorBarContent = ({
                         selectedContrast={selectedContrast ?? 0}
                     />
                 )}
-                <ColorPicker color={color} onColorChange={handleColorChange} />
+                {isThirdContrastColor === false && (
+                    <ColorPicker
+                        color={color}
+                        onColorChange={handleColorChange}
+                    />
+                )}
             </div>
             {selectedMode !== 'third' && lengthOfColors > 2 && (
                 <RemoveColorButton

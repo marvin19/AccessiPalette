@@ -8,11 +8,11 @@ interface ContrastBoxProps {
     selectedContrast: number;
 }
 
-const ContrastBox: React.FC<ContrastBoxProps> = ({
+const ContrastBox = ({
     leftColor,
     rightColor,
     selectedContrast,
-}): JSX.Element => {
+}: ContrastBoxProps): JSX.Element => {
     const contrastRatio = calculateContrastRatio(leftColor, rightColor);
     const { meetsWCAG, level } = getWCAGLevel(contrastRatio, selectedContrast);
 

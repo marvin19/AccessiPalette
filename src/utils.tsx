@@ -63,10 +63,11 @@ export const calculateContrastRatio = (
     // Formula for calculating luminance (L1 + 0.05) / (L2 + 0.05)
     // +0.05 is added to prevent division by zero
     // Math.max and Math.min are to ensure that L1 is the luminance of the lighter color and LS is the luminance of the darker color
-    return (
+    const contrast =
         (Math.max(luminance1, luminance2) + 0.05) /
-        (Math.min(luminance1, luminance2) + 0.05)
-    );
+        (Math.min(luminance1, luminance2) + 0.05);
+
+    return parseFloat(contrast.toFixed(2));
 };
 
 // color coming in as hex
