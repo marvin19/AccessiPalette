@@ -22,7 +22,9 @@ const ContrastText = ({
                     : 'N/A'}
             </p>
             <p className="contrast-text-label" style={{ color: textColor }}>
-                Text Contrast Ratio
+                {textContrastRatio !== 0
+                    ? 'Text Contrast Ratio'
+                    : 'No sufficient text contrast found'}
             </p>
         </div>
     );

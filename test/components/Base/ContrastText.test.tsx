@@ -73,4 +73,22 @@ describe('ContrastText', () => {
         const contrastText = screen.getByText('N/A');
         expect(contrastText).toBeInTheDocument();
     });
+
+    it('displays "No sufficient text contrast found" when textContrastRatio is 0', () => {
+        // Mock the contrast ratio calculation
+        (getWCAGLevel as jest.Mock).mockReturnValue({ level: 'AAA' });
+
+        // Render component with specific color and textColor props
+        render(
+            <ContrastText
+                textColor="#ff0000"
+                textContrastRatio={0}
+                selectedContrast={3.0}
+            />,
+        );
+
+        // Check if the label is "No sufficient text contrast found"
+        const label = screen.getByText('No sufficient text contrast found');
+        expect(label).toBeInTheDocument();
+    });
 });
