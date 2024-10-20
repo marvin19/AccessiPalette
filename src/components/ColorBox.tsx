@@ -1,11 +1,9 @@
-import React from 'react';
-
 interface ColorBoxProps {
     color: string;
 }
 
 // This is the colorbox displaying the color in the palette
-const ColorBox: React.FC<ColorBoxProps> = ({ color }) => {
+const ColorBox = ({ color }: ColorBoxProps): JSX.Element => {
     return (
         <div className="color-container">
             <div className="color-box" style={{ backgroundColor: color }} />
