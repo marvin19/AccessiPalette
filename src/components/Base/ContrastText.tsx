@@ -1,18 +1,25 @@
+import { getWCAGLevel } from '../../utils';
 interface ContrastTextProps {
     textColor: string;
-    textContrastRatio: string | null;
+    textContrastRatio: number;
+    selectedContrast: number;
 }
 
-// TODO: Add contrast level text behind contrast ratio
+// TODO: Contrast algorithm for selecting black or white is still not perfect
 // TODO: Swap out text contrast ratio with "No sufficient text contrast found"
 const ContrastText = ({
     textColor,
     textContrastRatio,
+    selectedContrast,
 }: ContrastTextProps): JSX.Element => {
+    const { level } = getWCAGLevel(textContrastRatio, selectedContrast);
+
     return (
         <div className="contrast-text-container">
             <p className="contrast-text" style={{ color: textColor }}>
-                {textContrastRatio !== 'N/A' ? `${textContrastRatio}:1` : 'N/A'}
+                {textContrastRatio !== 0
+                    ? `${textContrastRatio}:1 (${level})`
+                    : 'N/A'}
             </p>
             <p className="contrast-text-label" style={{ color: textColor }}>
                 Text Contrast Ratio

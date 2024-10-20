@@ -14,7 +14,6 @@ interface ColorBarContentProps {
     removeColorBar: () => void;
     isThirdContrastColor?: boolean | undefined;
 }
-
 // TODO: Fix the selectedContrast ?? 0 typing
 
 const ColorBarContent = ({
@@ -43,6 +42,7 @@ const ColorBarContent = ({
                     <ContrastText
                         textColor={textColor}
                         textContrastRatio={textContrastRatio}
+                        selectedContrast={selectedContrast ?? 0}
                     />
                 </div>
                 {selectedMode === 'all' && (
