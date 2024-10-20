@@ -14,6 +14,8 @@ interface ColorBarContentProps {
     removeColorBar: () => void;
 }
 
+// TODO: Fix the selectedContrast ?? 0 typing
+
 const ColorBarContent = ({
     allColors,
     selectedMode,
@@ -22,7 +24,7 @@ const ColorBarContent = ({
     onColorChange,
     selectedContrast,
 }: ColorBarContentProps): JSX.Element => {
-    const textColor = useTextColor(color);
+    const textColor = useTextColor(color, selectedContrast ?? 0);
     const otherColors = useOtherColor(allColors, color);
     const handleColorChange = (newColor: string): void => {
         onColorChange(newColor);

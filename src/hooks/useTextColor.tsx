@@ -14,10 +14,17 @@ const WHITE = '#FFFFFF';
  * Otherwise, it keeps the text color as black.
  *
  * @param {string} backgroundColor - The background color to check for contrast.
+ * @param {number} selectedContrast - The selected contrast ratio.
  * @returns {string} The calculated text color (either black or white).
  */
 
-const useTextColor = (backgroundColor: string): string => {
+// TODO: Something is not right. When changing colors in the 7 text contrast mode, it hops down to white and three to one and then hops back to seven. Might not be calculating something correct?
+// Also it should automatically change whenever a selectedContrast is changed.
+
+const useTextColor = (
+    backgroundColor: string,
+    selectedContrast: number,
+): string => {
     const [textColor, setTextColor] = useState('#000000');
 
     useEffect(() => {
@@ -25,8 +32,8 @@ const useTextColor = (backgroundColor: string): string => {
             '#000000',
             backgroundColor,
         );
-        setTextColor(textContrastRatio < 3.0 ? WHITE : BLACK);
-    }, [backgroundColor]);
+        setTextColor(textContrastRatio < selectedContrast ? WHITE : BLACK);
+    }, [backgroundColor, selectedContrast]);
 
     return textColor;
 };
