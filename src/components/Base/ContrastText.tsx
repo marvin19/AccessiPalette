@@ -4,6 +4,8 @@ interface ContrastTextProps {
 }
 
 // TODO: Rename contrastRatio to textContrastRatio
+// TODO: Add contrast level text behind contrast ratio
+// TODO: Swap out text contrast ratio with "No sufficient text contrast found"
 const ContrastText = ({
     textColor,
     contrastRatio,
