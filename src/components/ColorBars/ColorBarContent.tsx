@@ -24,7 +24,10 @@ const ColorBarContent = ({
     onColorChange,
     selectedContrast,
 }: ColorBarContentProps): JSX.Element => {
-    const textColor = useTextColor(color, selectedContrast ?? 0);
+    const [textColor, contrastRatio] = useTextColor(
+        color,
+        selectedContrast ?? 0,
+    );
     const otherColors = useOtherColor(allColors, color);
     const handleColorChange = (newColor: string): void => {
         onColorChange(newColor);
@@ -35,7 +38,10 @@ const ColorBarContent = ({
         <>
             <div className="color-bar-inner">
                 <div className="color-bar-inner-inner">
-                    <ContrastText color={color} textColor={textColor} />
+                    <ContrastText
+                        textColor={textColor}
+                        contrastRatio={contrastRatio}
+                    />
                 </div>
                 {selectedMode === 'all' && (
                     <ContrastBoxFull

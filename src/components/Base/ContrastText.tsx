@@ -1,17 +1,16 @@
-import { calculateContrastRatio } from '../../utils';
-
 interface ContrastTextProps {
-    color: string;
     textColor: string;
+    contrastRatio: string | null;
 }
 
-const ContrastText = ({ color, textColor }: ContrastTextProps): JSX.Element => {
-    const textContrastRatio = calculateContrastRatio(textColor, color);
-
+const ContrastText = ({
+    textColor,
+    contrastRatio,
+}: ContrastTextProps): JSX.Element => {
     return (
         <div className="contrast-text-container">
             <p className="contrast-text" style={{ color: textColor }}>
-                {textContrastRatio.toFixed(2)}:1
+                {contrastRatio != null ? `${contrastRatio}:1` : 'N/A'}
             </p>
             <p className="contrast-text-label" style={{ color: textColor }}>
                 Text Contrast Ratio

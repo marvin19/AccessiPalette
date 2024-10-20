@@ -9,9 +9,12 @@ const WHITE = '#FFFFFF';
  * based on the contrast ratio with the given background color.
  *
  * The hook calculates the contrast ratio between the given background color
- * and black (`#000000`). If the contrast ratio is less than 3.0,
- * which indicateds poor readability, it sets the text color to white (`#FFFFFF`).
- * Otherwise, it keeps the text color as black.
+ * and black (`#000000` which is the default. If the contrast ratio is less than
+ * 3.0, which indicateds poor readability, it sets the text color to white
+ * (`#FFFFFF`).
+ *
+ * If both black and white fail to meet the contrast threshold, default to black
+ * and return "N/A for contrast ratio"
  *
  * @param {string} backgroundColor - The background color to check for contrast.
  * @param {number} selectedContrast - The selected contrast ratio.
@@ -26,16 +29,32 @@ const useTextColor = (
     selectedContrast: number,
 ): string => {
     const [textColor, setTextColor] = useState('#000000');
+    const [contrastText, setContrastText] = useState<string | null>(null);
 
     useEffect(() => {
-        const textContrastRatio = calculateContrastRatio(
-            '#000000',
+        const blackContrastRatio: number = calculateContrastRatio(
+            BLACK,
             backgroundColor,
         );
-        setTextColor(textContrastRatio < selectedContrast ? WHITE : BLACK);
+        const whiteContrastRatio: number = calculateContrastRatio(
+            WHITE,
+            backgroundColor,
+        );
+
+        if (blackContrastRatio >= selectedContrast) {
+            setTextColor(BLACK);
+            setContrastText(blackContrastRatio.toFixed(2));
+        } else if (whiteContrastRatio >= selectedContrast) {
+            setTextColor(WHITE);
+            setContrastText(whiteContrastRatio.toFixed(2));
+        } else {
+            // Change this so that it sets the textColor with the highest contrast ratio
+            setTextColor(BLACK);
+            setContrastText('N/A');
+        }
     }, [backgroundColor, selectedContrast]);
 
-    return textColor;
+    return [textColor, contrastText];
 };
 
 export default useTextColor;
