@@ -26,7 +26,7 @@ const ColorBarContent = ({
     selectedContrast,
     isThirdContrastColor,
 }: ColorBarContentProps): JSX.Element => {
-    const [textColor, contrastRatio] = useTextColor(
+    const [textColor, textContrastRatio] = useTextColor(
         color,
         selectedContrast ?? 0,
     );
@@ -42,7 +42,7 @@ const ColorBarContent = ({
                 <div className="color-bar-inner-inner">
                     <ContrastText
                         textColor={textColor}
-                        contrastRatio={contrastRatio}
+                        textContrastRatio={textContrastRatio}
                     />
                 </div>
                 {selectedMode === 'all' && (

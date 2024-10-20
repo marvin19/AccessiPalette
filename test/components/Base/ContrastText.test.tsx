@@ -16,7 +16,7 @@ describe('ContrastText', () => {
         (calculateContrastRatio as jest.Mock).mockReturnValue(4.5);
 
         // Render component with color and textColor props
-        render(<ContrastText textColor="#000000" contrastRatio="4.50" />);
+        render(<ContrastText textColor="#000000" textContrastRatio="4.50" />);
 
         // Check if the correct contrast ratio is displayed
         const contrastText = screen.getByText('4.50:1');
@@ -32,7 +32,7 @@ describe('ContrastText', () => {
         (calculateContrastRatio as jest.Mock).mockReturnValue(3.0);
 
         // Render component with specific color and textColor props
-        render(<ContrastText textColor="#ff0000" contrastRatio="3.00" />);
+        render(<ContrastText textColor="#ff0000" textContrastRatio="3.00" />);
 
         // Check if the contrast ratio text is styled with correct textColor
         const contrastText = screen.getByText('3.00:1');
