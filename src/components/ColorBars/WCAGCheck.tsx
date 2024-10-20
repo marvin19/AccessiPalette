@@ -1,4 +1,3 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCheckCircle,
@@ -10,7 +9,7 @@ interface WCAGCheckProps {
     fontSize: string;
 }
 
-const WCAGCheck: React.FC<WCAGCheckProps> = ({ meetsWCAG, fontSize }) => {
+const WCAGCheck = ({ meetsWCAG, fontSize }: WCAGCheckProps): JSX.Element => {
     return (
         <div className="check-text" style={{ fontSize }}>
             {meetsWCAG ? (

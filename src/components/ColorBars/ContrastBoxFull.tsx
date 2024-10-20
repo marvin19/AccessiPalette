@@ -1,5 +1,4 @@
-import React from 'react';
-import ContrastBoxSmall from '../ColorBars/ContrastBoxSmall';
+import ContrastBoxSmall from './ContrastBoxSmall';
 import useOtherColor from '../../hooks/useOtherColor';
 
 interface ContrastBoxFullProps {
@@ -8,12 +7,12 @@ interface ContrastBoxFullProps {
     selectedContrast: number;
 }
 
-const ContrastBoxFull: React.FC<ContrastBoxFullProps> = ({
+const ContrastBoxFull = ({
     activeColor,
     otherColors,
     selectedContrast,
-}): JSX.Element => {
-    const filteredColors = useOtherColor(otherColors, activeColor);
+}: ContrastBoxFullProps): JSX.Element => {
+    const filteredColors: string[] = useOtherColor(otherColors, activeColor);
     const uniqueOtherColors = Array.from(new Set(filteredColors));
 
     return (
