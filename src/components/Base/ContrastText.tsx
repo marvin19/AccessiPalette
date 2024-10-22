@@ -31,7 +31,7 @@ const ContrastText = ({
                 {textContrastRatio !== 0 ? (
                     <>
                         {`${textContrastRatio}:1`}
-                        <span className="contrast-level">({level})</span>`
+                        <span className="contrast-level">({level})</span>
                     </>
                 ) : (
                     'N/A'
