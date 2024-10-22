@@ -47,61 +47,72 @@ describe('ContrastText', () => {
         expect(levelSpan).toBeInTheDocument();
     });
 
-    // it('applies the correct text color to botn the contrast ratio and label', () => {
-    //     // Mock the contrast ratio calculation
-    //     (getWCAGLevel as jest.Mock).mockReturnValue({ level: 'AAA' });
+    it('applies the correct text color to both the contrast ratio and label', () => {
+        // Mock the contrast ratio calculation
+        (getWCAGLevel as jest.Mock).mockReturnValue({ level: 'AAA' });
 
-    //     // Render component with specific color and textColor props
-    //     render(
-    //         <ContrastText
-    //             textColor="#ff0000"
-    //             textContrastRatio={3.0}
-    //             selectedContrast={3.0}
-    //         />,
-    //     );
+        // Render component with specific color and textColor props
+        render(
+            <ContrastText
+                textColor="#ff0000"
+                textContrastRatio={3.0}
+                selectedContrast={3.0}
+            />,
+        );
 
-    //     // Check if the contrast ratio text is styled with correct textColor
-    //     const contrastText = screen.getByText('3:1 (AAA)');
-    //     expect(contrastText).toHaveStyle('color: #ff0000');
+        // Find parent element
+        const contrastTextContainer = screen
+            .getByText('Text Contrast Ratio')
+            .closest('.contrast-text-container');
+        expect(contrastTextContainer).toBeInTheDocument();
 
-    //     // Check if the label "Text Contrast Ratio" is styled with correct textColor
-    //     const label = screen.getByText('Text Contrast Ratio');
-    //     expect(label).toHaveStyle('color: #ff0000');
-    // });
+        // Check if the contrast ratio text is styled with correct textColor
+        const contrastText = within(contrastTextContainer as any).getByText(
+            '3:1',
+            {
+                exact: false,
+            },
+        );
+        expect(contrastText).toHaveStyle('color: #ff0000');
 
-    // it('displays "N/A" when textContrastRatio is 0', () => {
-    //     // Mock the contrast ratio calculation
-    //     (getWCAGLevel as jest.Mock).mockReturnValue({ level: 'AAA' });
+        // Check if the label "Text Contrast Ratio" is styled with correct textColor
+        const label = screen.getByText('Text Contrast Ratio');
+        expect(label).toHaveStyle('color: #ff0000');
+    });
 
-    //     // Render component with specific color and textColor props
-    //     render(
-    //         <ContrastText
-    //             textColor="#ff0000"
-    //             textContrastRatio={0}
-    //             selectedContrast={3.0}
-    //         />,
-    //     );
+    it('displays "N/A" when textContrastRatio is 0', () => {
+        // Mock the contrast ratio calculation
+        (getWCAGLevel as jest.Mock).mockReturnValue({ level: 'AAA' });
 
-    //     // Check if the contrast ratio text is "N/A"
-    //     const contrastText = screen.getByText('N/A');
-    //     expect(contrastText).toBeInTheDocument();
-    // });
+        // Render component with specific color and textColor props
+        render(
+            <ContrastText
+                textColor="#ff0000"
+                textContrastRatio={0}
+                selectedContrast={3.0}
+            />,
+        );
 
-    // it('displays "No sufficient text contrast found" when textContrastRatio is 0', () => {
-    //     // Mock the contrast ratio calculation
-    //     (getWCAGLevel as jest.Mock).mockReturnValue({ level: 'AAA' });
+        // Check if the contrast ratio text is "N/A"
+        const contrastText = screen.getByText('N/A');
+        expect(contrastText).toBeInTheDocument();
+    });
 
-    //     // Render component with specific color and textColor props
-    //     render(
-    //         <ContrastText
-    //             textColor="#ff0000"
-    //             textContrastRatio={0}
-    //             selectedContrast={3.0}
-    //         />,
-    //     );
+    it('displays "No sufficient text contrast found" when textContrastRatio is 0', () => {
+        // Mock the contrast ratio calculation
+        (getWCAGLevel as jest.Mock).mockReturnValue({ level: 'AAA' });
 
-    //     // Check if the label is "No sufficient text contrast found"
-    //     const label = screen.getByText('No sufficient text contrast found');
-    //     expect(label).toBeInTheDocument();
-    // });
+        // Render component with specific color and textColor props
+        render(
+            <ContrastText
+                textColor="#ff0000"
+                textContrastRatio={0}
+                selectedContrast={3.0}
+            />,
+        );
+
+        // Check if the label is "No sufficient text contrast found"
+        const label = screen.getByText('No sufficient text contrast found');
+        expect(label).toBeInTheDocument();
+    });
 });
