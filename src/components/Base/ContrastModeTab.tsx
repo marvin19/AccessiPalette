@@ -1,4 +1,4 @@
-import Tabs from '../Layout/Tabs';
+import Tabs from '../Layout/TabPanel';
 import Dropdown from '../Layout/Dropdown';
 import useIsDropdown from '../../hooks/useIsDropdown';
 import useTabSelection from '../../hooks/useTabSelection';

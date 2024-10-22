@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Tabs from '../Layout/Tabs';
+import Tabs from '../Layout/TabPanel';
 import Dropdown from '../Layout/Dropdown';
 import useIsDropdown from '../../hooks/useIsDropdown';
 import useContrastSelection from '../../hooks/useContrastSelection';
